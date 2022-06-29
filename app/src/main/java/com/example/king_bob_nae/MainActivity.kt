@@ -7,5 +7,8 @@ import com.example.king_bob_nae.databinding.ActivityMainBinding
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        SampleActivity.obtain(this).also {
+            startActivity(it)
+        }
     }
 }
