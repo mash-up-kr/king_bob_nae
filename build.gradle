@@ -18,12 +18,13 @@ task clean(type: Delete) {
 
 
 ext {
-    lifecycle_version ="2.4.1"
+    lifecycle_version = "2.4.1"
     hilt_version = "2.42"
     retrofit_version = "2.9.0"
     paging_version = "3.1.1"
-    glide_version ="4.13.2"
+    glide_version = "4.13.2"
     kotlin_version = "1.6.21"
     okhttp_version = "5.0.0-alpha.7"
     nav_version = "2.4.2"
+    lottie_version = "5.2.0"
 }
