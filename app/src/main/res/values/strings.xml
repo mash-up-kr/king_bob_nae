@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">King_Bob_Nae</string>
+    <string name="login_text">아침에도\n점심에도\n저녁에도</string>
+    <string name="kki_rok">끼록!</string>
+    <string name="login_with_email">이메일 로그인</string>
+    <string name="sing_up">회원가입</string>
 </resources>
