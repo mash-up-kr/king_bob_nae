@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
-class BaseFragment<VB : ViewDataBinding>(
+abstract class BaseFragment<VB : ViewDataBinding>(
     @LayoutRes private val layoutId: Int
 ) : Fragment(layoutId) {
     private var _binding: VB? = null
