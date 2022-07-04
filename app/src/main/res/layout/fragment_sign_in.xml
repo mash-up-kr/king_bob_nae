@@ -24,51 +24,76 @@
 
         <TextView
             android:id="@+id/tv_login_with_email"
+            style="@style/Headline1_Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="30dp"
             android:text="@string/sign_in_with_email"
             android:textColor="@color/brown_gray_500"
-            android:textSize="22sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_back" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_input_email"
-            android:layout_width="0dp"
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="36dp"
-            android:hint="@string/input_email_hint"
-            android:paddingBottom="20dp"
-            android:textColor="@color/brown_gray_300"
+            android:theme="@style/EditTextStyle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_login_with_email" />
+            app:layout_constraintTop_toBottomOf="@id/tv_login_with_email">
 
-        <EditText
-            android:id="@+id/et_input_password"
-            android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/Body1_Regular"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/input_email_hint"
+                android:paddingBottom="20dp"
+                android:textColor="@color/brown_gray_300" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout3"
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
             android:layout_marginTop="32dp"
-            android:hint="@string/input_password_hint"
-            android:paddingBottom="20dp"
+            android:textColor="@color/brown_gray_300"
+            android:theme="@style/EditTextStyle"
+            app:endIconMode="custom"
             app:layout_constraintEnd_toEndOf="@id/et_input_email"
             app:layout_constraintStart_toStartOf="@id/et_input_email"
-            app:layout_constraintTop_toBottomOf="@id/et_input_email" />
+            app:layout_constraintTop_toBottomOf="@id/et_input_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_input_password"
+                style="@style/Body1_Regular"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/input_password_hint"
+                android:inputType="textPassword"
+                android:paddingBottom="20dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            style="@style/Body2_Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:text="@string/missing_password"
+            android:textColor="@color/brown_gray_300"
             app:layout_constraintBottom_toTopOf="@id/btn_finish"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_finish"
+            style="@style/Body1_Bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
@@ -77,7 +102,6 @@
             android:paddingVertical="12dp"
             android:text="@string/finish"
             android:textColor="@color/brown_gray_300"
-            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
