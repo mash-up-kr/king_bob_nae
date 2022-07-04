@@ -2,6 +2,14 @@
     <string name="app_name">King_Bob_Nae</string>
     <string name="login_text">아침에도\n점심에도\n저녁에도</string>
     <string name="kki_rok">끼록!</string>
+
+    <!-- 로그인 및 회원가입 -->
+    <string name="sing_up">회원가입</string>
+    <string name="sign_in_with_email">이메일로 로그인</string>
+    <string name="input_email_hint">이메일 입력</string>
+    <string name="input_password_hint">비밀번호 입력</string>
+    <string name="missing_password">비밀번호를 잊어버렸어요</string>
+    <string name="login_input_error">이메일 혹은 비밀번호가 맞지 않습니다</string>
     <string name="next">다음</string>
     <string name="start">시작하기</string>
     <string name="finish">완료</string>

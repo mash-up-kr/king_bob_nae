@@ -7,8 +7,6 @@ assignees: ''
 
 ---
 
-## issue number
-
 ## content
 
 ## fix
