@@ -17,7 +17,7 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".features.login.presenter.LoginActivity"
+            android:name=".features.intro.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

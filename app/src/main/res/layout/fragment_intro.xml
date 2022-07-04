@@ -32,7 +32,8 @@
             app:layout_constraintBottom_toTopOf="@id/kki_rok_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/login_text" />
+            app:layout_constraintTop_toBottomOf="@id/login_text"
+            android:contentDescription="@null"/>
 
         <TextView
             android:id="@+id/kki_rok_text"
@@ -55,8 +56,8 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/radius_white"
             android:stateListAnimator="@null"
-            android:text="@string/login_with_email"
             android:textColor="@color/main_orange"
+            android:text="@string/sign_in_with_email"
             app:layout_constraintBottom_toTopOf="@+id/kki_rok_sign_up"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
