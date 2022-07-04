@@ -2,10 +2,23 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/login_navigation_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/introFragment">
 
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.king_bob_nae.features.login.LoginFragment"
-        android:label="LoginFragment" />
+        android:id="@+id/introFragment"
+        android:name="com.example.king_bob_nae.features.intro.IntroFragment"
+        android:label="IntroFragemtn">
+        <action
+            android:id="@+id/action_loginFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.king_bob_nae.features.intro.signin.presenter.SignInFragment"
+        android:label="SignInFragment" >
+        <action
+            android:id="@+id/action_signInFragment_to_introFragment"
+            app:destination="@id/introFragment"
+            app:popUpTo="@id/signInFragment" />
+    </fragment>
 </navigation>

@@ -61,15 +61,17 @@
         <item name="android:textSize">11dp</item>
     </style>
 
-    <style name="EditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+    <style name="EditTextStyle" parent="Widget.Design.TextInputLayout">
         <item name="boxStrokeColor">@color/brown_gray_200</item>
-
-        // unFocus 상태 밑줄
+        <!-- Focus 상태 밑줄-->
+        <item name="colorControlNormal">@color/brown_gray_200</item>
         <item name="colorControlActivated">@color/main_orange</item>
-        // Focus 상태 밑줄
+        <item name="colorControlHighlight">@color/main_orange</item>
+
+        <!-- unFocus 상태 밑줄 -->
         <item name="boxBackgroundColor">@color/white</item>
         <item name="android:textAppearance">@style/Body1_Regular</item>
-
+        <item name="hintEnabled">false</item>
         <item name="android:textCursorDrawable">@color/main_orange</item>
         <item name="android:textColorHint">@color/brown_gray_200</item>
         <item name="android:textColor">@color/brown_gray_500</item>
