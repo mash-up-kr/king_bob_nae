@@ -1,22 +1,6 @@
-## Issue No❗
+## 개요
+- Issue No
+- 내용
 
--
-
-<br>
-
-## Motivation🤔
-
--
-
-<br>
-
-## Key Changes 🔑
-
--
-
-<br>
-
-## To Reviewers 🙋‍♂️
-
--
-
+## 작업사항
+- 내용 
