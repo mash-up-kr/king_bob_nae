@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/btn_sign_up_nick_back"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="4dp"
@@ -48,7 +48,7 @@
             app:layout_constraintTop_toBottomOf="@id/sign_up_email_text">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/sign_up_passwd_input"
+                android:id="@+id/sign_up_nick_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/sign_up_input_nick_hint"
@@ -57,7 +57,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/sign_up_email_next"
+            android:id="@+id/sign_up_nick_next"
             style="@style/Body1_Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/sign_up_nick_count"
             style="@style/Caption_Regular"
             android:textColor="@color/brown_gray_400"
             android:layout_width="wrap_content"

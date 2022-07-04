@@ -67,7 +67,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/btn_sign_up_email_back"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="4dp"

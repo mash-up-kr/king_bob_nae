@@ -26,7 +26,6 @@
         </com.airbnb.lottie.LottieAnimationView>
 
         <TextView
-            android:id="@+id/textView"
             style="@style/Headline1_Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

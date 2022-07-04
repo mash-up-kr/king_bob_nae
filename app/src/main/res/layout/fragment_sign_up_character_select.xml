@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/btn_character_back"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="4dp"
@@ -22,7 +22,7 @@
             app:srcCompat="@drawable/ic_back_48" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/sign_up_character"
             style="@style/Headline1_Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             tools:text="활발한 브로콜리 당첨" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/img_sign_up_character_back"
             android:layout_width="228dp"
             android:layout_height="220dp"
             android:layout_marginTop="219dp"
@@ -44,17 +44,17 @@
             app:srcCompat="@drawable/character_background" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/img_sign_up_character"
             android:layout_width="248dp"
             android:layout_height="248dp"
             android:layout_marginTop="21dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/img_sign_up_character_back"
             app:srcCompat="@drawable/lv1_hungry_broccoli" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/sign_up_character_comment"
             style="@style/Body2_Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -63,11 +63,10 @@
             android:textColor="@color/brown_gray_300"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_character"
             tools:text="@string/broccoli_comment" />
 
         <TextView
-            android:id="@+id/textView5"
             style="@style/Body1_Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,12 +74,12 @@
             android:textColor="@color/brown_gray_400"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:layout_constraintTop_toBottomOf="@+id/img_sign_up_character"
             tools:text="@string/start_kkilog" />
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_start_next"
+            android:id="@+id/btn_character_start"
             style="@style/Body1_Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -89,7 +88,7 @@
             android:layout_marginBottom="30dp"
             android:background="@drawable/radius_orange"
             android:stateListAnimator="@null"
-            android:text="@string/next"
+            android:text="@string/start"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
