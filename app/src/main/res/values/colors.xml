@@ -15,7 +15,10 @@
     <color name="brown_gray_400">#5f574c</color>
     <color name="brown_gray_500">#312e27</color>
 
-    <color name="main_yellow_red">#fd663d</color>
-    <color name="main_green_yellow">#bde468</color>
-    <color name="main_yellow_yellow">#ffdf34</color>
+    <color name="main_orange">#fd663d</color>
+    <color name="main_green">#bde468</color>
+    <color name="main_yellow">#ffdf34</color>
+    <color name="main_ivory">#FAF7F2</color>
+
+    <color name="red_error">#EE6464</color>
 </resources>

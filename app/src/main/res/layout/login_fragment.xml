@@ -9,16 +9,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main_yellow_red">
+        android:background="@color/main_orange">
 
         <TextView
             android:id="@+id/login_text"
+            style="@style/Headline2_Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="96dp"
             android:text="@string/login_text"
             android:textColor="@color/white"
-            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@id/kki_rok_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,17 +36,18 @@
 
         <TextView
             android:id="@+id/kki_rok_text"
+            style="@style/Headline1_Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/kki_rok"
             android:textColor="@color/white"
-            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/kki_rok_image" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        S<androidx.appcompat.widget.AppCompatButton
             android:id="@+id/login_with_email"
+            style="@style/Body1_Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -55,13 +56,14 @@
             android:background="@drawable/radius_white"
             android:stateListAnimator="@null"
             android:text="@string/login_with_email"
-            android:textColor="@color/main_yellow_red"
+            android:textColor="@color/main_orange"
             app:layout_constraintBottom_toTopOf="@+id/kki_rok_sign_up"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/kki_rok_sign_up"
+            style="@style/Body1_Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -70,7 +72,7 @@
             android:layout_marginBottom="41dp"
             android:background="@drawable/radius_orange"
             android:stateListAnimator="@null"
-            android:text="@string/sing_up"
+            android:text="@string/sing_up_text"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
