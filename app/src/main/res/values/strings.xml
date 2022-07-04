@@ -7,17 +7,15 @@
     <string name="finish">완료</string>
     <string name="login_with_email">이메일 로그인</string>
 
-    <string-array name="character">
-        <item name ="carrot">감성적인 당근</item>
-        <item name ="broccoli">활발한 브로콜리</item>
-        <item name ="green_onion">카리스마 대파</item>
-    </string-array>
 
-    <string-array name="character_comment">
-        <item name ="carrot_comment">안녕하세요!\n저는 흔하디 흔한 당근이에요^오^</item>
-        <item name="broccoli_comment">와썹가이즈~내 풍성한 머리좀 볼래?ㅋㅋ</item>
-        <item name="green_onion_comment">반가워! 나는 멋쟁이 대파!\n라면에 대파 안 넣으면 미워할거야</item>
-    </string-array>
+    <string name="carrot">감성적인 당근</string>
+    <string name="broccoli">활발한 브로콜리</string>
+    <string name="green_onion">카리스마 대파</string>
+
+    <string name="carrot_comment">안녕하세요!\n저는 흔하디 흔한 당근이에요^오^</string>
+    <string name="broccoli_comment">와썹가이즈~\n내 풍성한 머리좀 볼래?ㅋㅋ</string>
+    <string name="green_onion_comment">반가워! 나는 멋쟁이 대파!\n라면에 대파 안 넣으면 미워할거야</string>
+
 
     <string name="sing_up_text">회원가입</string>
     <string name="sign_up_email_text">이메일을 입력해 주세요</string>
