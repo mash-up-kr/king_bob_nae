@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.king_bob_nae.features.login.LoginFragment"
+        android:name="com.example.king_bob_nae.features.login.presenter.LoginFragment"
         android:label="LoginFragment" />
 </navigation>
