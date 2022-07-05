@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -21,8 +20,10 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back_48" />
 
-        h<TextView
-            android:id="@+id/sign_up_email_text"
+        h
+
+        <TextView
+            android:id="@+id/tv_sign_up_email_text"
             style="@style/Headline1_Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,22 +43,26 @@
             android:layout_marginTop="36dp"
             android:layout_marginEnd="24dp"
             android:theme="@style/EditTextStyle"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
             app:counterTextAppearance="@style/Caption_Regular"
+            app:counterTextColor="@color/brown_gray_400"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sign_up_email_text">
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_email_text">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/sign_up_nick_input"
+                android:id="@+id/edt_sign_up_passwd_input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:hint="@string/sign_up_input_nick_hint"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:paddingBottom="20dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/sign_up_nick_next"
+            android:id="@+id/btn_sign_up_nick_next"
             style="@style/Body1_Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,16 +78,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/sign_up_nick_count"
-            style="@style/Caption_Regular"
-            android:textColor="@color/brown_gray_400"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            tools:text ="글자 수/10"
-            app:layout_constraintStart_toStartOf="@+id/nick_input_layout"
-            app:layout_constraintTop_toBottomOf="@+id/nick_input_layout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

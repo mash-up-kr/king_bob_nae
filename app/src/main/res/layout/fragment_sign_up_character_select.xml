@@ -22,7 +22,7 @@
             app:srcCompat="@drawable/ic_back_48" />
 
         <TextView
-            android:id="@+id/sign_up_character"
+            android:id="@+id/tv_sign_up_character"
             style="@style/Headline1_Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             app:srcCompat="@drawable/lv1_hungry_broccoli" />
 
         <TextView
-            android:id="@+id/sign_up_character_comment"
+            android:id="@+id/tv_sign_up_character_comment"
             style="@style/Body2_Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
             android:textColor="@color/brown_gray_300"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_character"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sign_up_character"
             tools:text="@string/broccoli_comment" />
 
         <TextView

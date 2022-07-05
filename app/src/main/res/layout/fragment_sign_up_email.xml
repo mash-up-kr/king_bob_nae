@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -12,7 +11,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/sign_up_email_text"
+            android:id="@+id/tv_sign_up_email_text"
             style="@style/Headline1_Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,14 +37,15 @@
             app:helperTextTextColor="@color/brown_gray_400"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sign_up_email_text">
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_email_text">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/sign_up_email_input"
+                android:id="@+id/edt_sign_up_email_input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:hint="@string/sign_up_input_email_hint"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:paddingBottom="20dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
