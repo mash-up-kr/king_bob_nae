@@ -20,10 +20,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back_48" />
 
-        h
-
         <TextView
-            android:id="@+id/tv_sign_up_email_text"
+            android:id="@+id/tv_sign_up_email"
             style="@style/Headline1_Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,12 +45,15 @@
             app:counterMaxLength="10"
             app:counterTextAppearance="@style/Caption_Regular"
             app:counterTextColor="@color/brown_gray_400"
+            app:endIconMode="custom"
+            app:errorEnabled="true"
+            app:errorIconDrawable="@drawable/ic_error_20"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_email_text">
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_email">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_sign_up_passwd_input"
+                android:id="@+id/et_sign_up_passwd_input"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/sign_up_input_nick_hint"

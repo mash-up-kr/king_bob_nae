@@ -34,7 +34,7 @@
             tools:text="활발한 브로콜리 당첨" />
 
         <ImageView
-            android:id="@+id/img_sign_up_character_back"
+            android:id="@+id/iv_sign_up_character_back"
             android:layout_width="228dp"
             android:layout_height="220dp"
             android:layout_marginTop="219dp"
@@ -44,13 +44,13 @@
             app:srcCompat="@drawable/character_background" />
 
         <ImageView
-            android:id="@+id/img_sign_up_character"
+            android:id="@+id/iv_sign_up_character"
             android:layout_width="248dp"
             android:layout_height="248dp"
             android:layout_marginTop="21dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/img_sign_up_character_back"
+            app:layout_constraintTop_toTopOf="@+id/iv_sign_up_character_back"
             app:srcCompat="@drawable/lv1_hungry_broccoli" />
 
         <TextView
@@ -74,7 +74,7 @@
             android:textColor="@color/brown_gray_400"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_sign_up_character"
+            app:layout_constraintTop_toBottomOf="@+id/iv_sign_up_character"
             tools:text="@string/start_kkilog" />
 
 

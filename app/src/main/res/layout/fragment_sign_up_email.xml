@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tv_sign_up_email_text"
+            android:id="@+id/tv_sign_up_email"
             style="@style/Headline1_Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/email_input_layout"
+            android:id="@+id/check_certification_input_layoutt"
             style="@style/EditTextStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -31,16 +31,19 @@
             android:layout_marginTop="36dp"
             android:layout_marginEnd="24dp"
             android:theme="@style/EditTextStyle"
+            app:endIconMode="custom"
+            app:errorEnabled="true"
+            app:errorIconDrawable="@drawable/ic_error_20"
             app:helperText="@string/sign_up_input_email_helper"
             app:helperTextEnabled="true"
             app:helperTextTextAppearance="@style/Caption_Regular"
             app:helperTextTextColor="@color/brown_gray_400"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_email_text">
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_email">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_sign_up_email_input"
+                android:id="@+id/et_check_certification_input"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/sign_up_input_email_hint"
