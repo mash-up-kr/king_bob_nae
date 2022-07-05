@@ -48,6 +48,7 @@
                 android:layout_height="match_parent"
                 android:hint="@string/sign_up_input_email_hint"
                 android:inputType="textEmailAddress"
+                android:maxLines="1"
                 android:paddingBottom="20dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
