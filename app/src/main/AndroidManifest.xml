@@ -21,14 +21,16 @@
             android:exported="true" />
         <activity
             android:name=".features.intro.IntroActivity"
-            android:exported="true"
             android:windowSoftInputMode="adjustResize">
-            <intent-filter>
+        </activity>
+        <activity
+            android:name=".features.intro.onboarding.presentation.OnBoardingActivity"
+            android:exported="true">
+         <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+</activity>
     </application>
 
 </manifest>

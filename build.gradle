@@ -27,4 +27,5 @@ ext {
     okhttp_version = "5.0.0-alpha.7"
     nav_version = "2.4.2"
     lottie_version = "5.2.0"
+    viewpager2_version = "1.0.0"
 }

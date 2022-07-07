@@ -1,4 +1,4 @@
-package com.example.king_bob_nae.features.intro.signin.presenter
+package com.example.king_bob_nae.features.intro.signin.presentation
 
 import android.os.Bundle
 import android.view.View
