@@ -1,15 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
     </data>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".features.home.HomeFragment">
+        android:layout_height="match_parent">
 
-    </FrameLayout>
+        <ImageView
+            android:id="@+id/iv_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_alarm_48"
+            android:contentDescription="@null"
+            app:layout_constraintEnd_toStartOf="@id/iv_my"
+            app:layout_constraintTop_toTopOf="@id/iv_my" />
+
+        <ImageView
+            android:id="@+id/iv_my"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/ic_mypage_48"
+            android:contentDescription="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_friends"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_alarm"
+            tools:listitem="@layout/holder_friend" />
+
+        <TextView
+            android:id="@+id/tv_today"
+            style="@style/Body2_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/today_text"
+            android:textColor="@color/brown_gray_400"
+            app:layout_constraintStart_toStartOf="@id/rv_friends"
+            app:layout_constraintTop_toBottomOf="@id/rv_friends" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            style="@style/Body2_Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/brown_gray_400"
+            app:layout_constraintBottom_toBottomOf="@id/tv_today"
+            app:layout_constraintStart_toEndOf="@id/tv_today"
+            app:layout_constraintTop_toTopOf="@id/tv_today"
+            tools:text="7월 8일" />
+
+        <TextView
+            android:id="@+id/tv_kkilog"
+            style="@style/Headline1_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/brown_gray_400"
+            app:layout_constraintStart_toStartOf="@id/tv_today"
+            app:layout_constraintTop_toBottomOf="@id/tv_today"
+            tools:text="끼록" />
+
+        <TextView
+            android:id="@+id/tv_count"
+            style="@style/Headline2_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/radius_orange_stroke"
+            android:paddingStart="12dp"
+            android:paddingEnd="4.5dp"
+            android:textColor="@color/main_orange"
+            app:drawableEndCompat="@drawable/ic_plus_18"
+            app:layout_constraintBottom_toBottomOf="@id/tv_kkilog"
+            app:layout_constraintStart_toEndOf="@id/tv_kkilog"
+            app:layout_constraintTop_toTopOf="@id/tv_kkilog"
+            tools:text="0끼" />
+
+        <ImageView
+            android:id="@+id/iv_character"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="18dp"
+            android:contentDescription="@null"
+            app:layout_constraintBottom_toTopOf="@id/ll_left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_kkilog" />
+
+        <LinearLayout
+            android:id="@+id/ll_left"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/line_top_and_bottom"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/view_divide_line"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/tv_nickname"
+                style="@style/Body2_Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/brown_gray_200"
+                tools:text="콩순이" />
+
+            <TextView
+                android:id="@+id/tv_info"
+                style="@style/Body1_Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/brown_gray_400"
+                tools:text="밥먹어서 신난다~" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_divide_line"
+            android:layout_width="0.75px"
+            android:layout_height="76dp"
+            android:layout_marginEnd="1dp"
+            android:background="@color/brown_gray_300"
+            app:layout_constraintBottom_toBottomOf="@id/ll_right"
+            app:layout_constraintEnd_toStartOf="@id/ll_right"
+            app:layout_constraintTop_toTopOf="@id/ll_right" />
+
+        <LinearLayout
+            android:id="@+id/ll_right"
+            android:layout_width="79dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/line_top_and_bottom"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_eat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="11dp"
+                android:background="@drawable/ic_chopstick_32"
+                android:contentDescription="@null" />
+
+            <TextView
+                style="@style/Body2_Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:text="@string/what_eat_text"
+                tools:text="뭐먹지" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

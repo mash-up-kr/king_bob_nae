@@ -50,4 +50,8 @@
 
     <string name="check_email_text">가입한 이메일 주소를\n 입력해 주세요</string>
     <string name="reset_passwd_text">비밀번호를 재설정해 주세요</string>
+
+    <string name="today_text">오늘</string>
+    <string name="what_eat_text">뭐먹지</string>
+
 </resources>

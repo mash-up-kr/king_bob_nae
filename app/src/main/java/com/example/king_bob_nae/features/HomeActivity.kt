@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseActivity
 import com.example.king_bob_nae.databinding.ActivityMainBinding
-import com.example.king_bob_nae.features.home.HomeFragment
+import com.example.king_bob_nae.features.home.presenter.HomeFragment
 import com.example.king_bob_nae.features.kkilog.KkiLogFragment
 import com.example.king_bob_nae.features.recipe.RecipeFragment
 
@@ -23,6 +23,7 @@ class HomeActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private fun initView() {
         binding.bottomNavHome.run {
             itemIconTintList = null
+            changeFragment(homeFragment)
             setOnItemSelectedListener { menu ->
                 when (menu.itemId) {
                     R.id.nav_home -> {
