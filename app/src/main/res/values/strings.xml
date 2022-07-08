@@ -65,4 +65,7 @@
     <string name="what_eat_text">뭐먹지</string>
     <string name="home_click_text">클릭!</string>
 
+    <!-- 이미지 피커 -->
+    <string name="do_kkirok_text">끼록하기</string>
+    <string name="gallery">갤러리</string>
 </resources>

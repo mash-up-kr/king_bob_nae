@@ -109,9 +109,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:visibility="gone"
             android:text="@string/home_click_text"
             android:textColor="@color/brown_gray_200"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@id/iv_character"
             app:layout_constraintStart_toStartOf="@id/iv_character"
             app:layout_constraintTop_toBottomOf="@id/iv_character" />
@@ -191,7 +191,6 @@
                 tools:text="뭐먹지" />
 
         </LinearLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
