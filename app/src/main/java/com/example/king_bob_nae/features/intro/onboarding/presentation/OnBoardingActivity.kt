@@ -11,7 +11,6 @@ import com.example.king_bob_nae.databinding.ActivityOnboardingBinding
 
 class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>(R.layout.activity_onboarding) {
 
-    private lateinit var viewPager: ViewPager2
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -19,9 +18,11 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>(R.layout.acti
     }
 
     private fun initPager() {
-        binding.pager.adapter = PagerAdapter(this)
-        binding.pager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        binding.dotsIndicator.setViewPager2(binding.pager)
+        binding.apply {
+            pager.adapter = PagerAdapter(this@OnBoardingActivity)
+            pager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+            dotsIndicator.setViewPager2(pager)
+        }
     }
 
     override fun onBackPressed() {
@@ -29,7 +30,8 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>(R.layout.acti
         else binding.pager.currentItem = binding.pager.currentItem - 1
     }
 
-    private inner class PagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
+    private class PagerAdapter(fragmentActivity: FragmentActivity) :
+        FragmentStateAdapter(fragmentActivity) {
         override fun getItemCount(): Int = 3
 
         override fun createFragment(position: Int): Fragment {
