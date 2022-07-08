@@ -53,5 +53,6 @@
 
     <string name="today_text">오늘</string>
     <string name="what_eat_text">뭐먹지</string>
+    <string name="home_click_text">클릭!</string>
 
 </resources>

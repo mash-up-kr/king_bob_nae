@@ -22,13 +22,15 @@
 
         <TextView
             android:id="@+id/iv_user"
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:textColor="@color/brown_gray_300"
             app:layout_constraintEnd_toEndOf="@id/iv_add"
             app:layout_constraintStart_toStartOf="@id/iv_add"
             app:layout_constraintTop_toBottomOf="@id/iv_add"
-            tools:text="나" />
+            tools:text="나어이없어" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
