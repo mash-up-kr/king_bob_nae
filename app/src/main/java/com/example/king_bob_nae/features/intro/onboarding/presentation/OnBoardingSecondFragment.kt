@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
-import com.example.king_bob_nae.databinding.FragmentOnboardingFirstBinding
+import com.example.king_bob_nae.databinding.FragmentOnboardingSecondBinding
 
-class OnBoardingFirst : BaseFragment<FragmentOnboardingFirstBinding>(R.layout.fragment_onboarding_first) {
+class OnBoardingSecondFragment : BaseFragment<FragmentOnboardingSecondBinding>(R.layout.fragment_onboarding_second) {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

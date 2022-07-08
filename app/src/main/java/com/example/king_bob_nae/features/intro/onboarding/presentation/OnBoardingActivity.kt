@@ -15,10 +15,10 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>(R.layout.acti
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setPager()
+        initPager()
     }
 
-    private fun setPager() {
+    private fun initPager() {
         binding.pager.adapter = PagerAdapter(this)
         binding.pager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         binding.dotsIndicator.setViewPager2(binding.pager)
@@ -34,9 +34,9 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>(R.layout.acti
 
         override fun createFragment(position: Int): Fragment {
             return when (position) {
-                0 -> OnBoardingFirst()
-                1 -> OnBoardingSecond()
-                else -> OnBoardingLast()
+                0 -> OnBoardingFirstFragment()
+                1 -> OnBoardingSecondFragment()
+                else -> OnBoardingLastFragment()
             }
         }
 

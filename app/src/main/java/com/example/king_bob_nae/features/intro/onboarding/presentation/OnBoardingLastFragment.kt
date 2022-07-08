@@ -8,7 +8,7 @@ import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentOnboardingLastBinding
 
-class OnBoardingLast : BaseFragment<FragmentOnboardingLastBinding>(R.layout.fragment_onboarding_last) {
+class OnBoardingLastFragment : BaseFragment<FragmentOnboardingLastBinding>(R.layout.fragment_onboarding_last) {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
