@@ -51,6 +51,16 @@
     <string name="check_email_text">가입한 이메일 주소를\n 입력해 주세요</string>
     <string name="reset_passwd_text">비밀번호를 재설정해 주세요</string>
 
+    <!-- 온보딩 -->
+    <string name="onboarding_memo">Memo</string>
+    <string name="onboarding_memo_comment">직접 요리한 레시피를 기록합니다.\n음식사진과 나만의 킥을 올려요!</string>
+
+    <string name="onboarding_connect">Connect</string>
+    <string name="onboarding_connect_comment">친구와 함께 끼니를 공유하고\n가벼운 소통 채널로 활용해요!</string>
+
+    <string name="onboarding_grow">Grow</string>
+    <string name="onboarding_grow_comment">끼록은 꾸준한 기록과 관심을 먹고 자란답니다.\n캐릭터와 함께 무한히 성장해 보세요!</string>
+
     <string name="today_text">오늘</string>
     <string name="what_eat_text">뭐먹지</string>
     <string name="home_click_text">클릭!</string>

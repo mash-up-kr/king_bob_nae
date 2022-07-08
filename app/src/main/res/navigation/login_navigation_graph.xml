@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.example.king_bob_nae.features.intro.signin.presenter.SignInFragment"
+        android:name="com.example.king_bob_nae.features.intro.signin.presentation.SignInFragment"
         android:label="SignInFragment" >
         <action
             android:id="@+id/action_signInFragment_to_introFragment"

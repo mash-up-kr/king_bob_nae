@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_onboarding_grow"
+            style="@style/Headline1_ENG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="52dp"
+            android:text="@string/onboarding_grow"
+            android:textColor="@color/brown_gray_400"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_onboarding_grow_comment"
+            style="@style/Body2_Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/onboarding_grow_comment"
+            android:textColor="@color/brown_gray_300"
+            app:layout_constraintStart_toStartOf="@id/tv_onboarding_grow"
+            app:layout_constraintTop_toBottomOf="@id/tv_onboarding_grow" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="360dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="28dp"
+            app:lottie_autoPlay="true"
+            app:lottie_rawRes="@raw/onboarding_last"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_onboarding_grow_comment">
+        </com.airbnb.lottie.LottieAnimationView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
