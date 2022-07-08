@@ -42,7 +42,7 @@
     </style>
 
     <style name="Body2_Regular">
-        <item name="android:fontFamily">@font/pretendard_bold</item>
+        <item name="android:fontFamily">@font/pretendard_regular</item>
         <item name="android:textSize">14dp</item>
     </style>
 
@@ -57,7 +57,7 @@
     </style>
 
     <style name="Caption_Regular">
-        <item name="android:fontFamily">@font/pretendard_bold</item>
+        <item name="android:fontFamily">@font/pretendard_regular</item>
         <item name="android:textSize">11dp</item>
     </style>
 
