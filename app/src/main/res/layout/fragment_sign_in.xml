@@ -96,6 +96,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
+                    android:id="@+id/tv_find_passwd"
                     style="@style/Body2_Regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -15,6 +15,7 @@
     <color name="brown_gray_400">#5f574c</color>
     <color name="brown_gray_500">#312e27</color>
 
+    <color name="intro_orange">#ff5324 </color>
     <color name="main_orange">#fd663d</color>
     <color name="main_green">#bde468</color>
     <color name="main_yellow">#ffdf34</color>

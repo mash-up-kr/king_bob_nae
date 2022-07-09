@@ -1,6 +1,8 @@
 package com.example.king_bob_nae.features.intro.onboarding.presentation
 
+import android.content.Intent
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -8,12 +10,18 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseActivity
 import com.example.king_bob_nae.databinding.ActivityOnboardingBinding
+import com.example.king_bob_nae.features.intro.IntroActivity
 
 class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>(R.layout.activity_onboarding) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        binding.btnOnboardingStart.setOnClickListener {
+            Intent(this, IntroActivity::class.java).run {
+                startActivity(this)
+            }
+        }
         initPager()
     }
 
@@ -22,6 +30,29 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>(R.layout.acti
             pager.adapter = PagerAdapter(this@OnBoardingActivity)
             pager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
             dotsIndicator.setViewPager2(pager)
+            pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    when (binding.pager.currentItem) {
+                        2 -> {
+                            binding.btnOnboardingStart.apply{
+                                isClickable = true
+                                setBackgroundResource(R.drawable.radius_orange)
+                                setTextColor(
+                                    ContextCompat.getColor(context,R.color.white)
+                                )
+                                setTextAppearance(R.style.Body1_Bold)
+                            }}
+                        else -> binding.btnOnboardingStart.isClickable = false
+                    }
+                }
+            })
+        }
+    }
+
+    private fun buttonEnabled() {
+        if (binding.pager.currentItem == 2) {
+            binding.btnOnboardingStart.isClickable = true
         }
     }
 

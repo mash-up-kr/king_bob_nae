@@ -16,10 +16,6 @@
         <activity
             android:name=".features.HomeActivity"
             android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".features.intro.IntroActivity"
@@ -28,8 +24,11 @@
         <activity
             android:name=".features.intro.onboarding.presentation.OnBoardingActivity"
             android:exported="true">
-
-</activity>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
