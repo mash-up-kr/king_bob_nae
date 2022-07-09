@@ -65,4 +65,11 @@
     <string name="what_eat_text">뭐먹지</string>
     <string name="home_click_text">클릭!</string>
 
+    <!--끼록 -->
+    <string name="kkilog_toolbar_text">끼록하기</string>
+    <string name="kkilog_food_name_text">요리 이름</string>
+    <string name="kkilog_food_description_text">오늘 만든 요리는 어땠나요? \n 레시피,맛,기분 어떤 것이든 좋아요</string>
+    <string name="kkilog_kick_hint_text">특별한 조리비법을 한 줄로 알려주세요</string>
+    <string name="kkilog_kick_count">%d / 20자</string>
+    <string name="kkilog_image_count">%d/10</string>
 </resources>
