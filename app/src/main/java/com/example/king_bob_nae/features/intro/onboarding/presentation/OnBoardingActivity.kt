@@ -41,18 +41,18 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>(R.layout.acti
                                 setTextColor(
                                     ContextCompat.getColor(context,R.color.white)
                                 )
-                                setTextAppearance(R.style.Body1_Bold)
                             }}
-                        else -> binding.btnOnboardingStart.isClickable = false
+                        else -> {
+                            binding.btnOnboardingStart.apply{
+                                isClickable = false
+                                setBackgroundResource(R.drawable.radius_gray)
+                                setTextColor(
+                                    ContextCompat.getColor(context,R.color.brown_gray_300)
+                                )
+                            }}
                     }
                 }
             })
-        }
-    }
-
-    private fun buttonEnabled() {
-        if (binding.pager.currentItem == 2) {
-            binding.btnOnboardingStart.isClickable = true
         }
     }
 
