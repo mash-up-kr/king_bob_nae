@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/login_navigation_graph"
+    app:startDestination="@id/introFragment">
+
+    <fragment
+        android:id="@+id/introFragment"
+        android:name="com.example.king_bob_nae.features.intro.IntroFragment"
+        android:label="IntroFragment">
+        <action
+            android:id="@+id/action_loginFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_introFragment_to_signUpEmailFragment2"
+            app:destination="@id/signUpEmailFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.king_bob_nae.features.intro.signin.presentation.SignInFragment"
+        android:label="SignInFragment">
+        <action
+            android:id="@+id/action_signInFragment_to_introFragment"
+            app:destination="@id/introFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_checkEmailFragment2"
+            app:destination="@id/checkEmailFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpEmailFragment2"
+        android:name="com.example.king_bob_nae.features.signup.email.presentation.SignUpEmailFragment"
+        android:label="SignUpEmailFragment" >
+        <action
+            android:id="@+id/action_signUpEmailFragment2_to_introFragment"
+            app:destination="@id/introFragment" />
+        <action
+            android:id="@+id/action_signUpEmailFragment2_to_signUpCheckCertificationFragment2"
+            app:destination="@id/signUpCheckCertificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkEmailFragment2"
+        android:name="com.example.king_bob_nae.features.reset.check_email.presentation.CheckEmailFragment"
+        android:label="CheckEmailFragment" >
+        <action
+            android:id="@+id/action_checkEmailFragment2_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_checkEmailFragment2_to_checkCertificationFragment"
+            app:destination="@id/checkCertificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpCheckCertificationFragment"
+        android:name="com.example.king_bob_nae.features.signup.certification.presentation.SignUpCheckCertificationFragment"
+        android:label="SignUpCheckCertificationFragment" >
+        <action
+            android:id="@+id/action_signUpCheckCertificationFragment_to_signUpEmailFragment2"
+            app:destination="@id/signUpEmailFragment2" />
+        <action
+            android:id="@+id/action_signUpCheckCertificationFragment_to_signUpPasswdFragment"
+            app:destination="@id/signUpPasswdFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpPasswdFragment"
+        android:name="com.example.king_bob_nae.features.signup.password.presentation.SignUpPasswdFragment"
+        android:label="SignUpPasswdFragment" >
+        <action
+            android:id="@+id/action_signUpPasswdFragment_to_signUpEmailFragment2"
+            app:destination="@id/signUpEmailFragment2" />
+        <action
+            android:id="@+id/action_signUpPasswdFragment_to_signUpNicknameFragment"
+            app:destination="@id/signUpNicknameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpNicknameFragment"
+        android:name="com.example.king_bob_nae.features.signup.nickname.presentation.SignUpNicknameFragment"
+        android:label="SignUpNicknameFragment" >
+        <action
+            android:id="@+id/action_signUpNicknameFragment_to_signUpPasswdFragment"
+            app:destination="@id/signUpPasswdFragment" />
+        <action
+            android:id="@+id/action_signUpNicknameFragment_to_signUpLoadingFragment"
+            app:destination="@id/signUpLoadingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpLoadingFragment"
+        android:name="com.example.king_bob_nae.features.signup.loading.presentation.SignUpLoadingFragment"
+        android:label="SignUpLoadingFragment" >
+        <action
+            android:id="@+id/action_signUpLoadingFragment_to_signUpSelectCharacterFragment"
+            app:destination="@id/signUpSelectCharacterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpSelectCharacterFragment"
+        android:name="com.example.king_bob_nae.features.signup.select_character.presentation.SignUpSelectCharacterFragment"
+        android:label="SignUpSelectCharacterFragment" >
+        <action
+            android:id="@+id/action_signUpSelectCharacterFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkCertificationFragment"
+        android:name="com.example.king_bob_nae.features.reset.check_certification.presentation.CheckCertificationFragment"
+        android:label="CheckCertificationFragment" >
+        <action
+            android:id="@+id/action_checkCertificationFragment_to_checkEmailFragment2"
+            app:destination="@id/checkEmailFragment2" />
+        <action
+            android:id="@+id/action_checkCertificationFragment_to_resetPasswdFragment"
+            app:destination="@id/resetPasswdFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resetPasswdFragment"
+        android:name="com.example.king_bob_nae.features.reset.reset_passwd.presentation.ResetPasswdFragment"
+        android:label="ResetPasswdFragment" >
+        <action
+            android:id="@+id/action_resetPasswdFragment_to_checkEmailFragment22"
+            app:destination="@id/checkEmailFragment2" />
+        <action
+            android:id="@+id/action_resetPasswdFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+
+
+</navigation>
+

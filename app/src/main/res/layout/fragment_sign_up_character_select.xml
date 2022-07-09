@@ -11,27 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/btn_character_back"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="2dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_back_48" />
-
         <TextView
             android:id="@+id/tv_sign_up_character"
             style="@style/Headline1_Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="96dp"
+            android:text="활발한 브로콜리 당첨"
             android:textColor="@color/main_orange"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="활발한 브로콜리 당첨" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_sign_up_character_back"
@@ -60,22 +50,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:gravity="center"
+            android:text="@string/broccoli_comment"
             android:textColor="@color/brown_gray_300"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_sign_up_character"
-            tools:text="@string/broccoli_comment" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_sign_up_character" />
 
         <TextView
             style="@style/Body1_Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:text="@string/start_kkilog"
             android:textColor="@color/brown_gray_400"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_sign_up_character"
-            tools:text="@string/start_kkilog" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_sign_up_character" />
 
 
         <androidx.appcompat.widget.AppCompatButton
