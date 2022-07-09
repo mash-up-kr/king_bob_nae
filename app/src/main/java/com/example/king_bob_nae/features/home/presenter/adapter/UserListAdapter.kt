@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.features.home.domain.UserListItem
-import com.example.king_bob_nae.features.home.presenter.viewholder.AddToFriendsHolder
-import com.example.king_bob_nae.features.home.presenter.viewholder.FriendHolder
+import com.example.king_bob_nae.features.home.presenter.viewholder.UserHolder
+import com.example.king_bob_nae.features.home.presenter.viewholder.UserPlusHolder
 
 class UserListAdapter : ListAdapter<UserListItem, RecyclerView.ViewHolder>(diffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            TYPE_USER -> FriendHolder(
+            TYPE_USER -> UserHolder(
                 DataBindingUtil.inflate(
                     LayoutInflater.from(parent.context),
                     R.layout.holder_friend,
@@ -22,7 +22,7 @@ class UserListAdapter : ListAdapter<UserListItem, RecyclerView.ViewHolder>(diffC
                     false
                 )
             )
-            TYPE_PLUS -> AddToFriendsHolder(
+            TYPE_PLUS -> UserPlusHolder(
                 DataBindingUtil.inflate(
                     LayoutInflater.from(parent.context),
                     R.layout.holder_add_to_friends,
@@ -36,12 +36,12 @@ class UserListAdapter : ListAdapter<UserListItem, RecyclerView.ViewHolder>(diffC
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is FriendHolder -> {
+            is UserHolder -> {
                 (getItem(position) as? UserListItem.User)?.let {
                     holder.bind(it)
                 }
             }
-            is AddToFriendsHolder -> holder.bind()
+            is UserPlusHolder -> holder.bind()
         }
     }
 
