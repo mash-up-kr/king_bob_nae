@@ -5,14 +5,14 @@ import androidx.fragment.app.Fragment
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseActivity
 import com.example.king_bob_nae.databinding.ActivityHomeBinding
-import com.example.king_bob_nae.features.create.kkilog.presenter.KkiLogFragment
 import com.example.king_bob_nae.features.home.presenter.HomeFragment
+import com.example.king_bob_nae.features.imagepicker.presentation.ImagePickerFragment
 import com.example.king_bob_nae.features.recipe.RecipeFragment
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
 
     private val homeFragment by lazy { HomeFragment() }
-    private val kkiLogFragment by lazy { KkiLogFragment() }
+    private val imagePickerFragment by lazy { ImagePickerFragment() }
     private val recipeFragment by lazy { RecipeFragment() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,8 +29,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
                     R.id.nav_home -> {
                         changeFragment(homeFragment)
                     }
-                    R.id.nav_kki_log -> {
-                        changeFragment(kkiLogFragment)
+                    R.id.nav_image_picker -> {
+                        changeFragment(imagePickerFragment)
                     }
                     R.id.nav_recipe -> {
                         changeFragment(recipeFragment)

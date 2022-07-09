@@ -7,7 +7,7 @@
         android:title="HOME" />
 
     <item
-        android:id="@+id/nav_kki_log"
+        android:id="@+id/nav_image_picker"
         android:enabled="true"
         android:icon="@drawable/ic_add_48"
         android:title="PLUS" />
