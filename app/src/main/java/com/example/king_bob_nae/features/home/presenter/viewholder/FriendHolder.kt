@@ -1,14 +1,16 @@
 package com.example.king_bob_nae.features.home.presenter.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.king_bob_nae.databinding.HolderAddToFriendsBinding
+import com.example.king_bob_nae.databinding.HolderFriendBinding
+import com.example.king_bob_nae.features.home.domain.UserListItem
 
 class FriendHolder(
-    private val binding: HolderAddToFriendsBinding
+    private val binding: HolderFriendBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind() {
+    fun bind(item: UserListItem.User) {
         binding.run {
+            user = item
             executePendingBindings()
         }
     }
