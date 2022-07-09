@@ -47,7 +47,7 @@
     </style>
 
     <style name="Body3">
-        <item name="android:fontFamily">@font/pretendard_bold</item>
+        <item name="android:fontFamily">@font/pretendard_medium</item>
         <item name="android:textSize">15dp</item>
     </style>
 
