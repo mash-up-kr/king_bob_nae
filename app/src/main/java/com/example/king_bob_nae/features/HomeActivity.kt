@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseActivity
 import com.example.king_bob_nae.databinding.ActivityHomeBinding
+import com.example.king_bob_nae.features.create.kkilog.presenter.KkiLogFragment
 import com.example.king_bob_nae.features.home.presenter.HomeFragment
-import com.example.king_bob_nae.features.kkilog.presenter.KkiLogFragment
 import com.example.king_bob_nae.features.recipe.RecipeFragment
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
