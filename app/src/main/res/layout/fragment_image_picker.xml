@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="image"
+            type="com.example.king_bob_nae.features.imagepicker.presentation.ImageState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,6 +62,7 @@
 
         <ImageView
             android:id="@+id/iv_current_image"
+            bindUrl="@{image.imageUrl}"
             android:layout_width="0dp"
             android:layout_height="360dp"
             app:layout_constraintEnd_toEndOf="parent"
