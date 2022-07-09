@@ -2,7 +2,6 @@ package com.example.king_bob_nae.features.imagepicker.presentation
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -16,11 +15,10 @@ import androidx.fragment.app.replace
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.RecyclerView
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentImagePickerBinding
-import com.example.king_bob_nae.features.kkilog.KkiLogFragment
+import com.example.king_bob_nae.features.create.kkilog.presenter.KkiLogFragment
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
