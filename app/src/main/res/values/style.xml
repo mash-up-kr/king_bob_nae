@@ -47,7 +47,7 @@
     </style>
 
     <style name="Body3">
-        <item name="android:fontFamily">@font/pretendard_bold</item>
+        <item name="android:fontFamily">@font/pretendard_medium</item>
         <item name="android:textSize">15dp</item>
     </style>
 
@@ -75,6 +75,10 @@
         <item name="android:textCursorDrawable">@color/main_orange</item>
         <item name="android:textColorHint">@color/brown_gray_200</item>
         <item name="android:textColor">@color/brown_gray_500</item>
+    </style>
+
+    <style name="FullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>`
     </style>
 
 </resources>

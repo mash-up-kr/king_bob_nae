@@ -1,25 +1,31 @@
 package com.example.king_bob_nae.features.imagepicker.presentation
 
-import android.net.Uri
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.example.king_bob_nae.R
 
 object BindingAdapter {
-
     @JvmStatic
-    @BindingAdapter("canVisible")
-    fun View.canVisible(item: ImageState) {
-        if (item.clicked) visibility = View.VISIBLE else View.GONE
+    @BindingAdapter("bindBackground")
+    fun View.bindBackground(state: Boolean) {
+        background = if (state) ContextCompat.getDrawable(
+            this.context,
+            R.drawable.orange_stroke
+        ) else ContextCompat.getDrawable(this.context, R.drawable.radius_gray)
     }
 
     @JvmStatic
-    @BindingAdapter("canVisible")
-    fun TextView.canVisible(item: ImageState) {
-        if (item.clicked) visibility = View.VISIBLE else View.GONE
-        text = item.clickCount.toString()
+    @BindingAdapter("canTextViewVisible")
+    fun TextView.canTextViewVisible(item: ImageState) {
+        background = if (item.clicked) {
+            ContextCompat.getDrawable(this.context, R.drawable.radius_orange)
+        } else {
+            ContextCompat.getDrawable(this.context, R.drawable.radius_gray)
+        }
     }
 
     @JvmStatic

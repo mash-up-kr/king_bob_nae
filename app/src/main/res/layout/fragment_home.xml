@@ -61,6 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:text="7월 10일"
             android:textColor="@color/brown_gray_400"
             app:layout_constraintBottom_toBottomOf="@id/tv_today"
             app:layout_constraintStart_toEndOf="@id/tv_today"
@@ -73,6 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
+            android:text="끼록"
             android:textColor="@color/brown_gray_400"
             app:layout_constraintStart_toStartOf="@id/tv_today"
             app:layout_constraintTop_toBottomOf="@id/tv_today"
@@ -87,6 +89,7 @@
             android:background="@drawable/radius_orange_stroke"
             android:paddingStart="12dp"
             android:paddingEnd="4.5dp"
+            android:text="0끼"
             android:textColor="@color/main_orange"
             app:drawableEndCompat="@drawable/ic_plus_18"
             app:layout_constraintBottom_toBottomOf="@id/tv_kkilog"
@@ -97,8 +100,10 @@
         <ImageView
             android:id="@+id/iv_character"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="240dp"
+            android:background="@drawable/carrot_lv3_happy"
             android:contentDescription="@null"
+            app:layout_constraintBottom_toTopOf="@id/ll_left"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_kkilog" />
@@ -136,6 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="16dp"
+                android:text="콩순이"
                 android:textColor="@color/brown_gray_200"
                 tools:text="콩순이" />
 
@@ -147,6 +153,7 @@
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="16dp"
+                android:text="밥먹어서 신난다~"
                 android:textColor="@color/brown_gray_400"
                 tools:text="밥먹어서 신난다~" />
         </LinearLayout>

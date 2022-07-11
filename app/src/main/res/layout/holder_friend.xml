@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="user"
+            type="com.example.king_bob_nae.features.home.domain.UserListItem.User" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,6 +17,7 @@
 
         <ImageView
             android:id="@+id/iv_add"
+            bindImage="@{user.url}"
             android:layout_width="36dp"
             android:layout_height="38dp"
             android:contentDescription="@null"
@@ -26,7 +31,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:ellipsize="end"
+            android:gravity="center"
             android:maxLines="1"
+            android:text="@{user.name}"
             android:textColor="@color/brown_gray_300"
             app:layout_constraintEnd_toEndOf="@id/iv_add"
             app:layout_constraintStart_toStartOf="@id/iv_add"

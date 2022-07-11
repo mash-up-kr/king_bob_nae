@@ -14,8 +14,13 @@ class IntroFragment : BaseFragment<FragmentIntroBinding>(R.layout.fragment_intro
     }
 
     private fun initView() {
-        binding.loginWithEmail.setOnClickListener {
-            it.findNavController().navigate(R.id.action_loginFragment_to_signInFragment)
+        binding.apply {
+            loginWithEmail.setOnClickListener {
+                it.findNavController().navigate(R.id.action_loginFragment_to_signInFragment)
+            }
+            kkiRokSignUp.setOnClickListener {
+                it.findNavController().navigate(R.id.action_introFragment_to_signUpEmailFragment2)
+            }
         }
     }
 }

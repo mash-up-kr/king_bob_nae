@@ -7,7 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    
+
     <color name="brown_gray_50">#f8f8f8</color>
     <color name="brown_gray_100">#d5d0ca</color>
     <color name="brown_gray_200">#b0a89d</color>
@@ -15,10 +15,12 @@
     <color name="brown_gray_400">#5f574c</color>
     <color name="brown_gray_500">#312e27</color>
 
+    <color name="intro_orange">#ff5324 </color>
     <color name="main_orange">#fd663d</color>
     <color name="main_green">#bde468</color>
     <color name="main_yellow">#ffdf34</color>
     <color name="main_ivory">#FAF7F2</color>
 
     <color name="red_error">#EE6464</color>
+    <color name="transparent">#00000000</color>
 </resources>

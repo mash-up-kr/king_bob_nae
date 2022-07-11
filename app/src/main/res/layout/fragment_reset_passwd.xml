@@ -1,95 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/reset_passwd_check_input_layout"
-        style="@style/EditTextStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="24dp"
-        android:theme="@style/EditTextStyle"
-        app:endIconMode="custom"
-        app:errorEnabled="true"
-        app:errorIconDrawable="@drawable/ic_error_20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reset_passwd_input_layout">
+    <data>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_reset_passwd_check_input"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/sign_up_input_passwd_check_hint"
-            android:inputType="textPassword"
-            android:paddingBottom="20dp" />
+    </data>
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/reset_passwd_input_layout"
-        style="@style/EditTextStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="24dp"
-        android:theme="@style/EditTextStyle"
-        app:endIconMode="custom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_reset_password">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_reset_passwd_input"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/sign_up_input_passwd_hint"
-            android:inputType="textPassword"
-            android:paddingBottom="20dp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_reset_passwd_next"
-        style="@style/Body1_Bold"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/radius_gray"
-        android:clickable="false"
-        android:stateListAnimator="@null"
-        android:text="@string/next"
-        android:textColor="@color/brown_gray_300"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_reset_password"
-        style="@style/Headline1_Regular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="92dp"
-        android:text="@string/sign_up_password_text"
-        android:textColor="@color/brown_gray_500"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/reset_passwd_check_input_layout"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="24dp"
+            android:theme="@style/EditTextStyle"
+            app:endIconMode="custom"
+            app:errorEnabled="true"
+            app:errorIconDrawable="@drawable/ic_error_20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reset_passwd_input_layout">
 
-    <ImageView
-        android:id="@+id/btn_reset_passwd_back"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="2dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_back_48" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_reset_passwd_check_input"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/sign_up_input_passwd_check_hint"
+                android:inputType="textPassword"
+                android:paddingBottom="20dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/reset_passwd_input_layout"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="24dp"
+            android:theme="@style/EditTextStyle"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_reset_password">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_reset_passwd_input"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/sign_up_input_passwd_hint"
+                android:inputType="textPassword"
+                android:paddingBottom="20dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_reset_passwd_next"
+            style="@style/Body1_Bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/radius_gray"
+            android:clickable="true"
+            android:stateListAnimator="@null"
+            android:text="@string/next"
+            android:textColor="@color/brown_gray_300"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_reset_password"
+            style="@style/Headline1_Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="92dp"
+            android:text="@string/sign_up_password_text"
+            android:textColor="@color/brown_gray_500"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btn_reset_passwd_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_back_48" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
