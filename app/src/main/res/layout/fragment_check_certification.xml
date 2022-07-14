@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="82dp"
             android:text="@string/certification_text"
             android:textColor="@color/brown_gray_500"
             app:layout_constraintStart_toStartOf="parent"
