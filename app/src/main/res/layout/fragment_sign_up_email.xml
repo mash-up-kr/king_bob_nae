@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/check_certification_input_layoutt"
+            android:id="@+id/tf_sign_up_check_certification"
             style="@style/EditTextStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

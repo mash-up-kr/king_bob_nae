@@ -45,7 +45,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/et_input_email"
+                    android:id="@+id/tf_sign_in_email"
                     style="@style/EditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout3"
+                    android:id="@+id/tf_sign_in_passwd"
                     style="@style/EditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -80,12 +80,11 @@
                     app:endIconMode="custom"
                     app:errorEnabled="true"
                     app:errorIconDrawable="@drawable/ic_error_20"
-                    app:layout_constraintEnd_toEndOf="@id/et_input_email"
-                    app:layout_constraintStart_toStartOf="@id/et_input_email"
-                    app:layout_constraintTop_toBottomOf="@id/et_input_email">
+                    app:layout_constraintEnd_toEndOf="@id/tf_sign_in_email"
+                    app:layout_constraintStart_toStartOf="@id/tf_sign_in_email"
+                    app:layout_constraintTop_toBottomOf="@id/tf_sign_in_email">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_input_password"
                         style="@style/Body1_Regular"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

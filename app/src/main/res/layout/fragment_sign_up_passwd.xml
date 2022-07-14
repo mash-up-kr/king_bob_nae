@@ -33,7 +33,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passwd_input_layout"
+            android:id="@+id/tf_sign_up_passwd"
             style="@style/EditTextStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -47,7 +47,6 @@
             app:layout_constraintTop_toBottomOf="@id/tv_sign_up_password">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_sign_up_passwd_input"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/sign_up_input_passwd_hint"
@@ -59,7 +58,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passwd_check_input_layout"
+            android:id="@+id/tf_sign_up_check_passwd"
             style="@style/EditTextStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -72,10 +71,9 @@
             app:errorIconDrawable="@drawable/ic_error_20"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/passwd_input_layout">
+            app:layout_constraintTop_toBottomOf="@id/tf_sign_up_passwd">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_sign_up_passwd_check_input"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/sign_up_input_passwd_check_hint"

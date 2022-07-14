@@ -33,7 +33,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/nick_input_layout"
+            android:id="@+id/tf_sign_up_nick"
             style="@style/EditTextStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -53,7 +53,6 @@
             app:layout_constraintTop_toBottomOf="@id/tv_sign_up_email">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_sign_up_passwd_input"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/sign_up_input_nick_hint"

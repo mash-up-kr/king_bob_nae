@@ -71,7 +71,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="41dp"
-            android:background="@drawable/radius_orange"
+            android:background="@drawable/radius_intro_orange"
             android:stateListAnimator="@null"
             android:text="@string/sing_up_text"
             android:textColor="@color/white"
