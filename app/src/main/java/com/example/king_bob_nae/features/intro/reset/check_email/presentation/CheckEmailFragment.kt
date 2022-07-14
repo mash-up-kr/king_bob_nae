@@ -1,0 +1,43 @@
+package com.example.king_bob_nae.features.intro.reset.check_email.presentation
+
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
+import com.example.king_bob_nae.R
+import com.example.king_bob_nae.base.BaseFragment
+import com.example.king_bob_nae.databinding.FragmentCheckEmailBinding
+import com.example.king_bob_nae.features.intro.presentation.IntroViewModel
+import com.example.king_bob_nae.util.hideIcon
+import com.example.king_bob_nae.util.isValid
+import com.example.king_bob_nae.util.setButtonEnable
+
+class CheckEmailFragment : BaseFragment<FragmentCheckEmailBinding>(R.layout.fragment_check_email) {
+    private val viewModel: IntroViewModel by activityViewModels()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+    }
+
+    private fun initView() {
+        binding.apply {
+
+            btnCheckEmailBack.setOnClickListener {
+                it.findNavController().navigate(R.id.action_checkEmailFragment2_to_signInFragment)
+            }
+
+            btnCheckEmailNext.setOnClickListener {
+                it.findNavController()
+                    .navigate(R.id.action_checkEmailFragment2_to_checkCertificationFragment)
+            }
+
+            tfSignUpCheckCertification.apply {
+                hideIcon()
+                isValid {
+                    viewModel.isValidateEmail(it)
+                }
+                setButtonEnable(tfSignUpCheckCertification,btnCheckEmailNext)
+            }
+        }
+    }
+}
