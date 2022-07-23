@@ -1,4 +1,4 @@
-package com.example.king_bob_nae.features.home.presenter
+package com.example.king_bob_nae.features.home.presentation
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

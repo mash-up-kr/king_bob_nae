@@ -1,4 +1,4 @@
-package com.example.king_bob_nae.features.home.presenter.adapter
+package com.example.king_bob_nae.features.home.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.features.home.domain.UserListItem
-import com.example.king_bob_nae.features.home.presenter.viewholder.UserHolder
-import com.example.king_bob_nae.features.home.presenter.viewholder.UserPlusHolder
+import com.example.king_bob_nae.features.home.presentation.viewholder.UserHolder
+import com.example.king_bob_nae.features.home.presentation.viewholder.UserPlusHolder
 
 class UserListAdapter : ListAdapter<UserListItem, RecyclerView.ViewHolder>(diffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

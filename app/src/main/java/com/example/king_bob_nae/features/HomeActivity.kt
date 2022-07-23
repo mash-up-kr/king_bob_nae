@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseActivity
 import com.example.king_bob_nae.databinding.ActivityHomeBinding
-import com.example.king_bob_nae.features.home.presenter.HomeFragment
+import com.example.king_bob_nae.features.home.presentation.HomeFragment
 import com.example.king_bob_nae.features.imagepicker.presentation.ImagePickerFragment
 import com.example.king_bob_nae.features.recipe.RecipeFragment
 
