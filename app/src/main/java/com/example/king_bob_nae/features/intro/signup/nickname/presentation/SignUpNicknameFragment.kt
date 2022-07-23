@@ -8,13 +8,11 @@ import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentSignUpNicknameBinding
 import com.example.king_bob_nae.features.intro.presentation.IntroViewModel
-import com.example.king_bob_nae.util.hideIcon
-import com.example.king_bob_nae.util.isValid
-import com.example.king_bob_nae.util.setButtonEnable
+import com.example.king_bob_nae.util.initTextInputLayout
 
 class SignUpNicknameFragment :
     BaseFragment<FragmentSignUpNicknameBinding>(R.layout.fragment_sign_up_nickname) {
-    private val viewModel: IntroViewModel by activityViewModels()
+    private val introViewModel: IntroViewModel by activityViewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -30,13 +28,11 @@ class SignUpNicknameFragment :
                 it.findNavController()
                     .navigate(R.id.action_signUpNicknameFragment_to_signUpLoadingFragment)
             }
-            tfSignUpNick.apply {
-                hideIcon()
-                isValid {
-                    viewModel.isValidateNickname(it)
-                }
-                setButtonEnable(tfSignUpNick, btnSignUpNickNext)
-            }
+            initTextInputLayout(
+                tfSignUpNick,
+                { introViewModel.isValidateNickname(tfSignUpNick.editText?.text.toString()) },
+                btnSignUpNickNext
+            )
         }
     }
 }

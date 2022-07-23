@@ -9,14 +9,12 @@ import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentResetPasswdBinding
 import com.example.king_bob_nae.features.intro.presentation.IntroViewModel
 import com.example.king_bob_nae.util.Extensions.Companion.PASSWD_ERROR
-import com.example.king_bob_nae.util.hideIcon
-import com.example.king_bob_nae.util.isValid
-import com.example.king_bob_nae.util.setButtonEnable
+import com.example.king_bob_nae.util.initTextInputLayout
 import com.example.king_bob_nae.util.setError
 
 class ResetPasswdFragment :
     BaseFragment<FragmentResetPasswdBinding>(R.layout.fragment_reset_passwd) {
-    private val viewModel: IntroViewModel by activityViewModels()
+    private val introViewModel: IntroViewModel by activityViewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -26,10 +24,10 @@ class ResetPasswdFragment :
         binding.apply {
             btnResetPasswdBack.setOnClickListener {
                 it.findNavController()
-                    .navigate(R.id.action_resetPasswdFragment_to_checkEmailFragment22)
+                    .navigate(R.id.action_resetPasswdFragment_to_checkEmailFragment)
             }
             btnResetPasswdNext.setOnClickListener {
-                if (viewModel.isSamePasswd(
+                if (introViewModel.isSamePasswd(
                         tfResetPasswd.editText?.text.toString(),
                         tfResetCheckPasswd.editText?.text.toString()
                     )
@@ -37,20 +35,14 @@ class ResetPasswdFragment :
                 else tfResetCheckPasswd.setError(PASSWD_ERROR)
             }
 
-            tfResetPasswd.apply {
-                hideIcon()
-                isValid {
-                    viewModel.isValidatePasswd(it)
-                }
-                setButtonEnable(tfResetCheckPasswd, btnResetPasswdNext)
-            }
-            tfResetCheckPasswd.apply {
-                hideIcon()
-                isValid {
-                    viewModel.isValidatePasswd(it)
-                }
-                setButtonEnable(tfResetPasswd, btnResetPasswdNext)
-            }
+            initTextInputLayout(
+                tfResetPasswd,
+                tfResetCheckPasswd,
+                { introViewModel.isValidatePasswd(tfResetPasswd.editText?.text.toString()) },
+                { introViewModel.isValidatePasswd(tfResetCheckPasswd.editText?.text.toString()) },
+                btnResetPasswdNext
+            )
+
         }
     }
 }

@@ -19,7 +19,7 @@ class SignUpCheckCertificationFragment :
         binding.apply {
             btnCheckCertificationBack.setOnClickListener {
                 it.findNavController()
-                    .navigate(R.id.action_signUpCheckCertificationFragment_to_signUpEmailFragment2)
+                    .navigate(R.id.action_signUpCheckCertificationFragment_to_signUpEmailFragment)
             }
             btnCheckCertificationNext.setOnClickListener {
                 it.findNavController()
