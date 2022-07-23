@@ -5,31 +5,23 @@ import androidx.lifecycle.ViewModel
 class IntroViewModel : ViewModel() {
     private val emailPattern = android.util.Patterns.EMAIL_ADDRESS
 
-    fun isValidateEmail(email: String): Boolean {
-        return emailPattern.matcher(email).matches()
-    }
+    fun isValidateEmail(email: String) =
+        emailPattern.matcher(email).matches()
 
-    fun isValidatePasswd(passwd: String): Boolean {
-        return passwd.length in 8..23
-    }
+    fun isValidatePasswd(passwd: String) =
+        passwd.length in 8..23
 
-    fun isValidateNickname(nickname: String) : Boolean{
-        return nickname.length in 2..10
-    }
+    fun isValidateNickname(nickname: String) =
+        nickname.length in 2..10
 
-    fun isSamePasswd(firstPasswd: String, secondPasswd: String): Boolean {
-        return firstPasswd == secondPasswd
-    }
+    fun isSamePasswd(firstPasswd: String, secondPasswd: String) =
+        firstPasswd == secondPasswd
 
-    fun checkCertification(): Boolean {
-        return true
-    }
 
-    fun checkAuth(): Boolean {
-        return true
-    }
+    // 아직 미사용
+    fun checkCertification() = true
 
-    fun checkNickname(nickname: String): Boolean {
-        return true
-    }
+    fun checkAuth(): Boolean = true
+
+    fun checkNickname(nickname: String) = true
 }
