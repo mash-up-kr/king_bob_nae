@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
+    id 'kotlinx-serialization'
 }
 
 android {
@@ -95,5 +96,8 @@ dependencies {
     // ViewPager2
     implementation "androidx.viewpager2:viewpager2:$viewpager2_version"
     implementation "com.tbuonomo:dotsindicator:4.3"
+
+    //Kotlin-Serialization
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2"
 
 }
