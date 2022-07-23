@@ -34,14 +34,8 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>(R.layout.acti
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
                     when (binding.pager.currentItem) {
-                        2 -> {
-                            binding.btnOnboardingStart.apply{
-                                isEnabled(true)
-                            }}
-                        else -> {
-                            binding.btnOnboardingStart.apply{
-                                isEnabled(false)
-                            }}
+                        2 -> binding.btnOnboardingStart.isEnabled(true)
+                        else -> binding.btnOnboardingStart.isEnabled(false)
                     }
                 }
             })
