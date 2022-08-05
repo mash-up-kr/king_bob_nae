@@ -10,7 +10,10 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseActivity
 import com.example.king_bob_nae.databinding.ActivityOnboardingBinding
-import com.example.king_bob_nae.features.intro.IntroActivity
+import com.example.king_bob_nae.features.intro.presentation.IntroActivity
+import com.example.king_bob_nae.features.onboarding.presentation.OnBoardingFirstFragment
+import com.example.king_bob_nae.features.onboarding.presentation.OnBoardingLastFragment
+import com.example.king_bob_nae.features.onboarding.presentation.OnBoardingSecondFragment
 
 class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>(R.layout.activity_onboarding) {
 

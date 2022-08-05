@@ -1,5 +1,6 @@
 package com.example.king_bob_nae.features.intro.signin.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -7,6 +8,7 @@ import androidx.navigation.findNavController
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentSignInBinding
+import com.example.king_bob_nae.features.HomeActivity
 import com.example.king_bob_nae.features.intro.presentation.IntroViewModel
 import com.example.king_bob_nae.util.initTextInputLayout
 
@@ -25,6 +27,9 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
             }
             tvFindPasswd.setOnClickListener {
                 it.findNavController().navigate(R.id.action_signInFragment_to_checkEmailFragment)
+            }
+            btnFinish.setOnClickListener {
+                startActivity(Intent(requireContext(), HomeActivity::class.java))
             }
 
             initTextInputLayout(

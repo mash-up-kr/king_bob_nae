@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -33,12 +32,10 @@ import kotlin.math.roundToInt
 
 class ImagePickerFragment :
     BaseFragment<FragmentImagePickerBinding>(R.layout.fragment_image_picker) {
-    private val phoneSize by lazy { getSize() }
     private val imageAdapter by lazy {
         ImageListAdapter(::itemClick)
     }
     private val imageListViewModel: ImageListViewModel by activityViewModels()
-    private lateinit var registerActivityResultLauncher: ActivityResultLauncher<Intent>
     private lateinit var registerPictureLauncher: ActivityResultLauncher<Uri>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,8 +75,10 @@ class ImagePickerFragment :
                  * 여긴 다음 버튼 눌렀을 때
                  * 즉, 여러개의 데이터를 (사진 array 를 넘겨야 할 때)
                  */
-                findNavController().navigate(R.id.kkiLogFragment)
-                imageListViewModel.resetAllData()
+                if (imageListViewModel.selectedImageList.value.size > 0) {
+                    findNavController().navigate(R.id.kkiLogFragment)
+                    imageListViewModel.resetAllData()
+                }
             }
             ivTakeAPhoto.setOnClickListener {
                 /**
@@ -121,7 +120,6 @@ class ImagePickerFragment :
 
         return FileProvider.getUriForFile(this, "${applicationContext.packageName}.provider", image)
             .also { uri ->
-                Log.d("tjrwn", "getCacheFileProviderImageUri 2: $uri")
                 grantUriPermission(
                     applicationContext.packageName,
                     uri,
