@@ -8,7 +8,7 @@ import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentSignUpNicknameBinding
 import com.example.king_bob_nae.features.intro.presentation.IntroViewModel
-import com.example.king_bob_nae.util.initTextInputLayout
+import com.example.king_bob_nae.utils.initTextInputLayout
 
 class SignUpNicknameFragment :
     BaseFragment<FragmentSignUpNicknameBinding>(R.layout.fragment_sign_up_nickname) {

@@ -1,4 +1,4 @@
-package com.example.king_bob_nae.features.signup.shared.data.dto
+package com.example.king_bob_nae.features.intro.data.dto
 
 import androidx.annotation.Keep
 import kotlinx.serialization.Serializable

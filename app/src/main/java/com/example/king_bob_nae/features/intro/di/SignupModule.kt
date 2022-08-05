@@ -1,8 +1,8 @@
-package com.example.king_bob_nae.features.signup.shared.di
+package com.example.king_bob_nae.features.intro.di
 
-import com.example.king_bob_nae.features.signup.shared.data.repository.SignUpRepository
-import com.example.king_bob_nae.features.signup.shared.data.repository.impl.SignUpRepositoryImpl
-import com.example.king_bob_nae.features.signup.shared.data.service.SignUpService
+import com.example.king_bob_nae.features.intro.data.repository.SignUpRepository
+import com.example.king_bob_nae.features.intro.data.repository.impl.SignUpRepositoryImpl
+import com.example.king_bob_nae.features.intro.data.service.SignUpService
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

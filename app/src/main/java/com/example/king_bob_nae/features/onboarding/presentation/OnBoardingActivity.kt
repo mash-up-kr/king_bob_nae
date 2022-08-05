@@ -10,7 +10,7 @@ import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseActivity
 import com.example.king_bob_nae.databinding.ActivityOnboardingBinding
 import com.example.king_bob_nae.features.intro.presentation.IntroActivity
-import com.example.king_bob_nae.util.isEnabled
+import com.example.king_bob_nae.utils.isEnabled
 
 class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>(R.layout.activity_onboarding) {
 

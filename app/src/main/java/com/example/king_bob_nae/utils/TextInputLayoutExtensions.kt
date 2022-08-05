@@ -1,4 +1,4 @@
-package com.example.king_bob_nae.util
+package com.example.king_bob_nae.utils
 
 import android.os.Looper
 import androidx.annotation.CheckResult
@@ -7,11 +7,11 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.ViewDataBinding
 import com.example.king_bob_nae.R
-import com.example.king_bob_nae.util.Extensions.Companion.CERTIFICATION_ERROR
-import com.example.king_bob_nae.util.Extensions.Companion.EMAIL_ERROR
-import com.example.king_bob_nae.util.Extensions.Companion.NICK_ERROR
-import com.example.king_bob_nae.util.Extensions.Companion.PASSWD_ERROR
-import com.example.king_bob_nae.util.Extensions.Companion.SIGN_IN_ERROR
+import com.example.king_bob_nae.utils.Extensions.Companion.CERTIFICATION_ERROR
+import com.example.king_bob_nae.utils.Extensions.Companion.EMAIL_ERROR
+import com.example.king_bob_nae.utils.Extensions.Companion.NICK_ERROR
+import com.example.king_bob_nae.utils.Extensions.Companion.PASSWD_ERROR
+import com.example.king_bob_nae.utils.Extensions.Companion.SIGN_IN_ERROR
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

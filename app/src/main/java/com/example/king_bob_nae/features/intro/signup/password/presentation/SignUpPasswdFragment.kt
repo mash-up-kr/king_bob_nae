@@ -8,9 +8,9 @@ import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentSignUpPasswdBinding
 import com.example.king_bob_nae.features.intro.presentation.IntroViewModel
-import com.example.king_bob_nae.util.Extensions.Companion.PASSWD_ERROR
-import com.example.king_bob_nae.util.initTextInputLayout
-import com.example.king_bob_nae.util.setError
+import com.example.king_bob_nae.utils.Extensions.Companion.PASSWD_ERROR
+import com.example.king_bob_nae.utils.initTextInputLayout
+import com.example.king_bob_nae.utils.setError
 
 class SignUpPasswdFragment :
     BaseFragment<FragmentSignUpPasswdBinding>(R.layout.fragment_sign_up_passwd) {

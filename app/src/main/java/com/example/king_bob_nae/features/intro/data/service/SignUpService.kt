@@ -1,8 +1,8 @@
-package com.example.king_bob_nae.features.signup.shared.data.service
+package com.example.king_bob_nae.features.intro.data.service
 
-import com.example.king_bob_nae.features.signup.shared.data.dto.AuthResponseDto
-import com.example.king_bob_nae.features.signup.shared.data.dto.CheckAuthDto
-import com.example.king_bob_nae.features.signup.shared.data.dto.CreateAuthDto
+import com.example.king_bob_nae.features.intro.data.dto.AuthResponseDto
+import com.example.king_bob_nae.features.intro.data.dto.CheckAuthDto
+import com.example.king_bob_nae.features.intro.data.dto.CreateAuthDto
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -19,21 +19,21 @@ interface SignUpService {
 
     // 인증번호 생성 & 이메일 발송
     @POST("auth/code")
-    suspend fun createAuthNumber(
+    suspend fun createCertification(
         @Body
         auth: CreateAuthDto,
-    ): AuthResponseDto
+    )
 
     // 인증번호 확인
     @POST("auth/code/check")
-    suspend fun checkAuthCode(
+    suspend fun checkCertification(
         @Body
         authDto: CheckAuthDto
-    ): AuthResponseDto
+    )
 
     // 닉네임 중복 체크
     @GET("auth/validate/nickname")
-    suspend fun validateEmail(
+    suspend fun validateNickname(
         @Query("nickname")
         nickName: String
     ): AuthResponseDto
