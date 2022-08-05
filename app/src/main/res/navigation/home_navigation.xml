@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.king_bob_nae.features.home.presentation.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_imagePickerFragment"
+            app:destination="@id/imagePickerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imagePickerFragment"
+        android:name="com.example.king_bob_nae.features.imagepicker.presentation.ImagePickerFragment"
+        android:label="ImagePickerFragment"
+        tools:layout="@layout/fragment_image_picker">
+        <action
+            android:id="@+id/action_imagePickerFragment_to_recipeFragment"
+            app:destination="@id/recipeFragment" />
+        <action
+            android:id="@+id/action_imagePickerFragment_to_kkiLogFragment"
+            app:destination="@id/kkiLogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/kkiLogFragment"
+        tools:layout="@layout/fragment_kki_log"
+        android:name="com.example.king_bob_nae.features.create.kkilog.presenter.KkiLogFragment"
+        android:label="KkiLogFragment">
+        <argument
+            android:name="image"
+            app:argType="android.graphics.Bitmap"
+            app:nullable="true" />
+        <argument
+            android:name="imageList"
+            app:argType="string[]"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeFragment"
+        tools:layout="@layout/fragment_recipe"
+        android:name="com.example.king_bob_nae.features.recipe.RecipeFragment"
+        android:label="RecipeFragment" />
+</navigation>

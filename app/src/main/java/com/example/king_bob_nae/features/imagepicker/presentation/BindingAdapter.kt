@@ -12,19 +12,24 @@ object BindingAdapter {
     @JvmStatic
     @BindingAdapter("bindBackground")
     fun View.bindBackground(state: Boolean) {
-        background = if (state) ContextCompat.getDrawable(
-            this.context,
-            R.drawable.orange_stroke
-        ) else ContextCompat.getDrawable(this.context, R.drawable.radius_gray)
+        if (state) {
+            alpha = 1.0f
+            background = ContextCompat.getDrawable(context, R.drawable.orange_stroke)
+        } else {
+            alpha = 0.0f
+            background = ContextCompat.getDrawable(context, R.drawable.radius_white)
+        }
     }
 
     @JvmStatic
     @BindingAdapter("canTextViewVisible")
     fun TextView.canTextViewVisible(item: ImageState) {
-        background = if (item.clicked) {
-            ContextCompat.getDrawable(this.context, R.drawable.radius_orange)
+        if (item.clicked) {
+            text = item.clickCount.toString()
+            background = ContextCompat.getDrawable(context, R.drawable.image_counter_selected)
         } else {
-            ContextCompat.getDrawable(this.context, R.drawable.radius_gray)
+            text = ""
+            background = ContextCompat.getDrawable(context, R.drawable.image_counter_not_selected)
         }
     }
 
@@ -33,6 +38,7 @@ object BindingAdapter {
     fun ImageView.bindUrl(url: String) {
         Glide.with(this)
             .load(url)
+            .fitCenter()
             .into(this)
     }
 }
