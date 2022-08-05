@@ -19,6 +19,21 @@ data class CheckAuthDto(
     val code: String?
 )
 
+@Keep
+@Serializable
+data class SignUpDto(
+    val email: String,
+    val nickname: String,
+    val passwd: String
+)
+
+@Keep
+@Serializable
+data class SignInDto(
+    val email: String,
+    val passwd: String
+)
+
 enum class TYPE {
     SIGN_UP, CHANGE_PASSWORD
 }
