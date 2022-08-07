@@ -57,7 +57,7 @@ class UserListAdapter : ListAdapter<UserListItem, RecyclerView.ViewHolder>(diffC
             override fun areItemsTheSame(oldItem: UserListItem, newItem: UserListItem): Boolean =
                 when {
                     oldItem is UserListItem.User && newItem is UserListItem.User &&
-                        oldItem.id == newItem.id -> true
+                            oldItem.id == newItem.id -> true
                     oldItem is UserListItem.Plus && newItem is UserListItem.Plus
                     -> true
                     else -> false
