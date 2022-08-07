@@ -18,8 +18,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class AppModule {
-
+abstract class IntroModule {
     @Binds
     @ViewModelScoped
     abstract fun bindSignInRepository(
@@ -34,14 +33,6 @@ abstract class AppModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(): Retrofit =
-        Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-    @Provides
-    @Singleton
     fun provideSignUpService(retrofit: Retrofit): SignUpService {
         return retrofit.create(SignUpService::class.java)
     }
@@ -50,10 +41,5 @@ abstract class AppModule {
     @Singleton
     fun provideSignInService(retrofit: Retrofit): SignInService {
         return retrofit.create(SignInService::class.java)
-    }
-
-
-    companion object {
-        private const val BASE_URL = "http://kki-log-api.turastory.com/"
     }
 }
