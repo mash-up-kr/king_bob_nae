@@ -8,7 +8,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.DisplayMetrics
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -27,7 +26,6 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.roundToInt
 
 
 class ImagePickerFragment :
@@ -59,14 +57,6 @@ class ImagePickerFragment :
             }
         }
     }
-
-    /** (2022- 07 - 31 )
-    할일
-    1. 사진 사이 조정하기 ( 해야됨 )
-    2. 이미지 넘길 때 어떻게 할지 정하기 (이미지 한개는 Bitmap, 여러개는 String 일예정) x -> 그냥 위치값 바로 저장
-    3. 뷰모델 사진 numbering 구현하기 ( ex) 마지막 count 값 가지고 있고, 현재 뺀 값이 더 적다면 마지막 count까지 -1해주기기
-    4. 얘기해서 q이상으로해야할지 정하기
-     */
 
     private fun initClickListener() {
         with(binding) {
@@ -133,11 +123,15 @@ class ImagePickerFragment :
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {
                 kotlin.runCatching {
-                    binding.image = imageListViewModel.imageList.value?.get(0)
+                    binding.image = imageListViewModel.imageList.value[0]
                 }.onFailure {
                     Toast.makeText(requireContext(), "사진이 없거나 권한이 없습니다!", Toast.LENGTH_SHORT).show()
                     binding.image = ImageState(imageUrl = "a")
                 }
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {
                 imageListViewModel.imageList.collectLatest { imageList ->
                     imageAdapter.submitList(imageList)
                 }
@@ -146,18 +140,10 @@ class ImagePickerFragment :
     }
 
     private fun initBinding() {
-        with(binding) {
-            rvImageList.adapter = imageAdapter
-            rvImageList.addItemDecoration(ImagePickerGridDivider())
-            lifecycleOwner = viewLifecycleOwner
+        with(binding.rvImageList) {
+            adapter = imageAdapter
+            addItemDecoration(ImagePickerGridDivider())
         }
-    }
-
-    private fun getSize(): Int {
-        val displayMetrics: DisplayMetrics = this.resources.displayMetrics
-        val width = displayMetrics.widthPixels
-        val dividers = (3 + 1) * 0.02
-        return (width / (3 + dividers)).roundToInt()
     }
 
     private fun getPhotoAlbumList() {
