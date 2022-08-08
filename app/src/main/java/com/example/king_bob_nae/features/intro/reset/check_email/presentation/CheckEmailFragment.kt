@@ -9,6 +9,7 @@ import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentCheckEmailBinding
 import com.example.king_bob_nae.features.intro.presentation.IntroViewModel
 import com.example.king_bob_nae.utils.initTextInputLayout
+import com.example.king_bob_nae.utils.isValidEmail
 
 class CheckEmailFragment : BaseFragment<FragmentCheckEmailBinding>(R.layout.fragment_check_email) {
     private val introViewModel: IntroViewModel by activityViewModels()
@@ -31,7 +32,7 @@ class CheckEmailFragment : BaseFragment<FragmentCheckEmailBinding>(R.layout.frag
 
             initTextInputLayout(
                 tfSignUpCheckCertification,
-                { introViewModel.isValidateEmail(tfSignUpCheckCertification.editText?.text.toString()) },
+                { tfSignUpCheckCertification.isValidEmail(tfSignUpCheckCertification.editText?.text.toString()) },
                 btnCheckEmailNext
             )
 

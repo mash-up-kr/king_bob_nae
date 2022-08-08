@@ -9,6 +9,8 @@ import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentSignInBinding
 import com.example.king_bob_nae.features.intro.presentation.IntroViewModel
 import com.example.king_bob_nae.utils.initTextInputLayout
+import com.example.king_bob_nae.utils.isValidEmail
+import com.example.king_bob_nae.utils.isValidPasswd
 
 class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sign_in) {
     private val introViewModel: IntroViewModel by activityViewModels()
@@ -30,8 +32,8 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
             initTextInputLayout(
                 tfSignInEmail,
                 tfSignInPasswd,
-                { introViewModel.isValidateEmail(tfSignInEmail.editText?.text.toString()) },
-                { introViewModel.isValidatePasswd(tfSignInPasswd.editText?.text.toString()) },
+                { tfSignInEmail.isValidEmail(tfSignInEmail.editText?.text.toString()) },
+                { tfSignInPasswd.isValidPasswd(tfSignInPasswd.editText?.text.toString()) },
                 btnFinish
             )
         }

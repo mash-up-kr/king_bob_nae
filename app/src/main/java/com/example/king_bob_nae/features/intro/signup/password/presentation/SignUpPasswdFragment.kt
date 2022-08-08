@@ -10,6 +10,8 @@ import com.example.king_bob_nae.databinding.FragmentSignUpPasswdBinding
 import com.example.king_bob_nae.features.intro.presentation.IntroViewModel
 import com.example.king_bob_nae.utils.Extensions.Companion.PASSWD_ERROR
 import com.example.king_bob_nae.utils.initTextInputLayout
+import com.example.king_bob_nae.utils.isSamePasswd
+import com.example.king_bob_nae.utils.isValidPasswd
 import com.example.king_bob_nae.utils.setError
 
 class SignUpPasswdFragment :
@@ -27,7 +29,7 @@ class SignUpPasswdFragment :
                     .navigate(R.id.action_signUpPasswdFragment_to_signUpEmailFragment)
             }
             btnSignUpPasswdNext.setOnClickListener {
-                if (introViewModel.isSamePasswd(
+                if (tfSignUpPasswd.isSamePasswd(
                         tfSignUpPasswd.editText?.text.toString(),
                         tfSignUpCheckPasswd.editText?.text.toString()
                     )
@@ -40,8 +42,8 @@ class SignUpPasswdFragment :
             initTextInputLayout(
                 tfSignUpPasswd,
                 tfSignUpCheckPasswd,
-                { introViewModel.isValidatePasswd(tfSignUpPasswd.editText?.text.toString()) },
-                { introViewModel.isValidatePasswd(tfSignUpCheckPasswd.editText?.text.toString()) },
+                { tfSignUpPasswd.isValidPasswd(tfSignUpPasswd.editText?.text.toString()) },
+                { tfSignUpCheckPasswd.isValidPasswd(tfSignUpCheckPasswd.editText?.text.toString()) },
                 btnSignUpPasswdNext
             )
 

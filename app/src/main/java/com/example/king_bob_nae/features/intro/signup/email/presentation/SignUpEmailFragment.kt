@@ -3,12 +3,19 @@ package com.example.king_bob_nae.features.intro.signup.email.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentSignUpEmailBinding
 import com.example.king_bob_nae.features.intro.presentation.IntroViewModel
+import com.example.king_bob_nae.shared.setOnThrottleClickListener
 import com.example.king_bob_nae.utils.initTextInputLayout
+import com.example.king_bob_nae.utils.isValidEmail
+import com.example.king_bob_nae.utils.setError
+import kotlinx.coroutines.launch
 
 class SignUpEmailFragment :
     BaseFragment<FragmentSignUpEmailBinding>(R.layout.fragment_sign_up_email) {
@@ -16,6 +23,7 @@ class SignUpEmailFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        collectFlow()
     }
 
     private fun initView() {
@@ -23,15 +31,31 @@ class SignUpEmailFragment :
             btnSignUpEmailBack.setOnClickListener {
                 it.findNavController().navigate(R.id.action_signUpEmailFragment_to_introFragment)
             }
-            btnSignUpEmailNext.setOnClickListener {
-                it.findNavController()
-                    .navigate(R.id.action_signUpEmailFragment_to_signUpCheckCertificationFragment)
+            btnSignUpEmailNext.setOnThrottleClickListener() {
+                introViewModel.checkEmailDuplicated(tfSignUpEmail.editText?.text.toString())
             }
             initTextInputLayout(
                 tfSignUpEmail,
-                { introViewModel.isValidateEmail(tfSignUpEmail.editText?.text.toString()) },
+                { tfSignUpEmail.isValidEmail(tfSignUpEmail.editText?.text.toString()) },
                 btnSignUpEmailNext
             )
+        }
+    }
+
+    private fun collectFlow() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    introViewModel.result.collect { authResponse ->
+                        if (authResponse.success == true) {
+                            requireView().findNavController()
+                                .navigate(R.id.action_signUpEmailFragment_to_signUpCheckCertificationFragment)
+                        } else {
+                            binding.tfSignUpEmail.setError(authResponse.code)
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -8,16 +8,15 @@ import com.example.king_bob_nae.features.intro.data.service.SignUpService
 import javax.inject.Inject
 
 class SignUpRepositoryImpl @Inject constructor(
-    private val service: SignUpService
+    private val service: SignUpService,
 ) : SignUpRepository {
 
-    override suspend fun checkEmail(email: String): AuthResponseDto =
-        service.checkEmail(email)
+    override suspend fun checkEmail(email: String): Int = service.checkEmail(email).code()
 
-    override suspend fun createCertification(auth: CreateAuthDto) =
-        service.createCertification(auth)
+    override suspend fun createCertification(auth: CreateAuthDto): Int =
+        service.createCertification(auth).code()
 
-    override suspend fun checkCertification(auth: CheckAuthDto) =
+    override suspend fun checkCertification(auth: CheckAuthDto): AuthResponseDto =
         service.checkCertification(auth)
 
     override suspend fun validateNickname(nickname: String): AuthResponseDto =

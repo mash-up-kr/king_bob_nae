@@ -29,6 +29,7 @@
     <string name="sign_up_input_email_hint">kkilog@gmail.com</string>
     <string name="sign_up_input_email_helper">입력한 이메일로 인증번호가 전송됩니다</string>
     <string name="input_email_error">올바른 이메일 형식을 입력해주세요\n예시) kkilo@gmail.com</string>
+    <string name="sign_up_email_valid_error">이미 사용중인 이메일입니다.</string>
 
     <string name="sign_up_password_text">비밀번호를 설정해 주세요</string>
     <string name="sign_up_input_passwd_hint">비밀번호 8자 이상</string>

@@ -10,36 +10,36 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class IntroModule {
     @Binds
-    @ViewModelScoped
+    @Singleton
     abstract fun bindSignInRepository(
         repository: SignInRepositoryImpl
     ): SignInRepository
 
     @Binds
-    @ViewModelScoped
+    @Singleton
     abstract fun bindSignUpRepository(
         repository: SignUpRepositoryImpl
     ): SignUpRepository
 
-    @Provides
-    @Singleton
-    fun provideSignUpService(retrofit: Retrofit): SignUpService {
-        return retrofit.create(SignUpService::class.java)
-    }
+    companion object {
+        @Provides
+        @Singleton
+        fun provideSignUpService(retrofit: Retrofit): SignUpService {
+            return retrofit.create(SignUpService::class.java)
+        }
 
-    @Provides
-    @Singleton
-    fun provideSignInService(retrofit: Retrofit): SignInService {
-        return retrofit.create(SignInService::class.java)
+        @Provides
+        @Singleton
+        fun provideSignInService(retrofit: Retrofit): SignInService {
+            return retrofit.create(SignInService::class.java)
+        }
     }
 }

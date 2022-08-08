@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 @Keep
 @Serializable
 data class AuthResponseDto(
-    val data: CheckAuthDto?,
+    val data: Boolean?,
     val error: ErrorDto?
 )
 

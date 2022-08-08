@@ -9,6 +9,7 @@ import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentSignUpNicknameBinding
 import com.example.king_bob_nae.features.intro.presentation.IntroViewModel
 import com.example.king_bob_nae.utils.initTextInputLayout
+import com.example.king_bob_nae.utils.isValidNickname
 
 class SignUpNicknameFragment :
     BaseFragment<FragmentSignUpNicknameBinding>(R.layout.fragment_sign_up_nickname) {
@@ -30,7 +31,7 @@ class SignUpNicknameFragment :
             }
             initTextInputLayout(
                 tfSignUpNick,
-                { introViewModel.isValidateNickname(tfSignUpNick.editText?.text.toString()) },
+                { tfSignUpNick.isValidNickname(tfSignUpNick.editText?.text.toString()) },
                 btnSignUpNickNext
             )
         }
