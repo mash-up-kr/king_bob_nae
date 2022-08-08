@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.update
 
 class ImageListViewModel : ViewModel() {
     private val _imageList = MutableStateFlow<List<ImageState>>(emptyList())
-    val imageList: StateFlow<List<ImageState>?> = _imageList.asStateFlow() // 모든 이미지 List
+    val imageList: StateFlow<List<ImageState>> = _imageList.asStateFlow() // 모든 이미지 List
 
     val selectedImageList = MutableStateFlow<MutableList<ImageState>>(mutableListOf()) // 선택된 이미지 List
 
