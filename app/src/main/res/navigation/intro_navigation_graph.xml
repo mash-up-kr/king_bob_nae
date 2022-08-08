@@ -29,18 +29,22 @@
     <fragment
         android:id="@+id/signUpEmailFragment2"
         android:name="com.example.king_bob_nae.features.intro.signup.email.presentation.SignUpEmailFragment"
-        android:label="SignUpEmailFragment" >
+        android:label="SignUpEmailFragment">
         <action
             android:id="@+id/action_signUpEmailFragment_to_introFragment"
             app:destination="@id/introFragment" />
         <action
             android:id="@+id/action_signUpEmailFragment_to_signUpCheckCertificationFragment"
             app:destination="@id/signUpCheckCertificationFragment" />
+        <argument
+            android:name="emailArg"
+            android:defaultValue="None"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/checkEmailFragment2"
         android:name="com.example.king_bob_nae.features.intro.reset.check_email.presentation.CheckEmailFragment"
-        android:label="CheckEmailFragment" >
+        android:label="CheckEmailFragment">
         <action
             android:id="@+id/action_checkEmailFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
@@ -51,7 +55,7 @@
     <fragment
         android:id="@+id/signUpCheckCertificationFragment"
         android:name="com.example.king_bob_nae.features.intro.signup.certification.presentation.SignUpCheckCertificationFragment"
-        android:label="SignUpCheckCertificationFragment" >
+        android:label="SignUpCheckCertificationFragment">
         <action
             android:id="@+id/action_signUpCheckCertificationFragment_to_signUpEmailFragment"
             app:destination="@id/signUpEmailFragment2" />
@@ -62,7 +66,7 @@
     <fragment
         android:id="@+id/signUpPasswdFragment"
         android:name="com.example.king_bob_nae.features.intro.signup.password.presentation.SignUpPasswdFragment"
-        android:label="SignUpPasswdFragment" >
+        android:label="SignUpPasswdFragment">
         <action
             android:id="@+id/action_signUpPasswdFragment_to_signUpEmailFragment"
             app:destination="@id/signUpEmailFragment2" />
@@ -73,7 +77,7 @@
     <fragment
         android:id="@+id/signUpNicknameFragment"
         android:name="com.example.king_bob_nae.features.intro.signup.nickname.presentation.SignUpNicknameFragment"
-        android:label="SignUpNicknameFragment" >
+        android:label="SignUpNicknameFragment">
         <action
             android:id="@+id/action_signUpNicknameFragment_to_signUpPasswdFragment"
             app:destination="@id/signUpPasswdFragment" />
@@ -84,7 +88,7 @@
     <fragment
         android:id="@+id/signUpLoadingFragment"
         android:name="com.example.king_bob_nae.features.intro.signup.loading.presentation.SignUpLoadingFragment"
-        android:label="SignUpLoadingFragment" >
+        android:label="SignUpLoadingFragment">
         <action
             android:id="@+id/action_signUpLoadingFragment_to_signUpSelectCharacterFragment"
             app:destination="@id/signUpSelectCharacterFragment" />
@@ -92,7 +96,7 @@
     <fragment
         android:id="@+id/signUpSelectCharacterFragment"
         android:name="com.example.king_bob_nae.features.intro.signup.select_character.presentation.SignUpSelectCharacterFragment"
-        android:label="SignUpSelectCharacterFragment" >
+        android:label="SignUpSelectCharacterFragment">
         <action
             android:id="@+id/action_signUpSelectCharacterFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
@@ -100,7 +104,7 @@
     <fragment
         android:id="@+id/checkCertificationFragment"
         android:name="com.example.king_bob_nae.features.intro.reset.check_certification.presentation.CheckCertificationFragment"
-        android:label="CheckCertificationFragment" >
+        android:label="CheckCertificationFragment">
         <action
             android:id="@+id/action_checkCertificationFragment_to_checkEmailFragment"
             app:destination="@id/checkEmailFragment2" />
@@ -111,7 +115,7 @@
     <fragment
         android:id="@+id/resetPasswdFragment"
         android:name="com.example.king_bob_nae.features.intro.reset.reset_passwd.presentation.ResetPasswdFragment"
-        android:label="ResetPasswdFragment" >
+        android:label="ResetPasswdFragment">
         <action
             android:id="@+id/action_resetPasswdFragment_to_checkEmailFragment"
             app:destination="@id/checkEmailFragment2" />

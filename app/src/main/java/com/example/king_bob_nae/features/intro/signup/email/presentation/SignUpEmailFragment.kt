@@ -22,16 +22,18 @@ class SignUpEmailFragment :
     private val introViewModel: IntroViewModel by activityViewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
-        collectFlow()
+        val bundle = Bundle()
+        initView(bundle)
+        collectFlow(bundle)
     }
 
-    private fun initView() {
+    private fun initView(bundle: Bundle) {
         binding.apply {
             btnSignUpEmailBack.setOnClickListener {
                 it.findNavController().navigate(R.id.action_signUpEmailFragment_to_introFragment)
             }
             btnSignUpEmailNext.setOnThrottleClickListener() {
+                bundle.putString("email", tfSignUpEmail.editText?.text.toString())
                 introViewModel.checkEmailDuplicated(tfSignUpEmail.editText?.text.toString())
             }
             initTextInputLayout(
@@ -42,14 +44,17 @@ class SignUpEmailFragment :
         }
     }
 
-    private fun collectFlow() {
+    private fun collectFlow(bundle: Bundle) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     introViewModel.result.collect { authResponse ->
                         if (authResponse.success == true) {
                             requireView().findNavController()
-                                .navigate(R.id.action_signUpEmailFragment_to_signUpCheckCertificationFragment)
+                                .navigate(
+                                    R.id.action_signUpEmailFragment_to_signUpCheckCertificationFragment,
+                                    bundle
+                                )
                         } else {
                             binding.tfSignUpEmail.setError(authResponse.code)
                         }

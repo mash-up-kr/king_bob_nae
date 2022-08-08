@@ -16,7 +16,10 @@ class SignUpCheckCertificationFragment :
     }
 
     private fun initView() {
+        val email = arguments?.getString("email")
         binding.apply {
+            tfSignUpCheckCertification.helperText =
+                "다음으로 전송된 인증번호 : $email\n" + getString(R.string.certification_send)
             btnCheckCertificationBack.setOnClickListener {
                 it.findNavController()
                     .navigate(R.id.action_signUpCheckCertificationFragment_to_signUpEmailFragment)
