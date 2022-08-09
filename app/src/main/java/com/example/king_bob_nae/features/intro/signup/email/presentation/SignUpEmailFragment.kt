@@ -32,10 +32,11 @@ class SignUpEmailFragment :
             btnSignUpEmailBack.setOnClickListener {
                 it.findNavController().navigate(R.id.action_signUpEmailFragment_to_introFragment)
             }
+
             btnSignUpEmailNext.setOnThrottleClickListener() {
-                bundle.putString("email", tfSignUpEmail.editText?.text.toString())
                 introViewModel.checkEmailDuplicated(tfSignUpEmail.editText?.text.toString())
             }
+
             initTextInputLayout(
                 tfSignUpEmail,
                 { tfSignUpEmail.isValidEmail(tfSignUpEmail.editText?.text.toString()) },
@@ -47,20 +48,21 @@ class SignUpEmailFragment :
     private fun collectFlow(bundle: Bundle) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    introViewModel.result.collect { authResponse ->
-                        if (authResponse.success == true) {
-                            requireView().findNavController()
-                                .navigate(
-                                    R.id.action_signUpEmailFragment_to_signUpCheckCertificationFragment,
-                                    bundle
-                                )
-                        } else {
-                            binding.tfSignUpEmail.setError(authResponse.code)
-                        }
+                introViewModel.result.collect { authResponse ->
+                    if (authResponse.isDuplicatedEmail) {
+                        bundle.putString("email", binding.tfSignUpEmail.editText?.text.toString())
+                        introViewModel.setAuthEmail(binding.tfSignUpEmail.editText?.text.toString())
+                        requireView().findNavController()
+                            .navigate(
+                                R.id.action_signUpEmailFragment_to_signUpCheckCertificationFragment,
+                                bundle
+                            )
+                    } else {
+                        binding.tfSignUpEmail.setError(authResponse.code)
                     }
                 }
             }
         }
     }
 }
+

@@ -26,19 +26,19 @@ class SignUpPasswdFragment :
         binding.apply {
             btnSignUpPasswdBack.setOnClickListener {
                 it.findNavController()
-                    .navigate(R.id.action_signUpPasswdFragment_to_signUpEmailFragment)
+                    .popBackStack()
             }
             btnSignUpPasswdNext.setOnClickListener {
                 if (tfSignUpPasswd.isSamePasswd(
                         tfSignUpPasswd.editText?.text.toString(),
                         tfSignUpCheckPasswd.editText?.text.toString()
                     )
-                ) it.findNavController()
-                    .navigate(R.id.action_signUpPasswdFragment_to_signUpNicknameFragment)
-                else tfSignUpCheckPasswd.setError(PASSWD_ERROR)
+                ) {
+                    it.findNavController()
+                        .navigate(R.id.action_signUpPasswdFragment_to_signUpNicknameFragment)
+                    introViewModel.setAuthPasswd(tfSignUpPasswd.editText?.text.toString())
+                } else tfSignUpCheckPasswd.setError(PASSWD_ERROR)
             }
-
-
             initTextInputLayout(
                 tfSignUpPasswd,
                 tfSignUpCheckPasswd,

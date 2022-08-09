@@ -46,6 +46,7 @@
     <string name="sign_up_nick_text">반가워요!\n닉네임을 설정해 주세요</string>
     <string name="sign_up_input_nick_hint">콩순이</string>
     <string name="sign_up_input_nick_error">사용중인 닉네임입니다</string>
+    <string name="sign_up_nick_size_error">닉네임이 잘못되었습니다</string>
 
     <string name="start_kkilog">이제 끼록을 시작해 볼까요</string>
     <string name="sign_up_find_character_text">사용자 닉네임과 어울리는\n캐릭터를 찾고있어요…</string>
@@ -77,4 +78,6 @@
     <string name="kkilog_kick_hint_text">특별한 조리비법을 한 줄로 알려주세요</string>
     <string name="kkilog_kick_count">%d / 20자</string>
     <string name="kkilog_image_count">%d/10</string>
+
+    <string name="server_error">서버 에러입니다.</string>
 </resources>

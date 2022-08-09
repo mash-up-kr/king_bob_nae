@@ -36,10 +36,6 @@
         <action
             android:id="@+id/action_signUpEmailFragment_to_signUpCheckCertificationFragment"
             app:destination="@id/signUpCheckCertificationFragment" />
-        <argument
-            android:name="emailArg"
-            android:defaultValue="None"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/checkEmailFragment2"

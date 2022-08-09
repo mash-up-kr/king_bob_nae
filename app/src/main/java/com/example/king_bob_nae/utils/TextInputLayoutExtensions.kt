@@ -11,7 +11,9 @@ import com.example.king_bob_nae.utils.Extensions.Companion.CERTIFICATION_ERROR
 import com.example.king_bob_nae.utils.Extensions.Companion.EMAIL_FORMAT_ERROR
 import com.example.king_bob_nae.utils.Extensions.Companion.EMAIL_USE_ERROR
 import com.example.king_bob_nae.utils.Extensions.Companion.NICK_ERROR
+import com.example.king_bob_nae.utils.Extensions.Companion.NICK_SIZE_ERROR
 import com.example.king_bob_nae.utils.Extensions.Companion.PASSWD_ERROR
+import com.example.king_bob_nae.utils.Extensions.Companion.SERVER_ERROR
 import com.example.king_bob_nae.utils.Extensions.Companion.emailPattern
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.CoroutineScope
@@ -27,6 +29,8 @@ class Extensions {
         const val PASSWD_ERROR = 2
         const val NICK_ERROR = 3
         const val CERTIFICATION_ERROR = 4
+        const val SERVER_ERROR = 6
+        const val NICK_SIZE_ERROR = 7
         val emailPattern = android.util.Patterns.EMAIL_ADDRESS
     }
 }
@@ -77,6 +81,16 @@ fun TextInputLayout.setButtonEnable(isValid: (String) -> Boolean, button: AppCom
         .launchIn(CoroutineScope(Dispatchers.Main))
 }
 
+fun TextInputLayout.setCertificateButtonEnable(
+    button: AppCompatButton
+) {
+    textChanges().debounce(400)
+        .onEach {
+            button.isEnabled(isValidCertification(it.toString()))
+        }
+        .launchIn(CoroutineScope(Dispatchers.Main))
+}
+
 fun TextInputLayout.setError(errorType: Int) {
     error = when (errorType) {
         EMAIL_USE_ERROR -> context.getString(R.string.sign_up_email_valid_error)
@@ -84,6 +98,8 @@ fun TextInputLayout.setError(errorType: Int) {
         PASSWD_ERROR -> context.getString(R.string.sign_up_input_passwd_error)
         NICK_ERROR -> context.getString(R.string.sign_up_input_nick_error)
         CERTIFICATION_ERROR -> context.getString(R.string.certification_error)
+        SERVER_ERROR -> context.getString(R.string.server_error)
+        NICK_SIZE_ERROR -> context.getString(R.string.sign_up_nick_size_error)
         else -> return
     }
     setEndIconDrawable(R.drawable.ic_error_20)
@@ -97,6 +113,8 @@ fun TextInputLayout.isValidNickname(nickname: String) = nickname.length in 2..10
 
 fun TextInputLayout.isSamePasswd(firstPasswd: String, secondPasswd: String) =
     firstPasswd == secondPasswd
+
+fun TextInputLayout.isValidCertification(certification: String) = certification.length == 6
 
 fun AppCompatButton.isEnabled(condition: Boolean) {
     isEnabled = condition

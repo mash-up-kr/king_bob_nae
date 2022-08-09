@@ -13,6 +13,20 @@ data class AuthResponseDto(
 
 @Keep
 @Serializable
+data class CertificationResponseDto(
+    val data: CertificationDto?,
+    val error: ErrorDto?
+)
+
+@Keep
+@Serializable
+data class CertificationDto(
+    val email: String,
+    val expiredAt: String
+)
+
+@Keep
+@Serializable
 data class ErrorDto(
     val message: String,
     val description: String
