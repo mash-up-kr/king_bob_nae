@@ -6,7 +6,7 @@
 
     </data>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_sign_in"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -25,10 +25,12 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_below="@id/btn_back"
             android:layout_marginTop="0dp"
-            android:fillViewport="true">
+            android:fillViewport="true"
+            app:layout_constraintBottom_toTopOf="@id/btn_finish"
+            app:layout_constraintTop_toBottomOf="@id/btn_back">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -38,9 +40,9 @@
                     android:id="@+id/tv_login_with_email"
                     style="@style/Headline1_Regular"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="46dp"
+                    android:layout_marginTop="30dp"
                     android:text="@string/sign_in_with_email"
                     android:textColor="@color/brown_gray_500"
                     app:layout_constraintStart_toStartOf="parent"
@@ -108,31 +110,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
+                    android:gravity="bottom"
                     android:text="@string/missing_password"
-                    android:textColor="@color/brown_gray_300"
-                    app:layout_constraintBottom_toTopOf="@id/btn_finish"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_finish"
-                    style="@style/Body1_Bold"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="24dp"
-                    android:layout_marginBottom="30dp"
-                    android:background="@drawable/radius_gray"
-                    android:enabled="false"
-                    android:paddingVertical="12dp"
-                    android:text="@string/finish"
                     android:textColor="@color/brown_gray_300"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tf_sign_in_passwd"
+                    app:layout_constraintVertical_bias="1.0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
-    </RelativeLayout>
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_finish"
+            style="@style/Body1_Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/radius_gray"
+            android:enabled="false"
+            android:paddingVertical="12dp"
+            android:text="@string/finish"
+            android:textColor="@color/brown_gray_300"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
