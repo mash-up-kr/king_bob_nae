@@ -23,14 +23,14 @@ class SignUpEmailFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val bundle = Bundle()
-        initView(bundle)
+        initView()
         collectFlow(bundle)
     }
 
-    private fun initView(bundle: Bundle) {
+    private fun initView() {
         binding.apply {
             btnSignUpEmailBack.setOnClickListener {
-                it.findNavController().navigate(R.id.action_signUpEmailFragment_to_introFragment)
+                it.findNavController().popBackStack()
             }
 
             btnSignUpEmailNext.setOnThrottleClickListener() {

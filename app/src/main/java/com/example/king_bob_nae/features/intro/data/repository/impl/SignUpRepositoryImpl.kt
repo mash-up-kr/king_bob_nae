@@ -1,8 +1,6 @@
 package com.example.king_bob_nae.features.intro.data.repository.impl
 
-import com.example.king_bob_nae.features.intro.data.dto.CheckAuthDto
-import com.example.king_bob_nae.features.intro.data.dto.CreateAuthDto
-import com.example.king_bob_nae.features.intro.data.dto.TYPE
+import com.example.king_bob_nae.features.intro.data.dto.*
 import com.example.king_bob_nae.features.intro.data.repository.SignUpRepository
 import com.example.king_bob_nae.features.intro.data.service.SignUpService
 import javax.inject.Inject
@@ -26,4 +24,5 @@ class SignUpRepositoryImpl @Inject constructor(
     override suspend fun validateNickname(nickname: String): Int =
         service.validateNickname(nickname).code()
 
+    override suspend fun signUp(auth: SignUpDto): SignUpResponseDto = service.signUp(auth)
 }

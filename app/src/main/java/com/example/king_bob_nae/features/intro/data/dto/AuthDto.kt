@@ -24,7 +24,7 @@ data class CheckAuthDto(
 data class SignUpDto(
     var email: String = "",
     var nickname: String = "",
-    var passwd: String = ""
+    var password: String = ""
 )
 
 @Keep

@@ -35,7 +35,7 @@ data class ErrorDto(
 @Keep
 @Serializable
 data class SignUpResponseDto(
-    val data: SignUpDataDto,
+    val data: SignUpDataDto?,
     val error: ErrorDto?
 )
 
@@ -58,4 +58,8 @@ data class UserDto(
 
 enum class CHARACTER {
     BROCCOLI, CARROT, GREEN_ONION
+}
+
+fun SignUpResponseDto.asCharacter(): CHARACTER? {
+    return this.data?.character
 }

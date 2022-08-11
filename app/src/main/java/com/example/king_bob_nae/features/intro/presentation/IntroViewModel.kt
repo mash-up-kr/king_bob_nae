@@ -2,13 +2,12 @@ package com.example.king_bob_nae.features.intro.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.king_bob_nae.features.intro.data.dto.CHARACTER
 import com.example.king_bob_nae.features.intro.data.dto.SignUpDto
 import com.example.king_bob_nae.features.intro.data.dto.TYPE
+import com.example.king_bob_nae.features.intro.data.dto.asCharacter
 import com.example.king_bob_nae.features.intro.signin.domain.SignInUseCase
-import com.example.king_bob_nae.features.intro.signup.domain.CheckCertificationUseCase
-import com.example.king_bob_nae.features.intro.signup.domain.CheckEmailUseCase
-import com.example.king_bob_nae.features.intro.signup.domain.CreateCertificationUseCase
-import com.example.king_bob_nae.features.intro.signup.domain.ValidateNicknameUseCase
+import com.example.king_bob_nae.features.intro.signup.domain.*
 import com.example.king_bob_nae.features.intro.signup.domain.model.AuthResponse
 import com.example.king_bob_nae.utils.Extensions.Companion.CERTIFICATION_ERROR
 import com.example.king_bob_nae.utils.Extensions.Companion.EMAIL_FORMAT_ERROR
@@ -28,11 +27,15 @@ class IntroViewModel @Inject constructor(
     private val checkCertificationUseCase: CheckCertificationUseCase,
     private val createCertificationUseCase: CreateCertificationUseCase,
     private val validateNicknameUseCase: ValidateNicknameUseCase,
+    private val signUpUseCase: SignUpUseCase,
     private val signInUseCase: SignInUseCase
 ) : ViewModel() {
 
     private val _result = MutableSharedFlow<AuthResponse>()
     val result = _result.asSharedFlow()
+
+    private val _character = MutableSharedFlow<CHARACTER>()
+    val character = _character.asSharedFlow()
 
     private val auth = SignUpDto()
 
@@ -88,19 +91,27 @@ class IntroViewModel @Inject constructor(
         }
     }
 
+    // 회원가입
+    fun signUp() {
+        viewModelScope.launch {
+            signUpUseCase(auth).asCharacter()?.let { character ->
+                _character.emit(
+                    character
+                )
+            }
+        }
+    }
+
     fun setAuthEmail(email: String) {
         auth.email = email
     }
 
     fun setAuthPasswd(passwd: String) {
-        auth.passwd = passwd
+        auth.password = passwd
     }
 
     fun setAuthNick(nickname: String) {
         auth.nickname = nickname
     }
-
-    fun checkAuth(): Boolean = true
-
 
 }

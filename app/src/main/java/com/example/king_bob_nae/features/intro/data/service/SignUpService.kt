@@ -1,9 +1,6 @@
 package com.example.king_bob_nae.features.intro.data.service
 
-import com.example.king_bob_nae.features.intro.data.dto.AuthResponseDto
-import com.example.king_bob_nae.features.intro.data.dto.CertificationResponseDto
-import com.example.king_bob_nae.features.intro.data.dto.CheckAuthDto
-import com.example.king_bob_nae.features.intro.data.dto.CreateAuthDto
+import com.example.king_bob_nae.features.intro.data.dto.*
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -39,4 +36,11 @@ interface SignUpService {
         @Query("nickname")
         nickName: String
     ): Response<AuthResponseDto>
+
+    // 회원가입
+    @POST("auth/signup")
+    suspend fun signUp(
+        @Body
+        auth: SignUpDto
+    ): SignUpResponseDto
 }
