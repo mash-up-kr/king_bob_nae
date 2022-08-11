@@ -31,3 +31,31 @@ data class ErrorDto(
     val message: String,
     val description: String
 )
+
+@Keep
+@Serializable
+data class SignUpResponseDto(
+    val data: SignUpDataDto,
+    val error: ErrorDto?
+)
+
+@Keep
+@Serializable
+data class SignUpDataDto(
+    val user: UserDto?,
+    val character: CHARACTER,
+    val token: String
+)
+
+@Keep
+@Serializable
+data class UserDto(
+    val id: Int,
+    val email: String,
+    val createdAt: String,
+    val updatedAt: String
+)
+
+enum class CHARACTER {
+    BROCCOLI, CARROT, GREEN_ONION
+}
