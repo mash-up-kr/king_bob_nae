@@ -24,13 +24,17 @@ class SignUpLoadingFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {}
-        }
+        blockingBackPressed()
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
         introViewModel.signUp()
         val bundle = Bundle()
         collectFlow(bundle)
+    }
+
+    private fun blockingBackPressed() {
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {}
+        }
     }
 
     private fun collectFlow(bundle: Bundle) {

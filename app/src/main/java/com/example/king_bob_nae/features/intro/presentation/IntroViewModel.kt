@@ -6,7 +6,6 @@ import com.example.king_bob_nae.features.intro.data.dto.CHARACTER
 import com.example.king_bob_nae.features.intro.data.dto.SignUpDto
 import com.example.king_bob_nae.features.intro.data.dto.TYPE
 import com.example.king_bob_nae.features.intro.data.dto.asCharacter
-import com.example.king_bob_nae.features.intro.signin.domain.SignInUseCase
 import com.example.king_bob_nae.features.intro.signup.domain.*
 import com.example.king_bob_nae.features.intro.signup.domain.model.AuthResponse
 import com.example.king_bob_nae.utils.Extensions.Companion.CERTIFICATION_ERROR
@@ -28,7 +27,6 @@ class IntroViewModel @Inject constructor(
     private val createCertificationUseCase: CreateCertificationUseCase,
     private val validateNicknameUseCase: ValidateNicknameUseCase,
     private val signUpUseCase: SignUpUseCase,
-    private val signInUseCase: SignInUseCase
 ) : ViewModel() {
 
     private val _result = MutableSharedFlow<AuthResponse>()

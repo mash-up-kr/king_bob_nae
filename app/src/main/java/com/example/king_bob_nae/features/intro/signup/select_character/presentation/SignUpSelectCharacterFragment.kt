@@ -17,11 +17,15 @@ class SignUpSelectCharacterFragment :
     private lateinit var callback: OnBackPressedCallback
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        blockingBackPressed()
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+        initView()
+    }
+
+    private fun blockingBackPressed() {
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {}
         }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
-        initView()
     }
 
     private fun initView() {
@@ -50,7 +54,6 @@ class SignUpSelectCharacterFragment :
             }
         }
     }
-
 
     private fun setTextSpan(text: String): SpannableString {
         val text = SpannableString(text)
