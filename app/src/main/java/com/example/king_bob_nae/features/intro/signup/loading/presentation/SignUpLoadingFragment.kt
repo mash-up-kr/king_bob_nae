@@ -55,3 +55,4 @@ class SignUpLoadingFragment :
         callback.remove()
     }
 }
+

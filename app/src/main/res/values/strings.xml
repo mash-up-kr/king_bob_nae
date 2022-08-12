@@ -80,4 +80,16 @@
     <string name="kkilog_image_count">%d/10</string>
 
     <string name="server_error">서버 에러입니다.</string>
+    <!-- 권한 -->
+    <string name="alert">"알림"</string>
+    <string name="alert_message">"끼록을 이용하기 위해서는 권한이 필요합니다. 권한 재설정을 하시겠습니까?"</string>
+    <string name="alert_yes">예</string>
+    <string name="alert_no">아니오</string>
+
+    <!-- 바텀 네비게이션 -->
+    <string name="HOME">"HOME"</string>
+    <string name="PLUS">"PLUS"</string>
+    <string name="RECIPE">"RECIPE"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

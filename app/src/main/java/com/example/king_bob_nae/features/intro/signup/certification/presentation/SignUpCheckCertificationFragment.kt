@@ -57,6 +57,7 @@ class SignUpCheckCertificationFragment :
         }
     }
 
+
     private fun collectFlow() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -78,3 +79,4 @@ class SignUpCheckCertificationFragment :
         introViewModel.createCertification(email, type)
     }
 }
+

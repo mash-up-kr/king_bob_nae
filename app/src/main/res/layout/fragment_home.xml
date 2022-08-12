@@ -31,95 +31,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_friends"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="4dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_alarm"
-            tools:listitem="@layout/holder_friend" />
-
-        <TextView
-            android:id="@+id/tv_today"
-            style="@style/Body2_Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/today_text"
-            android:textColor="@color/brown_gray_400"
-            app:layout_constraintStart_toStartOf="@id/rv_friends"
-            app:layout_constraintTop_toBottomOf="@id/rv_friends" />
-
-        <TextView
-            android:id="@+id/tv_date"
-            style="@style/Body2_Regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="7월 10일"
-            android:textColor="@color/brown_gray_400"
-            app:layout_constraintBottom_toBottomOf="@id/tv_today"
-            app:layout_constraintStart_toEndOf="@id/tv_today"
-            app:layout_constraintTop_toTopOf="@id/tv_today"
-            tools:text="7월 8일" />
-
-        <TextView
-            android:id="@+id/tv_kkilog"
-            style="@style/Headline1_Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:text="끼록"
-            android:textColor="@color/brown_gray_400"
-            app:layout_constraintStart_toStartOf="@id/tv_today"
-            app:layout_constraintTop_toBottomOf="@id/tv_today"
-            tools:text="끼록" />
-
-        <TextView
-            android:id="@+id/tv_count"
-            style="@style/Headline2_Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:background="@drawable/radius_orange_stroke"
-            android:paddingStart="12dp"
-            android:paddingEnd="4.5dp"
-            android:text="0끼"
-            android:textColor="@color/main_orange"
-            app:drawableEndCompat="@drawable/ic_plus_18"
-            app:layout_constraintBottom_toBottomOf="@id/tv_kkilog"
-            app:layout_constraintStart_toEndOf="@id/tv_kkilog"
-            app:layout_constraintTop_toTopOf="@id/tv_kkilog"
-            tools:text="0끼" />
-
-        <ImageView
-            android:id="@+id/iv_character"
+        <include
+            android:id="@+id/common_home_layout"
+            layout="@layout/common_home_layout"
             android:layout_width="0dp"
-            android:layout_height="240dp"
-            android:background="@drawable/carrot_lv3_happy"
-            android:contentDescription="@null"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/ll_left"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_kkilog" />
-
-        <TextView
-            android:id="@+id/tv_click"
-            style="@style/Body2_Regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="@string/home_click_text"
-            android:textColor="@color/brown_gray_200"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/iv_character"
-            app:layout_constraintStart_toStartOf="@id/iv_character"
-            app:layout_constraintTop_toBottomOf="@id/iv_character" />
+            app:layout_constraintTop_toBottomOf="@id/iv_alarm" />
 
         <LinearLayout
             android:id="@+id/ll_left"
@@ -179,23 +99,34 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <ImageView
-                android:id="@+id/iv_eat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ProgressBar
+                android:id="@+id/progress_lv"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="11dp"
-                android:background="@drawable/ic_chopstick_32"
-                android:contentDescription="@null" />
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="20dp"
+                android:max="100"
+                android:progress="50"
+                android:progressDrawable="@drawable/progress_lv" />
 
             <TextView
-                style="@style/Body2_Regular"
+                style="@style/Caption_Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="2dp"
-                android:text="@string/what_eat_text"
-                tools:text="뭐먹지" />
+                android:textColor="@color/brown_gray_300"
+                tools:text="Lv.1" />
+
+            <TextView
+                style="@style/Caption_Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/brown_gray_200"
+                tools:text="5/10끼니" />
 
         </LinearLayout>
 

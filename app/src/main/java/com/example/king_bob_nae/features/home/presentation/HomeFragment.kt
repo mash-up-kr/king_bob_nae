@@ -24,7 +24,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun initView() {
-        binding.rvFriends.apply {
+        binding.commonHomeLayout.rvFriends.apply {
             adapter = userListAdapter
             addItemDecoration(object : RecyclerView.ItemDecoration() {
                 override fun getItemOffsets(
@@ -43,10 +43,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             })
         }
 
+        userList.add(UserListItem.Plus)
         userList.add(UserListItem.User("1", R.drawable.ic_component_13, "석주"))
         userList.add(UserListItem.User("2", R.drawable.ic_component_13, "현수"))
         userList.add(UserListItem.User("3", R.drawable.ic_component_13, "지은"))
-        userList.add(UserListItem.Plus)
     }
 
     private fun collectFlows() {

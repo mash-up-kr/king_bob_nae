@@ -51,6 +51,7 @@ class SignUpSelectCharacterFragment :
         }
     }
 
+
     private fun setTextSpan(text: String): SpannableString {
         val text = SpannableString(text)
         val start = text.length - 3
@@ -68,4 +69,6 @@ class SignUpSelectCharacterFragment :
         super.onDetach()
         callback.remove()
     }
+
 }
+
