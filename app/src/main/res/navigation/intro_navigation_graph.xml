@@ -15,7 +15,7 @@
             app:destination="@id/signInFragment" />
         <action
             android:id="@+id/action_introFragment_to_signUpEmailFragment"
-            app:destination="@id/signUpEmailFragment2" />
+            app:destination="@id/signUpEmailFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -24,10 +24,10 @@
         tools:layout="@layout/fragment_sign_in">
         <action
             android:id="@+id/action_signInFragment_to_checkEmailFragment"
-            app:destination="@id/checkEmailFragment2" />
+            app:destination="@id/checkEmailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/signUpEmailFragment2"
+        android:id="@+id/signUpEmailFragment"
         android:name="com.example.king_bob_nae.features.intro.signup.email.presentation.SignUpEmailFragment"
         android:label="SignUpEmailFragment"
         tools:layout="@layout/fragment_sign_up_email">
@@ -36,7 +36,7 @@
             app:destination="@id/signUpCheckCertificationFragment" />
     </fragment>
     <fragment
-        android:id="@+id/checkEmailFragment2"
+        android:id="@+id/checkEmailFragment"
         android:name="com.example.king_bob_nae.features.intro.reset.check_email.presentation.CheckEmailFragment"
         android:label="CheckEmailFragment"
         tools:layout="@layout/fragment_check_email">
@@ -58,9 +58,6 @@
         android:name="com.example.king_bob_nae.features.intro.signup.password.presentation.SignUpPasswdFragment"
         android:label="SignUpPasswdFragment"
         tools:layout="@layout/fragment_sign_up_passwd">
-        <action
-            android:id="@+id/action_signUpPasswdFragment_to_signUpEmailFragment"
-            app:destination="@id/signUpEmailFragment2" />
         <action
             android:id="@+id/action_signUpPasswdFragment_to_signUpNicknameFragment"
             app:destination="@id/signUpNicknameFragment" />
@@ -90,7 +87,8 @@
         tools:layout="@layout/fragment_sign_up_character_select">
         <action
             android:id="@+id/action_signUpSelectCharacterFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/introFragment" />
     </fragment>
     <fragment
         android:id="@+id/checkCertificationFragment"
@@ -107,11 +105,9 @@
         android:label="ResetPasswdFragment"
         tools:layout="@layout/fragment_reset_passwd">
         <action
-            android:id="@+id/action_resetPasswdFragment_to_checkEmailFragment"
-            app:destination="@id/checkEmailFragment2" />
-        <action
             android:id="@+id/action_resetPasswdFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/introFragment" />
     </fragment>
 
 

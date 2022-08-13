@@ -2,6 +2,7 @@ package com.example.king_bob_nae.features.intro.signup.password.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.king_bob_nae.R
@@ -17,15 +18,19 @@ import com.example.king_bob_nae.utils.setError
 class SignUpPasswdFragment :
     BaseFragment<FragmentSignUpPasswdBinding>(R.layout.fragment_sign_up_passwd) {
     private val introViewModel: IntroViewModel by activityViewModels()
+    private lateinit var callback: OnBackPressedCallback
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        blockingBackPressed()
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
         initView()
     }
 
     private fun initView() {
         binding.apply {
             btnSignUpPasswdBack.setOnClickListener {
-                it.findNavController().popBackStack()
+                it.findNavController()
+                    .popBackStack(R.id.signUpCheckCertificationFragment, inclusive = true)
             }
             btnSignUpPasswdNext.setOnClickListener {
                 if (tfSignUpPasswd.isSamePasswd(
@@ -48,6 +53,15 @@ class SignUpPasswdFragment :
                 btnSignUpPasswdNext
             )
 
+        }
+    }
+
+    private fun blockingBackPressed() {
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireView().findNavController()
+                    .popBackStack(R.id.signUpCheckCertificationFragment, inclusive = true)
+            }
         }
     }
 }
