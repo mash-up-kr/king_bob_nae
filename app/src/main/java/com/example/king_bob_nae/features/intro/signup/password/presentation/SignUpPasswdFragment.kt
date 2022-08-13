@@ -25,8 +25,7 @@ class SignUpPasswdFragment :
     private fun initView() {
         binding.apply {
             btnSignUpPasswdBack.setOnClickListener {
-                it.findNavController()
-                    .popBackStack()
+                it.findNavController().popBackStack()
             }
             btnSignUpPasswdNext.setOnClickListener {
                 if (tfSignUpPasswd.isSamePasswd(
@@ -37,7 +36,9 @@ class SignUpPasswdFragment :
                     it.findNavController()
                         .navigate(R.id.action_signUpPasswdFragment_to_signUpNicknameFragment)
                     introViewModel.setAuthPasswd(tfSignUpPasswd.editText?.text.toString())
-                } else tfSignUpCheckPasswd.setError(PASSWD_ERROR)
+                } else {
+                    tfSignUpCheckPasswd.setError(PASSWD_ERROR)
+                }
             }
             initTextInputLayout(
                 tfSignUpPasswd,

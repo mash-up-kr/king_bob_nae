@@ -28,8 +28,7 @@ class SignUpNicknameFragment :
     private fun initView() {
         binding.apply {
             btnSignUpNickBack.setOnClickListener {
-                it.findNavController()
-                    .popBackStack()
+                it.findNavController().popBackStack()
             }
             btnSignUpNickNext.setOnClickListener {
                 introViewModel.checkNickname(tfSignUpNick.editText?.text.toString())

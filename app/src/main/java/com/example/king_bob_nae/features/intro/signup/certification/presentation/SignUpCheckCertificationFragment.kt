@@ -34,16 +34,16 @@ class SignUpCheckCertificationFragment :
     private fun initView(email: String, type: TYPE) {
         binding.apply {
             tfSignUpCheckCertification.helperText =
-                "다음으로 전송된 인증번호 : $email\n" + getString(R.string.certification_send)
+                getString(R.string.certification_send_first) + "$email\n" + getString(R.string.certification_send_second)
 
             btnCheckCertificationBack.setOnClickListener {
-                it.findNavController()
-                    .popBackStack()
+                it.findNavController().popBackStack()
             }
 
             btnCheckCertificationNext.setOnThrottleClickListener() {
                 introViewModel.checkCertification(
-                    email, type,
+                    email,
+                    type,
                     tfSignUpCheckCertification.editText?.text.toString()
                 )
             }
@@ -61,14 +61,12 @@ class SignUpCheckCertificationFragment :
     private fun collectFlow() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    introViewModel.result.collectLatest { authResponse ->
-                        if (authResponse.checkCertification) {
-                            requireView().findNavController()
-                                .navigate(R.id.action_signUpCheckCertificationFragment_to_signUpPasswdFragment)
-                        } else {
-                            binding.tfSignUpCheckCertification.setError(authResponse.code)
-                        }
+                introViewModel.result.collectLatest { authResponse ->
+                    if (authResponse.checkCertification) {
+                        requireView().findNavController()
+                            .navigate(R.id.action_signUpCheckCertificationFragment_to_signUpPasswdFragment)
+                    } else {
+                        binding.tfSignUpCheckCertification.setError(authResponse.code)
                     }
                 }
             }
