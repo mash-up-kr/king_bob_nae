@@ -34,7 +34,7 @@ class SignUpCheckCertificationFragment :
     private fun initView(email: String, type: TYPE) {
         binding.apply {
             tfSignUpCheckCertification.helperText =
-                getString(R.string.certification_send_first) + "$email\n" + getString(R.string.certification_send_second)
+                getString(R.string.certification_send_first) + " $email\n" + getString(R.string.certification_send_second)
 
             btnCheckCertificationBack.setOnClickListener {
                 it.findNavController().popBackStack()
@@ -50,13 +50,12 @@ class SignUpCheckCertificationFragment :
 
             tfSignUpCheckCertification.apply {
                 setCertificateButtonEnable(btnCheckCertificationNext)
-                setErrorIconOnClickListener {
-                    sendCertification(email, type)
+                setEndIconOnClickListener {
+                    showDialog(email, type)
                 }
             }
         }
     }
-
 
     private fun collectFlow() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -76,5 +75,12 @@ class SignUpCheckCertificationFragment :
     private fun sendCertification(email: String, type: TYPE) {
         introViewModel.createCertification(email, type)
     }
+
+    private fun showDialog(email: String, type: TYPE) {
+        sendCertification(email, type)
+        val dialog = SignUpCheckDialog()
+        dialog.show(requireActivity().supportFragmentManager, "SignUpCheckDialog")
+    }
+
 }
 
