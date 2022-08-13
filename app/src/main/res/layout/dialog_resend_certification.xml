@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/radius_dialog">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_resend_check"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:background="@drawable/radius_dialog_btn"
+            android:drawableTop="@color/brown_gray_50"
+            android:text="@string/check"
+            android:textAppearance="@style/Body1_Regular"
+            android:textColor="@color/brown_gray_400"
+            app:circularflow_defaultRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_resend_certification"
+            style="@style/Body1_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/resent_certification"
+            android:textColor="@color/brown_gray_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tc_resent_certification_comment"
+            style="@style/Body2_Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:stateListAnimator="@null"
+            android:text="@string/resent_certification_comment"
+            android:textColor="@color/brown_gray_500"
+            app:layout_constraintBottom_toTopOf="@+id/btn_resend_check"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_resend_certification" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -8,9 +8,11 @@ import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentSignUpPasswdBinding
 import com.example.king_bob_nae.features.intro.presentation.IntroViewModel
-import com.example.king_bob_nae.util.Extensions.Companion.PASSWD_ERROR
-import com.example.king_bob_nae.util.initTextInputLayout
-import com.example.king_bob_nae.util.setError
+import com.example.king_bob_nae.utils.Extensions.Companion.PASSWD_ERROR
+import com.example.king_bob_nae.utils.initTextInputLayout
+import com.example.king_bob_nae.utils.isSamePasswd
+import com.example.king_bob_nae.utils.isValidPasswd
+import com.example.king_bob_nae.utils.setError
 
 class SignUpPasswdFragment :
     BaseFragment<FragmentSignUpPasswdBinding>(R.layout.fragment_sign_up_passwd) {
@@ -23,25 +25,26 @@ class SignUpPasswdFragment :
     private fun initView() {
         binding.apply {
             btnSignUpPasswdBack.setOnClickListener {
-                it.findNavController()
-                    .navigate(R.id.action_signUpPasswdFragment_to_signUpEmailFragment)
+                it.findNavController().popBackStack()
             }
             btnSignUpPasswdNext.setOnClickListener {
-                if (introViewModel.isSamePasswd(
+                if (tfSignUpPasswd.isSamePasswd(
                         tfSignUpPasswd.editText?.text.toString(),
                         tfSignUpCheckPasswd.editText?.text.toString()
                     )
-                ) it.findNavController()
-                    .navigate(R.id.action_signUpPasswdFragment_to_signUpNicknameFragment)
-                else tfSignUpCheckPasswd.setError(PASSWD_ERROR)
+                ) {
+                    it.findNavController()
+                        .navigate(R.id.action_signUpPasswdFragment_to_signUpNicknameFragment)
+                    introViewModel.setAuthPasswd(tfSignUpPasswd.editText?.text.toString())
+                } else {
+                    tfSignUpCheckPasswd.setError(PASSWD_ERROR)
+                }
             }
-
-
             initTextInputLayout(
                 tfSignUpPasswd,
                 tfSignUpCheckPasswd,
-                { introViewModel.isValidatePasswd(tfSignUpPasswd.editText?.text.toString()) },
-                { introViewModel.isValidatePasswd(tfSignUpCheckPasswd.editText?.text.toString()) },
+                { tfSignUpPasswd.isValidPasswd(tfSignUpPasswd.editText?.text.toString()) },
+                { tfSignUpCheckPasswd.isValidPasswd(tfSignUpCheckPasswd.editText?.text.toString()) },
                 btnSignUpPasswdNext
             )
 

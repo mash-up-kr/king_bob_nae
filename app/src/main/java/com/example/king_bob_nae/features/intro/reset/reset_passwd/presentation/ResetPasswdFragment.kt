@@ -8,9 +8,11 @@ import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentResetPasswdBinding
 import com.example.king_bob_nae.features.intro.presentation.IntroViewModel
-import com.example.king_bob_nae.util.Extensions.Companion.PASSWD_ERROR
-import com.example.king_bob_nae.util.initTextInputLayout
-import com.example.king_bob_nae.util.setError
+import com.example.king_bob_nae.utils.Extensions.Companion.PASSWD_ERROR
+import com.example.king_bob_nae.utils.initTextInputLayout
+import com.example.king_bob_nae.utils.isSamePasswd
+import com.example.king_bob_nae.utils.isValidPasswd
+import com.example.king_bob_nae.utils.setError
 
 class ResetPasswdFragment :
     BaseFragment<FragmentResetPasswdBinding>(R.layout.fragment_reset_passwd) {
@@ -23,11 +25,10 @@ class ResetPasswdFragment :
     private fun initView() {
         binding.apply {
             btnResetPasswdBack.setOnClickListener {
-                it.findNavController()
-                    .navigate(R.id.action_resetPasswdFragment_to_checkEmailFragment)
+                it.findNavController().popBackStack()
             }
             btnResetPasswdNext.setOnClickListener {
-                if (introViewModel.isSamePasswd(
+                if (tfResetPasswd.isSamePasswd(
                         tfResetPasswd.editText?.text.toString(),
                         tfResetCheckPasswd.editText?.text.toString()
                     )
@@ -38,8 +39,8 @@ class ResetPasswdFragment :
             initTextInputLayout(
                 tfResetPasswd,
                 tfResetCheckPasswd,
-                { introViewModel.isValidatePasswd(tfResetPasswd.editText?.text.toString()) },
-                { introViewModel.isValidatePasswd(tfResetCheckPasswd.editText?.text.toString()) },
+                { tfResetPasswd.isValidPasswd(tfResetPasswd.editText?.text.toString()) },
+                { tfResetCheckPasswd.isValidPasswd(tfResetCheckPasswd.editText?.text.toString()) },
                 btnResetPasswdNext
             )
 

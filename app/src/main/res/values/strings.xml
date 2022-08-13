@@ -3,9 +3,9 @@
     <string name="kki_rok">끼록!</string>
     <string name="check">확인</string>
 
-    <string name="carrot">감성적인 당근</string>
-    <string name="broccoli">활발한 브로콜리</string>
-    <string name="green_onion">카리스마 대파</string>
+    <string name="carrot">감성적인 당근 당첨!</string>
+    <string name="broccoli">활발한 브로콜리 당첨!</string>
+    <string name="green_onion">카리스마 대파 당첨!</string>
 
     <string name="carrot_comment">안녕하세요!\n저는 흔하디 흔한 당근이에요^오^</string>
     <string name="broccoli_comment">와썹가이즈~\n내 풍성한 머리좀 볼래?ㅋㅋ</string>
@@ -29,6 +29,7 @@
     <string name="sign_up_input_email_hint">kkilog@gmail.com</string>
     <string name="sign_up_input_email_helper">입력한 이메일로 인증번호가 전송됩니다</string>
     <string name="input_email_error">올바른 이메일 형식을 입력해주세요\n예시) kkilo@gmail.com</string>
+    <string name="sign_up_email_valid_error">이미 사용중인 이메일입니다.</string>
 
     <string name="sign_up_password_text">비밀번호를 설정해 주세요</string>
     <string name="sign_up_input_passwd_hint">비밀번호 8자 이상</string>
@@ -37,7 +38,8 @@
 
     <string name="certification_text">인증번호를 입력하세요</string>
     <string name="input_certification">인증번호 6자리</string>
-    <string name="certification_send">다음으로 전송된 인증번호 :\n전송된 인증번호는 10분동안 유효합니다</string>
+    <string name="certification_send_second">전송된 인증번호는 10분동안 유효합니다</string>
+    <string name="certification_send_first">다음으로 전송된 인증번호 :</string>
     <string name="resent_certification">인증번호 재발송</string>
     <string name="resent_certification_comment">인증번호를 다시 보냈어요. 이메일을 확인 후\n인증번호를 다시 입력하세요.</string>
     <string name="certification_error">올바른 인증번호가 아닙니다</string>
@@ -45,6 +47,7 @@
     <string name="sign_up_nick_text">반가워요!\n닉네임을 설정해 주세요</string>
     <string name="sign_up_input_nick_hint">콩순이</string>
     <string name="sign_up_input_nick_error">사용중인 닉네임입니다</string>
+    <string name="sign_up_nick_size_error">닉네임이 잘못되었습니다</string>
 
     <string name="start_kkilog">이제 끼록을 시작해 볼까요</string>
     <string name="sign_up_find_character_text">사용자 닉네임과 어울리는\n캐릭터를 찾고있어요…</string>
@@ -77,6 +80,7 @@
     <string name="kkilog_kick_count">%d / 20자</string>
     <string name="kkilog_image_count">%d/10</string>
 
+    <string name="server_error">서버 에러입니다.</string>
     <!-- 권한 -->
     <string name="alert">"알림"</string>
     <string name="alert_message">"끼록을 이용하기 위해서는 권한이 필요합니다. 권한 재설정을 하시겠습니까?"</string>

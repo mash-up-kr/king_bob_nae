@@ -18,8 +18,7 @@ class CheckCertificationFragment :
     private fun initView() {
         binding.apply {
             btnCheckCertificationBack.setOnClickListener {
-                it.findNavController()
-                    .navigate(R.id.action_checkCertificationFragment_to_checkEmailFragment)
+                it.findNavController().popBackStack()
             }
             btnCheckCertificationNext.setOnClickListener {
                 it.findNavController()
