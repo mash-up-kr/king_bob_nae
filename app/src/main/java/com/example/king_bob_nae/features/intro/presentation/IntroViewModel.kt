@@ -16,7 +16,9 @@ import com.example.king_bob_nae.utils.Extensions.Companion.NICK_SIZE_ERROR
 import com.example.king_bob_nae.utils.Extensions.Companion.SERVER_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -35,7 +37,7 @@ class IntroViewModel @Inject constructor(
     private val _character = MutableSharedFlow<CHARACTER>()
     val character = _character.asSharedFlow()
 
-    private val auth = SignUpDto("", "", "")
+    private val auth = MutableStateFlow(SignUpDto())
 
     // 이메일 중복검사
     fun checkEmailDuplicated(email: String) {
@@ -92,22 +94,22 @@ class IntroViewModel @Inject constructor(
     // 회원가입
     fun signUp() {
         viewModelScope.launch {
-            signUpUseCase(auth).asCharacter()?.let { character ->
+            signUpUseCase(auth.value).asCharacter()?.let { character ->
                 _character.emit(character)
             }
         }
     }
 
     fun setAuthEmail(email: String) {
-        auth.copy(email = email)
+        auth.update { auth.value.copy(email = email) }
     }
 
     fun setAuthPasswd(passwd: String) {
-        auth.copy(password = passwd)
+        auth.update { auth.value.copy(password = passwd) }
     }
 
     fun setAuthNick(nickname: String) {
-        auth.copy(nickname = nickname)
+        auth.update { auth.value.copy(nickname = nickname) }
     }
 
 }
