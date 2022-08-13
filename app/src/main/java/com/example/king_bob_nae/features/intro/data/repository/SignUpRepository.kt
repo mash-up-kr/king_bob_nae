@@ -6,7 +6,7 @@ import com.example.king_bob_nae.features.intro.data.dto.TYPE
 
 interface SignUpRepository {
 
-    suspend fun checkEmail(email: String): Int
+    suspend fun checkEmailDuplicated(email: String): Int
 
     suspend fun createCertification(email: String, type: TYPE): Int
 

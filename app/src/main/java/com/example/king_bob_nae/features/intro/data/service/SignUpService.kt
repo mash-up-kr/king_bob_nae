@@ -11,7 +11,7 @@ import retrofit2.http.Query
 interface SignUpService {
     // 이메일 중복 체크
     @GET("auth/validate/email")
-    suspend fun checkEmail(
+    suspend fun checkEmailDuplicated(
         @Query("email")
         email: String
     ): Response<AuthResponseDto>

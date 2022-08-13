@@ -9,7 +9,7 @@ class SignUpRepositoryImpl @Inject constructor(
     private val service: SignUpService,
 ) : SignUpRepository {
 
-    override suspend fun checkEmail(email: String): Int = service.checkEmail(email).code()
+    override suspend fun checkEmailDuplicated(email: String): Int = service.checkEmailDuplicated(email).code()
 
     override suspend fun createCertification(email: String, type: TYPE): Int {
         val auth = CreateAuthDto(email, type)

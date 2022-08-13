@@ -22,7 +22,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class IntroViewModel @Inject constructor(
-    private val checkEmailUseCase: CheckEmailUseCase,
+    private val checkEmailDuplicatedUseCase: CheckEmailDuplicatedUseCase,
     private val checkCertificationUseCase: CheckCertificationUseCase,
     private val createCertificationUseCase: CreateCertificationUseCase,
     private val validateNicknameUseCase: ValidateNicknameUseCase,
@@ -41,7 +41,7 @@ class IntroViewModel @Inject constructor(
     fun checkEmailDuplicated(email: String) {
         viewModelScope.launch {
             _result.emit(
-                when (checkEmailUseCase(email)) {
+                when (checkEmailDuplicatedUseCase(email)) {
                     200 -> AuthResponse(200, isDuplicatedEmail = true)
                     400 -> AuthResponse(EMAIL_FORMAT_ERROR)
                     409 -> AuthResponse(EMAIL_USE_ERROR)
