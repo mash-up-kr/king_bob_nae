@@ -25,7 +25,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
     private fun initView() {
         binding.apply {
             btnBack.setOnClickListener {
-                it.findNavController().navigate(R.id.action_signInFragment_to_introFragment)
+                it.findNavController().popBackStack()
             }
             tvFindPasswd.setOnClickListener {
                 it.findNavController().navigate(R.id.action_signInFragment_to_checkEmailFragment)

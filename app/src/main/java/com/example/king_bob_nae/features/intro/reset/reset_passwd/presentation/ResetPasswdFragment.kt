@@ -25,8 +25,7 @@ class ResetPasswdFragment :
     private fun initView() {
         binding.apply {
             btnResetPasswdBack.setOnClickListener {
-                it.findNavController()
-                    .navigate(R.id.action_resetPasswdFragment_to_checkEmailFragment)
+                it.findNavController().popBackStack()
             }
             btnResetPasswdNext.setOnClickListener {
                 if (tfResetPasswd.isSamePasswd(

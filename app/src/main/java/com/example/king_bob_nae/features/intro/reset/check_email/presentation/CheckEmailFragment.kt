@@ -22,7 +22,7 @@ class CheckEmailFragment : BaseFragment<FragmentCheckEmailBinding>(R.layout.frag
         binding.apply {
 
             btnCheckEmailBack.setOnClickListener {
-                it.findNavController().navigate(R.id.action_checkEmailFragment_to_signInFragment)
+                it.findNavController().popBackStack()
             }
 
             btnCheckEmailNext.setOnClickListener {
