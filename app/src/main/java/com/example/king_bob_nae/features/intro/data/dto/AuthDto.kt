@@ -22,9 +22,9 @@ data class CheckAuthDto(
 @Keep
 @Serializable
 data class SignUpDto(
-    var email: String = "",
-    var nickname: String = "",
-    var password: String = ""
+    val email: String,
+    val nickname: String,
+    val password: String
 )
 
 @Keep

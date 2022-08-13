@@ -35,7 +35,7 @@ class IntroViewModel @Inject constructor(
     private val _character = MutableSharedFlow<CHARACTER>()
     val character = _character.asSharedFlow()
 
-    private val auth = SignUpDto()
+    private val auth = SignUpDto("", "", "")
 
     // 이메일 중복검사
     fun checkEmailDuplicated(email: String) {
@@ -93,23 +93,21 @@ class IntroViewModel @Inject constructor(
     fun signUp() {
         viewModelScope.launch {
             signUpUseCase(auth).asCharacter()?.let { character ->
-                _character.emit(
-                    character
-                )
+                _character.emit(character)
             }
         }
     }
 
     fun setAuthEmail(email: String) {
-        auth.email = email
+        auth.copy(email = email)
     }
 
     fun setAuthPasswd(passwd: String) {
-        auth.password = passwd
+        auth.copy(password = passwd)
     }
 
     fun setAuthNick(nickname: String) {
-        auth.nickname = nickname
+        auth.copy(nickname = nickname)
     }
 
 }
