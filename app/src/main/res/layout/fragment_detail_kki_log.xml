@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -180,19 +179,32 @@
                     app:layout_constraintStart_toStartOf="@id/tv_ingredient"
                     app:layout_constraintTop_toBottomOf="@id/tv_ingredient" />
 
+                <LinearLayout
+                    android:id="@+id/ll_add_ingredient"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@id/et_ingredient"
+                    app:layout_constraintStart_toStartOf="@id/et_ingredient"
+                    app:layout_constraintTop_toBottomOf="@id/et_ingredient">
+
+                </LinearLayout>
+
                 <TextView
                     android:id="@+id/btn_add_ingredient"
                     style="@style/Body2_Bold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
                     android:background="@drawable/radius_gray_stroke"
                     android:paddingVertical="9.5dp"
                     android:text="재료 추가"
                     android:textAlignment="center"
                     android:textColor="@color/brown_gray_200"
-                    app:layout_constraintEnd_toEndOf="@id/et_ingredient"
-                    app:layout_constraintStart_toStartOf="@id/et_ingredient"
-                    app:layout_constraintTop_toBottomOf="@id/et_ingredient" />
+                    app:layout_constraintEnd_toEndOf="@id/ll_add_ingredient"
+                    app:layout_constraintStart_toStartOf="@id/ll_add_ingredient"
+                    app:layout_constraintTop_toBottomOf="@id/ll_add_ingredient" />
 
                 <TextView
                     android:id="@+id/tv_recipe"
@@ -205,18 +217,29 @@
                     app:layout_constraintStart_toStartOf="@id/btn_add_ingredient"
                     app:layout_constraintTop_toBottomOf="@id/btn_add_ingredient" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_recipe"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                <include
+                    android:id="@+id/view_recipe"
+                    layout="@layout/item_detail_kki_log_recipe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="@id/tv_recipe"
+                    app:layout_constraintStart_toStartOf="@id/tv_recipe"
+                    app:layout_constraintTop_toBottomOf="@id/tv_recipe" />
+
+                <LinearLayout
+                    android:id="@+id/ll_add_recipe"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
                     android:layout_marginBottom="24dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="vertical"
                     app:layout_constraintBottom_toTopOf="@id/tv_add_recipe"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_recipe"
-                    tools:listitem="@layout/item_detail_kki_log_recipe" />
+                    app:layout_constraintTop_toBottomOf="@id/view_recipe">
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tv_add_recipe"
