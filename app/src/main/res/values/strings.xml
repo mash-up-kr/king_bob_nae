@@ -87,6 +87,8 @@
     <string name="HOME">"HOME"</string>
     <string name="PLUS">"PLUS"</string>
     <string name="RECIPE">"RECIPE"</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+   
+    <!-- kki_log feed 3dot -->
+    <string name="edit_kkilog_feed">게시글 수정</string>
+    <string name="delete_kkilog_feed">삭제</string>
 </resources>
