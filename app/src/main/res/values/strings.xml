@@ -23,6 +23,7 @@
     <string name="finish">완료</string>
     <string name="login_text">아침에도\n점심에도\n저녁에도</string>
     <string name="login_with_email">이메일 로그인</string>
+    <string name="sign_in_error">로그인 실패</string>
 
     <string name="sing_up_text">회원가입</string>
     <string name="sign_up_email_text">이메일을 입력해 주세요</string>

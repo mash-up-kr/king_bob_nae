@@ -14,6 +14,7 @@ import com.example.king_bob_nae.utils.Extensions.Companion.NICK_ERROR
 import com.example.king_bob_nae.utils.Extensions.Companion.NICK_SIZE_ERROR
 import com.example.king_bob_nae.utils.Extensions.Companion.PASSWD_ERROR
 import com.example.king_bob_nae.utils.Extensions.Companion.SERVER_ERROR
+import com.example.king_bob_nae.utils.Extensions.Companion.SIGN_IN_ERROR
 import com.example.king_bob_nae.utils.Extensions.Companion.emailPattern
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.CoroutineScope
@@ -31,6 +32,7 @@ class Extensions {
         const val CERTIFICATION_ERROR = 4
         const val SERVER_ERROR = 6
         const val NICK_SIZE_ERROR = 7
+        const val SIGN_IN_ERROR = 8
         val emailPattern = android.util.Patterns.EMAIL_ADDRESS
     }
 }
@@ -100,6 +102,7 @@ fun TextInputLayout.setError(errorType: Int) {
         CERTIFICATION_ERROR -> context.getString(R.string.certification_error)
         SERVER_ERROR -> context.getString(R.string.server_error)
         NICK_SIZE_ERROR -> context.getString(R.string.sign_up_nick_size_error)
+        SIGN_IN_ERROR -> context.getString(R.string.sign_in_error)
         else -> return
     }
     setEndIconDrawable(R.drawable.ic_error_20)

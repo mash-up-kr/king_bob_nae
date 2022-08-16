@@ -2,10 +2,13 @@ package com.example.king_bob_nae.features.intro.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.king_bob_nae.KkiLogApplication
 import com.example.king_bob_nae.features.intro.data.dto.CHARACTER
 import com.example.king_bob_nae.features.intro.data.dto.SignUpDto
 import com.example.king_bob_nae.features.intro.data.dto.TYPE
 import com.example.king_bob_nae.features.intro.data.dto.asCharacter
+import com.example.king_bob_nae.features.intro.signin.domain.SignInUseCase
+import com.example.king_bob_nae.features.intro.signin.domain.model.SignInResponse
 import com.example.king_bob_nae.features.intro.signup.domain.*
 import com.example.king_bob_nae.features.intro.signup.domain.model.AuthResponse
 import com.example.king_bob_nae.utils.Extensions.Companion.CERTIFICATION_ERROR
@@ -14,6 +17,7 @@ import com.example.king_bob_nae.utils.Extensions.Companion.EMAIL_USE_ERROR
 import com.example.king_bob_nae.utils.Extensions.Companion.NICK_ERROR
 import com.example.king_bob_nae.utils.Extensions.Companion.NICK_SIZE_ERROR
 import com.example.king_bob_nae.utils.Extensions.Companion.SERVER_ERROR
+import com.example.king_bob_nae.utils.Extensions.Companion.SIGN_IN_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,6 +33,7 @@ class IntroViewModel @Inject constructor(
     private val createCertificationUseCase: CreateCertificationUseCase,
     private val validateNicknameUseCase: ValidateNicknameUseCase,
     private val signUpUseCase: SignUpUseCase,
+    private val signInUseCase: SignInUseCase
 ) : ViewModel() {
 
     private val _result = MutableSharedFlow<AuthResponse>()
@@ -36,6 +41,9 @@ class IntroViewModel @Inject constructor(
 
     private val _character = MutableSharedFlow<CHARACTER>()
     val character = _character.asSharedFlow()
+
+    private val _signInResult = MutableSharedFlow<SignInResponse>()
+    val signInResult = _signInResult.asSharedFlow()
 
     private val auth = MutableStateFlow(SignUpDto())
 
@@ -97,6 +105,24 @@ class IntroViewModel @Inject constructor(
             signUpUseCase(auth.value).asCharacter()?.let { character ->
                 _character.emit(character)
             }
+        }
+    }
+
+    // 로그인
+    fun signIn(email: String, passwd: String) {
+        viewModelScope.launch {
+            val token = signInUseCase(email, passwd)
+            _signInResult.emit(
+                when (token) {
+                    null -> {
+                        SignInResponse(SIGN_IN_ERROR, false)
+                    }
+                    else -> {
+                        KkiLogApplication.prefs.accessToken = token
+                        SignInResponse(201, true)
+                    }
+                }
+            )
         }
     }
 
