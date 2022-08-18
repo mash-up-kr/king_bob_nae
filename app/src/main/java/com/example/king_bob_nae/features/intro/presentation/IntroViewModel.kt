@@ -115,7 +115,7 @@ class IntroViewModel @Inject constructor(
             _signInResult.emit(
                 when (token) {
                     null -> {
-                        SignInResponse(SIGN_IN_ERROR, false)
+                        SignInResponse()
                     }
                     else -> {
                         KkiLogApplication.prefs.accessToken = token
