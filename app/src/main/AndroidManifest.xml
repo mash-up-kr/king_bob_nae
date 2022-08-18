@@ -51,7 +51,12 @@
 
             android:exported="true"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".features.intro.presentation.IntroActivity"
             android:exported="true"
@@ -61,10 +66,7 @@
             android:name="com.example.king_bob_nae.features.onboarding.presentation.OnBoardingActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
     </application>
 

@@ -16,6 +16,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseActivity
 import com.example.king_bob_nae.databinding.ActivityHomeBinding
+import com.example.king_bob_nae.features.create.AddKkiLogBottomSheetFragment
 import com.example.king_bob_nae.features.imagepicker.presentation.ImageListViewModel
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
@@ -46,18 +47,23 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
     }
 
     private fun checkPermission(permission: String): Boolean {
-        return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+        return ContextCompat.checkSelfPermission(
+            this,
+            permission
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun checkPermission() {
-        if (checkPermission(READ_EXTERNAL_STORAGE) && checkPermission(CAMERA)) {
-            navigate(R.id.imagePickerFragment)
-        } else {
+        if (!checkPermission(READ_EXTERNAL_STORAGE) && checkPermission(CAMERA)) {
             ActivityCompat.requestPermissions(this@HomeActivity, permissions, REQUEST_PERMISSION)
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             navigate(R.id.imagePickerFragment)
@@ -67,7 +73,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
                 .setMessage(R.string.alert_message)
                 .setNegativeButton(R.string.alert_no) { _, _ -> }
                 .setPositiveButton(R.string.alert_yes) { _, _ ->
-                    Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:$packageName")).apply {
+                    Intent(
+                        Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                        Uri.parse("package:$packageName")
+                    ).apply {
                         addCategory(Intent.CATEGORY_DEFAULT)
                         flags = Intent.FLAG_ACTIVITY_NEW_TASK
                     }.also { intent ->
@@ -78,18 +87,20 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
     }
 
     private fun initView() {
-        navHostFragment = supportFragmentManager.findFragmentById(R.id.home_nav_host_fragment) as NavHostFragment
+        navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.home_nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         with(binding.bottomNavHome) {
             setupWithNavController(navController)
             setOnItemSelectedListener {
                 when (it.itemId) {
-                    R.id.imagePickerFragment -> {
-                        checkPermission()
-                    }
                     R.id.homeFragment -> {
                         navigate(R.id.homeFragment)
                         imageListViewModel.resetAllData()
+                    }
+                    R.id.imagePickerFragment -> {
+                        checkPermission()
+                        AddKkiLogBottomSheetFragment().show(supportFragmentManager, "")
                     }
                     R.id.recipeFragment -> {
                         navigate(R.id.recipeFragment)
@@ -100,6 +111,5 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
             }
             itemIconTintList = null
         }
-
     }
 }
