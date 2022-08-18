@@ -4,30 +4,43 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <ImageView
+        android:id="@+id/iv_remove_recipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_red_error"
+        android:contentDescription="@null"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tv_step"
         style="@style/Body3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
         android:text="STEP.1"
         android:textColor="@color/brown_gray_200"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_remove_recipe"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/et_recipe_description"
         style="@style/Body1_Regular"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="28dp"
+        android:layout_marginBottom="8dp"
         android:autofillHints="no"
         android:background="@null"
         android:ellipsize="end"
-        android:hint="예) 소고기를 적당한 크기로 잘라주세요"
+        android:hint="예) 소고기를 적당한 크기로 잘라주세요 "
         android:inputType="text"
         android:maxLines="2"
         android:textColor="@color/brown_gray_300"
+        app:layout_constraintBottom_toBottomOf="@id/iv_food_image"
         app:layout_constraintEnd_toStartOf="@+id/iv_food_image"
         app:layout_constraintStart_toStartOf="@id/tv_step"
         app:layout_constraintTop_toBottomOf="@id/tv_step" />
