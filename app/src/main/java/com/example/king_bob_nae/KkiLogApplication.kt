@@ -4,4 +4,14 @@ import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class KkiLogApplication : Application()
+class KkiLogApplication : Application() {
+    companion object {
+        lateinit var prefs: SharedPreferences
+    }
+
+    override fun onCreate() {
+        prefs = SharedPreferences
+        prefs.initialize(this)
+        super.onCreate()
+    }
+}

@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.example.king_bob_nae.KkiLogApplication
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseActivity
 import com.example.king_bob_nae.databinding.ActivityOnboardingBinding
+import com.example.king_bob_nae.features.HomeActivity
 import com.example.king_bob_nae.features.intro.presentation.IntroActivity
 import com.example.king_bob_nae.utils.isEnabled
 
@@ -16,13 +18,33 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>(R.layout.acti
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        appCheck()
+    }
 
+    private fun appCheck() {
+        KkiLogApplication.prefs.apply {
+            if (!appFirstCheck) {
+                initPager()
+                initStartButton()
+            } else {
+                if (isAccessTokenEmpty()) {
+                    startActivity(Intent(this@OnBoardingActivity, IntroActivity::class.java))
+                    finish()
+                } else {
+                    startActivity(Intent(this@OnBoardingActivity, HomeActivity::class.java))
+                    finish()
+                }
+            }
+        }
+    }
+
+    private fun initStartButton() {
         binding.btnOnboardingStart.setOnClickListener {
+            KkiLogApplication.prefs.appFirstCheck = true
             Intent(this, IntroActivity::class.java).run {
                 startActivity(this)
             }
         }
-        initPager()
     }
 
     private fun initPager() {
