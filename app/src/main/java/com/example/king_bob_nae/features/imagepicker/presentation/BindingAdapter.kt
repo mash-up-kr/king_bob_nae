@@ -31,10 +31,12 @@ object BindingAdapter {
 
     @JvmStatic
     @BindingAdapter("bindUrl")
-    fun ImageView.bindUrl(url: String) {
-        Glide.with(this)
-            .load(url)
-            .fitCenter()
-            .into(this)
+    fun ImageView.bindUrl(url: String?) {
+        url?.let {
+            Glide.with(this)
+                .load(it)
+                .fitCenter()
+                .into(this)
+        }
     }
 }

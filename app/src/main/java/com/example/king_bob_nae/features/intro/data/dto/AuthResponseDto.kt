@@ -72,6 +72,10 @@ enum class CHARACTER {
     BROCCOLI, CARROT, GREEN_ONION
 }
 
+enum class CHARACTER_STATUS {
+    HAPPY, SAD
+}
+
 fun SignUpResponseDto.asCharacter(): CHARACTER? {
     return data?.character
 }

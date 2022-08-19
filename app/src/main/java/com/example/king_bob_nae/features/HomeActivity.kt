@@ -17,7 +17,9 @@ import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseActivity
 import com.example.king_bob_nae.databinding.ActivityHomeBinding
 import com.example.king_bob_nae.features.imagepicker.presentation.ImageListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
     companion object {
         private const val REQUEST_PERMISSION = 1000
