@@ -91,6 +91,14 @@
     <string name="HOME">"HOME"</string>
     <string name="PLUS">"PLUS"</string>
     <string name="RECIPE">"RECIPE"</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- 나의 프로필 -->
+    <string name="my_profile">"나의 프로필"</string>
+    <string name="my_profile_level">"Lv.2"</string>
+    <string name="my_profile_nickname">"콩순이"</string>
+    <string name="my_profile_kkilog_count">끼록 5 / 15회 작성</string>
+    <string name="my_profile_total_kkilog">총 끼록</string>
+    <string name="my_profile_following">팔로잉</string>
+    <string name="my_profile_follower">팔로워</string>
+    <string name="my_profile_scrap">스크랩</string>
 </resources>
