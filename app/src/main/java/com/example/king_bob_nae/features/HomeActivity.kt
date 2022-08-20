@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -56,7 +57,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
     }
 
     private fun checkPermission() {
-        if (!checkPermission(READ_EXTERNAL_STORAGE) && checkPermission(CAMERA)) {
+        if (!(checkPermission(READ_EXTERNAL_STORAGE) && checkPermission(CAMERA))) {
             ActivityCompat.requestPermissions(this@HomeActivity, permissions, REQUEST_PERMISSION)
         }
     }
@@ -68,7 +69,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            navigate(R.id.imagePickerFragment)
+            // do nothing
         } else {
             AlertDialog.Builder(this)
                 .setTitle(R.string.alert)
