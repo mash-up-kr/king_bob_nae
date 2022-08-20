@@ -86,7 +86,6 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
-</resources>
     <style name="popupOverflowMenu" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
         <item name="android:popupBackground">@drawable/radius_menu_item</item>
     </style>

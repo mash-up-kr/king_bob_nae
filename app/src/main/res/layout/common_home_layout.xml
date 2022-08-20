@@ -41,7 +41,7 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/iv_user_nickname"
+            android:id="@+id/tv_user_nickname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -77,7 +77,7 @@
             android:text="@string/today_text"
             android:textColor="@color/brown_gray_400"
             app:layout_constraintStart_toStartOf="@id/iv_add"
-            app:layout_constraintTop_toBottomOf="@id/iv_add" />
+            app:layout_constraintTop_toBottomOf="@id/tv_user_nickname" />
 
         <TextView
             android:id="@+id/tv_date"
@@ -98,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="끼록"
+            android:text="@string/kki_log_text"
             android:textColor="@color/brown_gray_400"
             app:layout_constraintStart_toStartOf="@id/tv_today"
             app:layout_constraintTop_toBottomOf="@id/tv_today"

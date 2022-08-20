@@ -1,8 +1,7 @@
 package com.example.king_bob_nae.features.home.data.userstate
 
-
 import com.example.king_bob_nae.features.intro.data.dto.CHARACTER
-import com.example.king_bob_nae.features.intro.data.dto.CHARACTER_STATUS
+import com.example.king_bob_nae.features.intro.data.dto.CharacterStatus
 import com.example.king_bob_nae.features.intro.data.dto.ErrorDto
 import com.google.gson.annotations.SerializedName
 
@@ -29,7 +28,7 @@ data class HomeStatus(
     @SerializedName("phrase")
     val phrase: String,
     @SerializedName("status")
-    val status: CHARACTER_STATUS,
+    val status: CharacterStatus,
     @SerializedName("type")
     val type: CHARACTER
 ) {
@@ -45,5 +44,4 @@ data class HomeStatus(
         @SerializedName("total")
         val total: Int
     )
-
 }

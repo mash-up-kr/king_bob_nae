@@ -110,4 +110,5 @@
     <string name="simple_kki_log">간단 끼록</string>
     <string name="detail_kki_log">상세 끼록</string>
     <string name="add_kki_log">끼록 추가</string>
+    <string name="kki_log_text">끼록</string>
 </resources>
