@@ -41,21 +41,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private fun initView() {
         binding.commonHomeLayout.rvFriends.apply {
             adapter = userListAdapter
-            addItemDecoration(object : RecyclerView.ItemDecoration() {
-                override fun getItemOffsets(
-                    outRect: Rect,
-                    view: View,
-                    parent: RecyclerView,
-                    state: RecyclerView.State
-                ) {
-                    super.getItemOffsets(outRect, view, parent, state)
-
-                    val slidePadding =
-                        resources.getDimensionPixelSize(R.dimen.userList_item_padding)
-
-                    outRect.right = slidePadding
-                }
-            })
         }
         binding.ivMy.setOnClickListener {
             startActivity(Intent(requireActivity(), MyProfileActivity::class.java))

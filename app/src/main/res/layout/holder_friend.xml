@@ -20,8 +20,8 @@
             bindImage="@{user.url}"
             android:layout_width="36dp"
             android:layout_height="38dp"
-            android:layout_marginEnd="12dp"
             android:contentDescription="@null"
+            android:layout_marginEnd="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -37,8 +37,7 @@
             android:maxLines="1"
             android:text="@{user.nickName}"
             android:textColor="@color/brown_gray_300"
-            app:layout_constraintEnd_toEndOf="@id/iv_add"
-            app:layout_constraintStart_toStartOf="@id/iv_add"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_add"
             tools:text="나어이없어" />
     </androidx.constraintlayout.widget.ConstraintLayout>
