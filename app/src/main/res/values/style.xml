@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="Headline1_ENG_12dp">
+        <item name="android:fontFamily">@font/campton_bold</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+
     <style name="Headline1_ENG">
         <item name="android:fontFamily">@font/campton_bold</item>
         <item name="android:textSize">22dp</item>
@@ -81,6 +86,7 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+</resources>
     <style name="popupOverflowMenu" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
         <item name="android:popupBackground">@drawable/radius_menu_item</item>
     </style>
