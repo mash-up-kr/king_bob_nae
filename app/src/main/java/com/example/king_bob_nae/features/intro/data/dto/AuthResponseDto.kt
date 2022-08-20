@@ -83,3 +83,7 @@ fun SignUpResponseDto.asCharacter(): CHARACTER? {
 fun SignInResponseDto.asAccessToken(): String? {
     return data?.accessToken
 }
+
+fun SignUpDataDto.asAccessToken(): String {
+    return token
+}

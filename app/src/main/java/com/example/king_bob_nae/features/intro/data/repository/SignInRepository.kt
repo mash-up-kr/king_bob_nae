@@ -4,4 +4,8 @@ interface SignInRepository {
 
     suspend fun signIn(email: String, passwd: String): String?
 
+    suspend fun checkEmailExistence(email: String): Int
+
+    suspend fun resetPassword(email: String, newPassword: String, confirmPassword: String): Int
+
 }

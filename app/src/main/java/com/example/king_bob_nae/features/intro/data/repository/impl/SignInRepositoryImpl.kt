@@ -1,5 +1,6 @@
 package com.example.king_bob_nae.features.intro.data.repository.impl
 
+import com.example.king_bob_nae.features.intro.data.dto.ResetPasswordDto
 import com.example.king_bob_nae.features.intro.data.dto.SignInDto
 import com.example.king_bob_nae.features.intro.data.dto.asAccessToken
 import com.example.king_bob_nae.features.intro.data.repository.SignInRepository
@@ -15,6 +16,18 @@ class SignInRepositoryImpl @Inject constructor(
         return kotlin.runCatching {
             service.signIn(auth).asAccessToken().toString()
         }.getOrNull()
+    }
+
+    override suspend fun checkEmailExistence(email: String): Int =
+        service.checkEmailExistence(email).code()
+
+    override suspend fun resetPassword(
+        email: String,
+        newPassword: String,
+        confirmPassword: String
+    ): Int {
+        val dto = ResetPasswordDto(email, newPassword, confirmPassword)
+        return service.resetPassword(dto).code()
     }
 
 }

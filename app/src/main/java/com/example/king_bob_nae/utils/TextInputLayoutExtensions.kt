@@ -9,6 +9,7 @@ import androidx.databinding.ViewDataBinding
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.utils.Extensions.Companion.CERTIFICATION_ERROR
 import com.example.king_bob_nae.utils.Extensions.Companion.EMAIL_FORMAT_ERROR
+import com.example.king_bob_nae.utils.Extensions.Companion.EMAIL_NOT_EXIST
 import com.example.king_bob_nae.utils.Extensions.Companion.EMAIL_USE_ERROR
 import com.example.king_bob_nae.utils.Extensions.Companion.NICK_ERROR
 import com.example.king_bob_nae.utils.Extensions.Companion.NICK_SIZE_ERROR
@@ -33,6 +34,7 @@ class Extensions {
         const val SERVER_ERROR = 6
         const val NICK_SIZE_ERROR = 7
         const val SIGN_IN_ERROR = 8
+        const val EMAIL_NOT_EXIST = 9
         val emailPattern = android.util.Patterns.EMAIL_ADDRESS
     }
 }
@@ -103,6 +105,7 @@ fun TextInputLayout.setError(errorType: Int) {
         SERVER_ERROR -> context.getString(R.string.server_error)
         NICK_SIZE_ERROR -> context.getString(R.string.sign_up_nick_size_error)
         SIGN_IN_ERROR -> context.getString(R.string.sign_in_error)
+        EMAIL_NOT_EXIST -> context.getString(R.string.reset_email_not_exist)
         else -> return
     }
     setEndIconDrawable(R.drawable.ic_error_20)

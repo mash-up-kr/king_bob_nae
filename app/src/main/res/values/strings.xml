@@ -54,6 +54,7 @@
     <string name="sign_up_find_character_text">사용자 닉네임과 어울리는\n캐릭터를 찾고있어요…</string>
 
     <string name="check_email_text">가입한 이메일 주소를\n 입력해 주세요</string>
+    <string name="reset_email_not_exist">존재하지 않는 이메일 입니다</string>
     <string name="reset_passwd_text">비밀번호를 재설정해 주세요</string>
 
     <!-- 온보딩 -->

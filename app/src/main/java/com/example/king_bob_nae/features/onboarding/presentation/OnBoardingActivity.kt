@@ -44,6 +44,7 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>(R.layout.acti
             Intent(this, IntroActivity::class.java).run {
                 startActivity(this)
             }
+            finish()
         }
     }
 

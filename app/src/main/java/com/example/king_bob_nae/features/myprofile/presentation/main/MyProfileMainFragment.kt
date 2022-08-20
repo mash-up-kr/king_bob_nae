@@ -33,7 +33,7 @@ class MyProfileMainFragment :
                     .navigate(R.id.action_myProfileMainFragment_to_settingFragment)
             }
             btnMyProfileBack.setOnClickListener {
-                it.findNavController().popBackStack()
+                requireActivity().finish()
             }
         }
     }

@@ -5,5 +5,7 @@ data class AuthResponse(
     val isDuplicatedEmail: Boolean = false,
     val createCertification: Boolean = false,
     val checkCertification: Boolean = false,
-    val checkNickname: Boolean = false
+    val checkNickname: Boolean = false,
+    val checkEmailExistence: Boolean = false,
+    val resetPassword: Boolean = false
 )
