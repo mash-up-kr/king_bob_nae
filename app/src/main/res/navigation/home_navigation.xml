@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_imagePickerFragment"
             app:destination="@id/imagePickerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailKkiLogFragment"
+            app:destination="@id/detailKkiLogFragment" />
     </fragment>
     <fragment
         android:id="@+id/imagePickerFragment"
@@ -45,4 +48,24 @@
         tools:layout="@layout/fragment_recipe"
         android:name="com.example.king_bob_nae.features.recipe.RecipeFragment"
         android:label="RecipeFragment" />
+    <fragment
+        android:id="@+id/detailKkiLogFragment"
+        android:name="com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogFragment"
+        android:label="DetailKkiLogFragment" >
+        <action
+            android:id="@+id/action_detailKkiLogFragment_to_detailKkiLogResultFragment"
+            app:destination="@id/detailKkiLogResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailKkiLogResultItemFragment"
+        android:name="com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogResultItemFragment"
+        android:label="DetailKkiLogResultItemFragment" />
+    <fragment
+        android:id="@+id/detailKkiLogResultFragment"
+        android:name="com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogResultFragment"
+        android:label="DetailKkiLogResultFragment" >
+        <action
+            android:id="@+id/action_detailKkiLogResultFragment_to_detailKkiLogResultItemFragment"
+            app:destination="@id/detailKkiLogResultItemFragment" />
+    </fragment>
 </navigation>

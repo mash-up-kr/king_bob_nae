@@ -31,7 +31,7 @@ data class SignUpDto(
 @Serializable
 data class SignInDto(
     val email: String,
-    val passwd: String
+    val password: String
 )
 
 enum class TYPE {

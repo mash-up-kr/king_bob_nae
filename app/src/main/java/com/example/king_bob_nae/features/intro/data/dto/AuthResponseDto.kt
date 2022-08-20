@@ -56,6 +56,18 @@ data class UserDto(
     val updatedAt: String
 )
 
+@Keep
+@Serializable
+data class SignInResponseDto(
+    val data: AccessToken?,
+    val error: ErrorDto?
+)
+
+@Serializable
+data class AccessToken(
+    val accessToken: String?
+)
+
 enum class CHARACTER {
     BROCCOLI, CARROT, GREEN_ONION
 }
@@ -65,5 +77,9 @@ enum class CharacterStatus {
 }
 
 fun SignUpResponseDto.asCharacter(): CHARACTER? {
-    return this.data?.character
+    return data?.character
+}
+
+fun SignInResponseDto.asAccessToken(): String? {
+    return data?.accessToken
 }
