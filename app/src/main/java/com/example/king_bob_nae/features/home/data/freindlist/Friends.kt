@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 data class Friends(
     @SerializedName("error")
     val error: ErrorDto,
-    @SerializedName("users")
+    @SerializedName("data")
     val friends: List<Friend>
 ) {
     data class Friend(
