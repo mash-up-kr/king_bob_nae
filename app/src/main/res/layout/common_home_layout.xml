@@ -1,96 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_friends"
-        tools:listitem="@layout/holder_friend"
+    <data>
+
+        <variable
+            name="home"
+            type="com.example.king_bob_nae.features.home.domain.userstate.HomeUserState" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="4dp"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_today"
-        style="@style/Body2_Bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/today_text"
-        android:textColor="@color/brown_gray_400"
-        app:layout_constraintStart_toStartOf="@id/rv_friends"
-        app:layout_constraintTop_toBottomOf="@id/rv_friends" />
+        <ImageView
+            android:id="@+id/iv_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/ic_add_friend"
+            android:contentDescription="@null"
+            app:layout_constraintEnd_toStartOf="@id/iv_user_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_date"
-        style="@style/Body2_Regular"
-        tools:text="7월 8일"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="7월 10일"
-        android:textColor="@color/brown_gray_400"
-        app:layout_constraintBottom_toBottomOf="@id/tv_today"
-        app:layout_constraintStart_toEndOf="@id/tv_today"
-        app:layout_constraintTop_toTopOf="@id/tv_today" />
+        <ImageView
+            android:id="@+id/iv_user_image"
+            bindImage="@{home.smallImageUrl}"
+            android:layout_width="36dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="12dp"
+            android:contentDescription="@null"
+            app:layout_constraintEnd_toStartOf="@id/rv_friends"
+            app:layout_constraintStart_toEndOf="@id/iv_add"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/tv_kkilog"
-        style="@style/Headline1_Bold"
-        tools:text="끼록"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="끼록"
-        android:textColor="@color/brown_gray_400"
-        app:layout_constraintStart_toStartOf="@id/tv_today"
-        app:layout_constraintTop_toBottomOf="@id/tv_today" />
+        <TextView
+            android:id="@+id/iv_user_nickname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@{home.userNickName}"
+            android:textColor="@color/brown_gray_300"
+            app:layout_constraintEnd_toEndOf="@id/iv_user_image"
+            app:layout_constraintStart_toStartOf="@id/iv_user_image"
+            app:layout_constraintTop_toBottomOf="@id/iv_user_image"
+            tools:text="나어이없어" />
 
-    <TextView
-        android:id="@+id/tv_count"
-        style="@style/Headline2_Bold"
-        tools:text="0끼"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:background="@drawable/radius_orange_stroke"
-        android:paddingStart="12dp"
-        android:paddingEnd="4.5dp"
-        android:text="0끼"
-        android:textColor="@color/main_orange"
-        app:drawableEndCompat="@drawable/ic_plus_18"
-        app:layout_constraintBottom_toBottomOf="@id/tv_kkilog"
-        app:layout_constraintStart_toEndOf="@id/tv_kkilog"
-        app:layout_constraintTop_toTopOf="@id/tv_kkilog" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_friends"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="24dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_user_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/holder_friend" />
 
-    <ImageView
-        android:id="@+id/iv_character"
-        android:layout_width="0dp"
-        android:layout_height="240dp"
-        android:background="@drawable/carrot_lv3_happy"
-        android:contentDescription="@null"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_kkilog" />
+        <TextView
+            android:id="@+id/tv_today"
+            style="@style/Body2_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/today_text"
+            android:textColor="@color/brown_gray_400"
+            app:layout_constraintStart_toStartOf="@id/iv_add"
+            app:layout_constraintTop_toBottomOf="@id/iv_add" />
 
-    <TextView
-        android:id="@+id/tv_click"
-        style="@style/Body2_Regular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="@string/home_click_text"
-        android:textColor="@color/brown_gray_200"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@id/iv_character"
-        app:layout_constraintStart_toStartOf="@id/iv_character"
-        app:layout_constraintTop_toBottomOf="@id/iv_character" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_date"
+            style="@style/Body2_Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@{home.date}"
+            android:textColor="@color/brown_gray_400"
+            app:layout_constraintBottom_toBottomOf="@id/tv_today"
+            app:layout_constraintStart_toEndOf="@id/tv_today"
+            app:layout_constraintTop_toTopOf="@id/tv_today"
+            tools:text="7월 8일" />
+
+        <TextView
+            android:id="@+id/tv_kkilog"
+            style="@style/Headline1_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="끼록"
+            android:textColor="@color/brown_gray_400"
+            app:layout_constraintStart_toStartOf="@id/tv_today"
+            app:layout_constraintTop_toBottomOf="@id/tv_today"
+            tools:text="끼록" />
+
+        <TextView
+            android:id="@+id/tv_count"
+            style="@style/Headline2_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/radius_orange_stroke"
+            android:paddingStart="12dp"
+            android:paddingEnd="4.5dp"
+            android:text="@{home.todayKkirokCount}"
+            android:textColor="@color/main_orange"
+            app:drawableEndCompat="@drawable/ic_plus_18"
+            app:layout_constraintBottom_toBottomOf="@id/tv_kkilog"
+            app:layout_constraintStart_toEndOf="@id/tv_kkilog"
+            app:layout_constraintTop_toTopOf="@id/tv_kkilog"
+            tools:text="0끼" />
+
+        <ImageView
+            android:id="@+id/iv_character"
+            bindImage="@{home.largeImageUrl}"
+            android:layout_width="0dp"
+            android:layout_height="240dp"
+            android:contentDescription="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_kkilog"
+            tools:src="@drawable/carrot_lv3_happy" />
+
+        <TextView
+            android:id="@+id/tv_click"
+            style="@style/Body2_Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/home_click_text"
+            android:textColor="@color/brown_gray_200"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/iv_character"
+            app:layout_constraintStart_toStartOf="@id/iv_character"
+            app:layout_constraintTop_toBottomOf="@id/iv_character" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

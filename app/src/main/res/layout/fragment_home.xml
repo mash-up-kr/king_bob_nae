@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="home"
+            type="com.example.king_bob_nae.features.home.domain.userstate.HomeUserState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -61,19 +64,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="16dp"
-                android:text="콩순이"
+                android:text="@{home.userNickName}"
                 android:textColor="@color/brown_gray_200"
                 tools:text="콩순이" />
 
             <TextView
-                android:id="@+id/tv_info"
+                android:id="@+id/tv_one_word"
                 style="@style/Body1_Regular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="16dp"
-                android:text="밥먹어서 신난다~"
+                android:text="@{home.phrase}"
                 android:textColor="@color/brown_gray_400"
                 tools:text="밥먹어서 신난다~" />
         </LinearLayout>
@@ -108,20 +111,24 @@
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="20dp"
                 android:max="100"
-                android:progress="50"
+                android:progress="@{home.progressBarPercent}"
                 android:progressDrawable="@drawable/progress_lv" />
 
             <TextView
+                android:id="@+id/tv_level"
                 style="@style/Caption_Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="2dp"
+                android:text="@{home.level}"
                 android:textColor="@color/brown_gray_300"
                 tools:text="Lv.1" />
 
             <TextView
+                android:id="@+id/tv_total_kkirok_count"
                 style="@style/Caption_Regular"
+                android:text="@{home.totalKkirokCount}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
