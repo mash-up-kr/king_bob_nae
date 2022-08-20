@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_edit_feed"
+        android:title="@string/edit_kkilog_feed" />
+
+    <item
+        android:id="@+id/menu_delete_feed"
+        android:title="@string/delete_kkilog_feed" />
+</menu>
