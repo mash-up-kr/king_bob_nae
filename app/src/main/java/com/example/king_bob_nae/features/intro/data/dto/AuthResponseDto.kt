@@ -72,7 +72,7 @@ enum class CHARACTER {
     BROCCOLI, CARROT, GREEN_ONION
 }
 
-enum class CHARACTER_STATUS {
+enum class CharacterStatus {
     HAPPY, SAD
 }
 
