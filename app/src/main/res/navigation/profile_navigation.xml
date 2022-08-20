@@ -27,6 +27,13 @@
         <action
             android:id="@+id/action_myProfileMainFragment_to_followFragment"
             app:destination="@id/followFragment" />
+        <action
+            android:id="@+id/action_myProfileMainFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
-
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.king_bob_nae.features.myprofile.presentation.setting.SettingFragment"
+        android:label="SettingFragment"
+        tools:layout="@layout/fragment_setting" />
 </navigation>

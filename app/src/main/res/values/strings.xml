@@ -114,6 +114,10 @@
 
     <string name="my_profile_follow">팔로우</string>
     <string name="my_profile_do_following">팔로잉 하기</string>
+    <string name="my_profile_setting">설정</string>
+    <string name="my_profile_setting_interlocked">연동된 이메일</string>
+    <string name="my_profile_logout">로그아웃</string>
+    <string name="my_profile_delete_account">계정삭제</string>
 
     <string-array name="my_profile_follow_list">
         <item>팔로워</item>
