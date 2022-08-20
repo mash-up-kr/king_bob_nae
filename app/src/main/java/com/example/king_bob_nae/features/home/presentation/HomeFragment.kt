@@ -1,5 +1,6 @@
 package com.example.king_bob_nae.features.home.presentation
 
+import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
@@ -13,6 +14,7 @@ import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentHomeBinding
 import com.example.king_bob_nae.features.home.presentation.adapter.UserListAdapter
 import com.example.king_bob_nae.features.home.presentation.viewmodel.HomeViewModel
+import com.example.king_bob_nae.features.myprofile.presentation.MyProfileActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -39,6 +41,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private fun initView() {
         binding.commonHomeLayout.rvFriends.apply {
             adapter = userListAdapter
+        }
+        binding.ivMy.setOnClickListener {
+            startActivity(Intent(requireActivity(), MyProfileActivity::class.java))
         }
     }
 

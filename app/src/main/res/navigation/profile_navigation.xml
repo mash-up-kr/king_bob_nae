@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_navigation"
+    app:startDestination="@id/myProfileMainFragment">
+
+    <fragment
+        android:id="@+id/followFragment"
+        android:name="com.example.king_bob_nae.features.myprofile.presentation.follow.FollowFragment"
+        android:label="FollowFragment"
+        tools:layout="@layout/fragment_follow">
+        <action
+            android:id="@+id/action_followFragment_to_followingFragment"
+            app:destination="@id/followingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/followingFragment"
+        android:name="com.example.king_bob_nae.features.myprofile.presentation.follow.FollowingFragment"
+        android:label="FollowingFragment"
+        tools:layout="@layout/fragment_following" />
+    <fragment
+        android:id="@+id/myProfileMainFragment"
+        android:name="com.example.king_bob_nae.features.myprofile.presentation.main.MyProfileMainFragment"
+        android:label="MyProfileMainFragment"
+        tools:layout="@layout/fragment_myprofile_main">
+        <action
+            android:id="@+id/action_myProfileMainFragment_to_followFragment"
+            app:destination="@id/followFragment" />
+        <action
+            android:id="@+id/action_myProfileMainFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.king_bob_nae.features.myprofile.presentation.setting.SettingFragment"
+        android:label="SettingFragment"
+        tools:layout="@layout/fragment_setting" />
+</navigation>
