@@ -34,6 +34,14 @@ data class SignInDto(
     val password: String
 )
 
+@Keep
+@Serializable
+data class ResetPasswordDto(
+    val email: String = "",
+    val newPassword: String = "",
+    val confirmPassword: String = ""
+)
+
 enum class TYPE {
     SIGN_UP, CHANGE_PASSWORD
 }

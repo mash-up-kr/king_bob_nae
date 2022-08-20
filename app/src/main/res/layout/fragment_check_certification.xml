@@ -40,6 +40,7 @@
             app:endIconTint="@color/transparent"
             app:endIconTintMode="screen"
             app:errorEnabled="true"
+            app:helperText="@string/certification_send_second"
             app:helperTextEnabled="true"
             app:helperTextTextAppearance="@style/Caption_Regular"
             app:helperTextTextColor="@color/brown_gray_400"

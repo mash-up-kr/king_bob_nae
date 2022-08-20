@@ -58,6 +58,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
                 introViewModel.signInResult.collect { signInResponse ->
                     if (signInResponse.result) {
                         startActivity(Intent(requireContext(), HomeActivity::class.java))
+                        requireActivity().finish()
                     } else {
                         binding.tfSignInPasswd.setError(signInResponse.code)
                     }
