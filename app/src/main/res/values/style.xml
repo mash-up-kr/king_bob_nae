@@ -82,6 +82,21 @@
         <item name="android:textColor">@color/brown_gray_500</item>
     </style>
 
+    <style name="SearchEditTextStyle" parent="Widget.Design.TextInputLayout">
+        <item name="boxStrokeColor">@color/brown_gray_200</item>
+        <item name="colorControlNormal">@color/brown_gray_200</item>
+        <item name="colorControlActivated">@color/brown_gray_200</item>
+        <item name="colorControlHighlight">@color/brown_gray_200</item>
+
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="android:textAppearance">@style/Body1_Regular</item>
+        <item name="hintEnabled">false</item>
+        <item name="android:textCursorDrawable">@color/main_orange</item>
+        <item name="android:textColorHint">@color/brown_gray_200</item>
+        <item name="android:textColor">@color/brown_gray_500</item>
+        <item name="startIconDrawable">@drawable/ic_search</item>
+    </style>
+
     <style name="FullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
     </style>

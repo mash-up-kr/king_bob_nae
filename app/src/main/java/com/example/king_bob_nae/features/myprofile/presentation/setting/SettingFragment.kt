@@ -15,8 +15,28 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
     }
 
     private fun initView() {
-        binding.btnSettingBack.setOnClickListener {
-            it.findNavController().popBackStack()
+        binding.apply {
+            btnSettingBack.setOnClickListener {
+                it.findNavController().popBackStack()
+            }
+
+            tvLogout.setOnClickListener {
+                showLogoutDialog()
+            }
+
+            tvDeleteAccount.setOnClickListener {
+                showDeleteDialog()
+            }
         }
+    }
+
+    private fun showDeleteDialog() {
+        val dialog = DeleteDialog()
+        dialog.show(requireActivity().supportFragmentManager, "DeleteDialog")
+    }
+
+    private fun showLogoutDialog() {
+        val dialog = LogoutDialog()
+        dialog.show(requireActivity().supportFragmentManager, "LogoutDialog")
     }
 }

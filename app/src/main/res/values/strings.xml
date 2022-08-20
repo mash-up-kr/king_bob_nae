@@ -118,6 +118,14 @@
     <string name="my_profile_setting_interlocked">연동된 이메일</string>
     <string name="my_profile_logout">로그아웃</string>
     <string name="my_profile_delete_account">계정삭제</string>
+    <string name="my_profile_search_nick">친구 닉네임 검색</string>
+    <string name="my_profile_following_result_nothing">검색 결과가 없습니다.</string>
+    <string name="do_logout">로그아웃 할까요?</string>
+    <string name="logout_description">로그인 정보가 초기화 됩니다.</string>
+    <string name="cancel">취소</string>
+    <string name="do_delete">이 계정을 삭제할까요?</string>
+    <string name="delete_description">저장된 정보가 모두 삭제됩니다.</string>
+    <string name="delete">삭제</string>
 
     <string-array name="my_profile_follow_list">
         <item>팔로워</item>
