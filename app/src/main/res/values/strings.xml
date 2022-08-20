@@ -111,4 +111,13 @@
     <string name="detail_kki_log">상세 끼록</string>
     <string name="add_kki_log">끼록 추가</string>
     <string name="kki_log_text">끼록</string>
+
+    <string name="my_profile_follow">팔로우</string>
+    <string name="my_profile_do_following">팔로잉 하기</string>
+
+    <string-array name="my_profile_follow_list">
+        <item>팔로워</item>
+        <item>팔로잉</item>
+    </string-array>
+
 </resources>

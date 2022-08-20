@@ -137,20 +137,6 @@
             tools:text="13" />
 
         <TextView
-            android:id="@+id/tv_my_profile_total_follower_count"
-            style="@style/Headline2_Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
-            android:text="3"
-            android:textColor="@color/brown_gray_400"
-            app:layout_constraintBottom_toTopOf="@id/tv_my_profile_follower"
-            app:layout_constraintEnd_toEndOf="@id/tv_my_profile_follower"
-            app:layout_constraintStart_toStartOf="@id/tv_my_profile_follower"
-            app:layout_constraintTop_toBottomOf="@id/tv_my_profile_kkilog_count"
-            tools:text="3" />
-
-        <TextView
             android:id="@+id/tv_my_profile_total_following_count"
             style="@style/Headline2_Bold"
             android:layout_width="wrap_content"
@@ -188,6 +174,21 @@
             tools:text="@string/my_profile_follower" />
 
         <TextView
+            android:id="@+id/tv_my_profile_total_follower_count"
+            style="@style/Headline2_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:text="3"
+            android:textColor="@color/brown_gray_400"
+            app:layout_constraintBottom_toTopOf="@id/tv_my_profile_follower"
+            app:layout_constraintEnd_toEndOf="@id/tv_my_profile_follower"
+            app:layout_constraintHorizontal_bias="0.444"
+            app:layout_constraintStart_toStartOf="@id/tv_my_profile_follower"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_profile_kkilog_count"
+            tools:text="3" />
+
+        <TextView
             android:id="@+id/tv_my_profile_following"
             style="@style/Headline2_Bold"
             android:layout_width="wrap_content"
@@ -200,6 +201,7 @@
             tools:text="@string/my_profile_following" />
 
         <View
+            android:id="@+id/view2"
             android:layout_width="1dp"
             android:layout_height="20dp"
             android:background="@color/brown_gray_300"
@@ -209,6 +211,7 @@
             app:layout_constraintTop_toTopOf="@id/tv_my_profile_total_follower_count" />
 
         <View
+            android:id="@+id/view"
             android:layout_width="1dp"
             android:layout_height="20dp"
             android:background="@color/brown_gray_300"
@@ -241,5 +244,6 @@
             app:layout_constraintTop_toBottomOf="@id/tv_my_profile_scrap"
             app:spanCount="2"
             tools:listitem="@layout/my_profile_recyclerview_item" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
