@@ -1,4 +1,4 @@
-package com.example.king_bob_nae.features.myprofile.domain
+package com.example.king_bob_nae.features.myprofile.domain.userprofile
 
 data class UserProfileUiState(
     val profileImageUrl: String = "",

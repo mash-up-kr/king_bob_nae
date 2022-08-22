@@ -1,8 +1,10 @@
 package com.example.king_bob_nae.features.myprofile.presentation
 
 import androidx.lifecycle.ViewModel
-import com.example.king_bob_nae.features.myprofile.domain.UserProfileUiState
-import com.example.king_bob_nae.features.myprofile.domain.UserProfileUseCase
+import com.example.king_bob_nae.features.myprofile.domain.userfollow.UserFollowUseCase
+import com.example.king_bob_nae.features.myprofile.domain.userfollow.UsersFollowUiState
+import com.example.king_bob_nae.features.myprofile.domain.userprofile.UserProfileUiState
+import com.example.king_bob_nae.features.myprofile.domain.userprofile.UserProfileUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -10,7 +12,11 @@ import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
-class MyProfileViewModel @Inject constructor(private val userProfileUseCase: UserProfileUseCase) : ViewModel() {
+class MyProfileViewModel @Inject constructor(
+    private val userProfileUseCase: UserProfileUseCase,
+    private val userFollowUseCase: UserFollowUseCase,
+) :
+    ViewModel() {
 
     private val _userProfileUiState: MutableStateFlow<UserProfileUiState> = MutableStateFlow(UserProfileUiState())
     val userProfileUiState = _userProfileUiState.asStateFlow()
@@ -18,6 +24,9 @@ class MyProfileViewModel @Inject constructor(private val userProfileUseCase: Use
     private val _userProfileScrapListUiState: MutableStateFlow<List<UserProfileUiState.ScrapedImage>> =
         MutableStateFlow(listOf(UserProfileUiState.ScrapedImage()))
     val userProfileScrapListUiState = _userProfileScrapListUiState.asStateFlow()
+
+    private val _followListUiState: MutableStateFlow<List<UsersFollowUiState>> = MutableStateFlow(listOf(UsersFollowUiState()))
+    val followListUiState = _followListUiState.asStateFlow()
 
     suspend fun getUserProfile() {
         userProfileUseCase().apply {
@@ -37,6 +46,12 @@ class MyProfileViewModel @Inject constructor(private val userProfileUseCase: Use
                     it
                 }
             }
+        }
+    }
+
+    suspend fun getUserFollow(type: String, keyword: String? = null) {
+        userFollowUseCase(type, keyword).apply {
+            _followListUiState.value = this
         }
     }
 }

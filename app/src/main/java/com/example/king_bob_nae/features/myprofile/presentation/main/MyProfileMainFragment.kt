@@ -10,7 +10,7 @@ import androidx.navigation.findNavController
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentMyprofileMainBinding
-import com.example.king_bob_nae.features.myprofile.domain.UserProfileUiState
+import com.example.king_bob_nae.features.myprofile.domain.userprofile.UserProfileUiState
 import com.example.king_bob_nae.features.myprofile.presentation.MyProfileViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint

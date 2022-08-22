@@ -7,7 +7,7 @@
 
         <variable
             name="scrapedimage"
-            type="com.example.king_bob_nae.features.myprofile.domain.UserProfileUiState.ScrapedImage" />
+            type="com.example.king_bob_nae.features.myprofile.domain.userprofile.UserProfileUiState.ScrapedImage" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

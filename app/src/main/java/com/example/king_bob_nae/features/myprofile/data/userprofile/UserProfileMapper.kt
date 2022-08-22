@@ -1,7 +1,7 @@
 package com.example.king_bob_nae.features.myprofile.data.userprofile
 
 import com.example.king_bob_nae.features.myprofile.data.UserProfileResult
-import com.example.king_bob_nae.features.myprofile.domain.UserProfileUiState
+import com.example.king_bob_nae.features.myprofile.domain.userprofile.UserProfileUiState
 
 fun UserProfileResult.toUserProfileUiState() = UserProfileUiState(
     profileImageUrl = this.data.miniImageUrl,

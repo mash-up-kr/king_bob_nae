@@ -1,8 +1,10 @@
 package com.example.king_bob_nae.features.myprofile.di
 
 import com.example.king_bob_nae.features.myprofile.data.ProfileApi
+import com.example.king_bob_nae.features.myprofile.data.userfollow.RemoteGetUserFollowImpl
 import com.example.king_bob_nae.features.myprofile.data.userprofile.RemoteGetUserProfileImpl
-import com.example.king_bob_nae.features.myprofile.domain.RemoteGetUserProfile
+import com.example.king_bob_nae.features.myprofile.domain.userfollow.RemoteGetUserFollow
+import com.example.king_bob_nae.features.myprofile.domain.userprofile.RemoteGetUserProfile
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -27,4 +29,7 @@ abstract class ProfileModule {
     @Singleton
     abstract fun bindRemoteGetUserProfile(remoteGetUserProfile: RemoteGetUserProfileImpl): RemoteGetUserProfile
 
+    @Binds
+    @Singleton
+    abstract fun bindRemoteGetUserFollow(remoteGetUserFollow: RemoteGetUserFollowImpl): RemoteGetUserFollow
 }

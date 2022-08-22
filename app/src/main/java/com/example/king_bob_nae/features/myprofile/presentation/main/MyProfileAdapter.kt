@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.king_bob_nae.databinding.MyProfileRecyclerviewItemBinding
-import com.example.king_bob_nae.features.myprofile.domain.UserProfileUiState.ScrapedImage
+import com.example.king_bob_nae.features.myprofile.domain.userprofile.UserProfileUiState.ScrapedImage
 import com.example.king_bob_nae.shared.setOnThrottleClickListener
 
 class MyProfileAdapter(private val itemClick: (ScrapedImage) -> Unit) :

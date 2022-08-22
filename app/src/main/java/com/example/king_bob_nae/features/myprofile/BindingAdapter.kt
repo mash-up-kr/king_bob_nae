@@ -4,7 +4,7 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.example.king_bob_nae.R
-import com.example.king_bob_nae.features.myprofile.domain.UserProfileUiState
+import com.example.king_bob_nae.features.myprofile.domain.userprofile.UserProfileUiState
 
 object BindingAdapter {
     @JvmStatic
