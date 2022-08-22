@@ -12,6 +12,7 @@ import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentMyprofileMainBinding
 import com.example.king_bob_nae.features.myprofile.domain.UserProfileUiState
 import com.example.king_bob_nae.features.myprofile.presentation.MyProfileViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -88,6 +89,12 @@ class MyProfileMainFragment :
     }
 
     private fun itemClick(scrapedImage: UserProfileUiState.ScrapedImage) {
-        myProfileViewModel.updateScrapState(scrapedImage)
+        val clicked = !scrapedImage.clicked
+        if (clicked) {
+            Snackbar.make(view!!, "스크랩에서 추가됐어요.", Snackbar.LENGTH_SHORT).show()
+        } else {
+            Snackbar.make(view!!, "스크랩에서 삭제됐어요.", Snackbar.LENGTH_SHORT).show()
+        }
+        myProfileViewModel.updateScrapState(scrapedImage.copy(clicked = clicked))
     }
 }

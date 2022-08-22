@@ -2,6 +2,7 @@ package com.example.king_bob_nae.features.myprofile.presentation.follow
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
@@ -39,7 +40,9 @@ class FollowFragment : BaseFragment<FragmentFollowBinding>(R.layout.fragment_fol
                 it.findNavController().popBackStack()
             }
             viewLifecycleOwner.lifecycleScope.launch {
-                vpFollow.currentItem = safeArgs.label
+                vpFollow.doOnPreDraw {
+                    vpFollow.currentItem = safeArgs.label
+                }
             }
         }
     }

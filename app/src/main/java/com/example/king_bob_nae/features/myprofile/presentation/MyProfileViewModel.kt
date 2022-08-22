@@ -32,7 +32,7 @@ class MyProfileViewModel @Inject constructor(private val userProfileUseCase: Use
         _userProfileScrapListUiState.update {
             _userProfileScrapListUiState.value.map {
                 if (it.id == scrapedImage.id) {
-                    it.copy(clicked = !it.clicked)
+                    it.copy(clicked = scrapedImage.clicked)
                 } else {
                     it
                 }

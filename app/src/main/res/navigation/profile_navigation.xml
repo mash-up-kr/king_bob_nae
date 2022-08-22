@@ -15,8 +15,7 @@
             app:destination="@id/followingFragment" />
         <argument
             android:name="label"
-            app:argType="integer"
-            app:nullable="false" />
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/followingFragment"
