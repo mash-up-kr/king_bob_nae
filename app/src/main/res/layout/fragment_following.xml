@@ -62,6 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/my_profile_search_nick"
+                android:maxLength="10"
                 android:inputType="text"
                 android:paddingBottom="20dp" />
 
