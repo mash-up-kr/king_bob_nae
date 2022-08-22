@@ -41,7 +41,8 @@ class MyProfileMainFragment :
         binding.apply {
             userprofile = UserProfileUiState()
             tvMyProfileTotalFollowerCount.setOnClickListener {
-                it.findNavController().navigate(R.id.action_myProfileMainFragment_to_followFragment)
+                val action = MyProfileMainFragmentDirections.actionMyProfileMainFragmentToFollowFragment(MY_FOLLOWER)
+                it.findNavController().navigate(action)
             }
             tvMyProfileFollower.setOnClickListener {
                 val action = MyProfileMainFragmentDirections.actionMyProfileMainFragmentToFollowFragment(MY_FOLLOWER)
@@ -52,7 +53,8 @@ class MyProfileMainFragment :
                 it.findNavController().navigate(action)
             }
             tvMyProfileTotalFollowingCount.setOnClickListener {
-                it.findNavController().navigate(R.id.action_myProfileMainFragment_to_followFragment)
+                val action = MyProfileMainFragmentDirections.actionMyProfileMainFragmentToFollowFragment(MY_FOLLOWING)
+                it.findNavController().navigate(action)
             }
             btnMyProfileSetting.setOnClickListener {
                 it.findNavController()
