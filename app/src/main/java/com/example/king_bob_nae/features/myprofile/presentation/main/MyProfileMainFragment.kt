@@ -19,6 +19,11 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MyProfileMainFragment :
     BaseFragment<FragmentMyprofileMainBinding>(R.layout.fragment_myprofile_main) {
+    companion object {
+        private const val MY_FOLLOWER = 0
+        private const val MY_FOLLOWING = 1
+    }
+
     private val myProfileViewModel: MyProfileViewModel by activityViewModels()
     private val myProfileAdapter by lazy {
         MyProfileAdapter(::itemClick)
@@ -38,10 +43,12 @@ class MyProfileMainFragment :
                 it.findNavController().navigate(R.id.action_myProfileMainFragment_to_followFragment)
             }
             tvMyProfileFollower.setOnClickListener {
-                it.findNavController().navigate(R.id.action_myProfileMainFragment_to_followFragment)
+                val action = MyProfileMainFragmentDirections.actionMyProfileMainFragmentToFollowFragment(MY_FOLLOWER)
+                it.findNavController().navigate(action)
             }
             tvMyProfileFollowing.setOnClickListener {
-                it.findNavController().navigate(R.id.action_myProfileMainFragment_to_followFragment)
+                val action = MyProfileMainFragmentDirections.actionMyProfileMainFragmentToFollowFragment(MY_FOLLOWING)
+                it.findNavController().navigate(action)
             }
             tvMyProfileTotalFollowingCount.setOnClickListener {
                 it.findNavController().navigate(R.id.action_myProfileMainFragment_to_followFragment)
