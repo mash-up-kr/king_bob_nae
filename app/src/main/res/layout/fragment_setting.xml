@@ -7,7 +7,7 @@
 
         <variable
             name="email"
-            type="String" />
+            type="com.example.king_bob_nae.features.myprofile.domain.UserProfileUiState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -95,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@{email}"
+            android:text="@{email.email}"
             android:textColor="@color/brown_gray_500"
             app:layout_constraintStart_toStartOf="@+id/tv_interlocked_email"
             app:layout_constraintTop_toBottomOf="@+id/tv_interlocked_email"

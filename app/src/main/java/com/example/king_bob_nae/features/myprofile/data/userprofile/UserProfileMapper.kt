@@ -17,5 +17,6 @@ fun UserProfileResult.toUserProfileUiState() = UserProfileUiState(
             title = it.title,
             imageUrl = it.image.original,
             type = if (it.type == "simple") "간단 끼록" else "상세 끼록")
-    }
+    },
+    email = this.data.email
 )

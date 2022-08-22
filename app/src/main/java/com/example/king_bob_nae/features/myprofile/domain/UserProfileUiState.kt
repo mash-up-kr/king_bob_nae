@@ -10,6 +10,7 @@ data class UserProfileUiState(
     val following: String = "0",
     val follower: String = "0",
     val scrapList: List<ScrapedImage>? = listOf(),
+    val email: String = "",
 ) {
     data class ScrapedImage(
         val id: Int = 0,
