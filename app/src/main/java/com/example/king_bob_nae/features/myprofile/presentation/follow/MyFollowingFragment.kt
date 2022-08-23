@@ -9,6 +9,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentMyFollowingBinding
+import com.example.king_bob_nae.features.myprofile.domain.userfollow.UsersFollowUiState
 import com.example.king_bob_nae.features.myprofile.presentation.MyProfileViewModel
 import kotlinx.coroutines.launch
 
@@ -16,7 +17,7 @@ class MyFollowingFragment :
     BaseFragment<FragmentMyFollowingBinding>(R.layout.fragment_my_following) {
     private val myProfileViewModel: MyProfileViewModel by activityViewModels()
     private val followAdapter by lazy {
-        FollowAdapter()
+        FollowAdapter(::itemClick)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,6 +45,18 @@ class MyFollowingFragment :
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 myProfileViewModel.followListUiState.collect {
                     followAdapter.submitList(it)
+                }
+            }
+        }
+    }
+
+    private fun itemClick(item: UsersFollowUiState) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                if (item.following) {
+                    myProfileViewModel.doUnFollow(item)
+                } else {
+                    myProfileViewModel.doFollow(item)
                 }
             }
         }

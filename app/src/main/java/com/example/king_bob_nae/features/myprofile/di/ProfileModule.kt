@@ -1,7 +1,7 @@
 package com.example.king_bob_nae.features.myprofile.di
 
 import com.example.king_bob_nae.features.myprofile.data.ProfileApi
-import com.example.king_bob_nae.features.myprofile.data.userfollow.RemoteGetUserFollowImpl
+import com.example.king_bob_nae.features.myprofile.data.userfollow.getuserfollow.RemoteGetUserFollowImpl
 import com.example.king_bob_nae.features.myprofile.data.userprofile.RemoteGetUserProfileImpl
 import com.example.king_bob_nae.features.myprofile.domain.userfollow.RemoteGetUserFollow
 import com.example.king_bob_nae.features.myprofile.domain.userprofile.RemoteGetUserProfile

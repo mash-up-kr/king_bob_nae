@@ -1,6 +1,6 @@
 package com.example.king_bob_nae.features.myprofile.data
 
-import com.example.king_bob_nae.features.myprofile.data.userfollow.UserFollowResult
+import com.example.king_bob_nae.features.myprofile.data.userfollow.getuserfollow.UserFollowResult
 import retrofit2.http.GET
 import retrofit2.http.Query
 

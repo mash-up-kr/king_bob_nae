@@ -54,4 +54,14 @@ class MyProfileViewModel @Inject constructor(
             _followListUiState.value = this
         }
     }
+
+    suspend fun doUnFollow(item: UsersFollowUiState) {
+
+    }
+
+    suspend fun doFollow(item: UsersFollowUiState) {
+
+    }
+
+
 }
