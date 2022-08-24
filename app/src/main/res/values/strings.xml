@@ -129,8 +129,15 @@
     <string name="delete">삭제</string>
 
     <string-array name="my_profile_follow_list">
-        <item>팔로워</item>
-        <item>팔로잉</item>
+        <item>@string/my_profile_follower</item>
+        <item>@string/my_profile_following</item>
+    </string-array>
+
+    <!-- 내 끼록  -->
+    <string name="my_kkilog">내 끼록</string>
+    <string-array name="my_kkilog_list">
+        <item>@string/simple_kki_log</item>
+        <item>@string/detail_kki_log</item>
     </string-array>
 
 </resources>
