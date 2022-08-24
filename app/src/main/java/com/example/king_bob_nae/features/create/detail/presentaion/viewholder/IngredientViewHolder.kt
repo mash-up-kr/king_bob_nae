@@ -4,7 +4,7 @@ import android.text.InputType
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import com.example.king_bob_nae.databinding.ItemDetailKkiLogIngredientBinding
-import com.example.king_bob_nae.features.create.detail.domain.KkiLogIngredient
+import com.example.king_bob_nae.features.create.detail.domain.model.KkiLogIngredient
 import com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel
 
 class IngredientViewHolder(

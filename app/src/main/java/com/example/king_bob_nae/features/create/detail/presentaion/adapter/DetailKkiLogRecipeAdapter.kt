@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.king_bob_nae.R
-import com.example.king_bob_nae.features.create.detail.domain.KkiLogRecipe
+import com.example.king_bob_nae.features.create.detail.domain.model.KkiLogRecipe
 import com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel
 import com.example.king_bob_nae.features.create.detail.presentaion.viewholder.RecipeViewHolder
 

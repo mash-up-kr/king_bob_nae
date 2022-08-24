@@ -5,7 +5,7 @@
 
         <variable
             name="item"
-            type="com.example.king_bob_nae.features.create.detail.domain.KkiLogIngredient" />
+            type="com.example.king_bob_nae.features.create.detail.domain.model.KkiLogIngredient" />
 
         <variable
             name="viewModel"

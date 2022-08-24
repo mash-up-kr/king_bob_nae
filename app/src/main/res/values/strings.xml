@@ -156,4 +156,5 @@
     <string name="detail_kki_log_step_num">%d끼</string>
 
     <string name="detail_kki_log_step_num">STEP.%d</string>
+    <string name="detail_kki_log_introduce_length_count">%d/20자</string>
 </resources>

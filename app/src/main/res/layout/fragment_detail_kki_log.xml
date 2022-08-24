@@ -41,6 +41,7 @@
         <TextView
             android:id="@+id/tv_finish"
             style="@style/Caption_Bold"
+            onThrottleClick="@{()-> viewModel.requestDetailKkiLog()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
@@ -67,14 +68,13 @@
                 android:paddingHorizontal="24dp">
 
                 <EditText
-                    android:id="@+id/et_food_name"
+                    android:id="@+id/et_food_title"
                     style="@style/Body1_Bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="29dp"
                     android:autofillHints="no"
                     android:hint="요리 이름"
-                    android:text="@={viewModel.kkiLogTitle}"
                     android:inputType="text"
                     android:paddingBottom="20dp"
                     android:textColor="@color/brown_gray_500"
@@ -91,7 +91,7 @@
                     android:contentDescription="@null"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/et_food_name" />
+                    app:layout_constraintTop_toBottomOf="@id/et_food_title" />
 
                 <ImageView
                     android:id="@+id/iv_camera"
@@ -154,7 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="0 / 20자"
+                    android:text="@{@string/detail_kki_log_introduce_length_count(viewModel.kkiLogIntroduce.length)}"
                     android:textColor="@color/brown_gray_200"
                     app:layout_constraintEnd_toEndOf="@id/et_introduce"
                     app:layout_constraintTop_toBottomOf="@id/et_introduce" />

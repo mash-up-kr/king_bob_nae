@@ -1,4 +1,4 @@
-package com.example.king_bob_nae.features.create.detail.domain
+package com.example.king_bob_nae.features.create.detail.domain.model
 
 import android.net.Uri
 

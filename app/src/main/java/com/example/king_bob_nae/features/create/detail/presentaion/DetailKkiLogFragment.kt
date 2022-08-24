@@ -7,6 +7,8 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -15,7 +17,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentDetailKkiLogBinding
-import com.example.king_bob_nae.features.create.detail.domain.KkiLogRecipe
+import com.example.king_bob_nae.features.create.detail.domain.model.KkiLogRecipe
 import com.example.king_bob_nae.features.create.detail.presentaion.adapter.DetailKkiLogIngredientAdapter
 import com.example.king_bob_nae.features.create.detail.presentaion.adapter.DetailKkiLogRecipeAdapter
 import com.example.king_bob_nae.utils.NLog
@@ -60,7 +62,6 @@ class DetailKkiLogFragment :
             }
 
             tvFinish.setOnClickListener {
-                viewModel.requestDetailKkiLog()
                 navController.navigate(R.id.action_detailKkiLogFragment_to_detailKkiLogResultFragment)
             }
 
@@ -78,6 +79,16 @@ class DetailKkiLogFragment :
                 }
                 takeOnePicture("kkiLog")
                 activityLauncher.launch(intent)
+            }
+
+            etIntroduce.doOnTextChanged { text, _, _, _ ->
+                detailKkiLogViewModel.setDescriptionLength(text.toString())
+            }
+
+            etFoodTitle.apply {
+                doAfterTextChanged { title ->
+                    detailKkiLogViewModel.setKkiLogTitle(title.toString())
+                }
             }
         }
     }
