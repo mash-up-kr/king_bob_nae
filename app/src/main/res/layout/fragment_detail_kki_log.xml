@@ -4,6 +4,10 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,6 +74,7 @@
                     android:layout_marginTop="29dp"
                     android:autofillHints="no"
                     android:hint="요리 이름"
+                    android:text="@={viewModel.kkiLogTitle}"
                     android:inputType="text"
                     android:paddingBottom="20dp"
                     android:textColor="@color/brown_gray_500"
@@ -80,9 +85,9 @@
 
                 <ImageView
                     android:id="@+id/iv_food_image"
+                    recipeUri="@{viewModel.kkiLogImage}"
                     android:layout_width="0dp"
                     android:layout_height="312dp"
-                    android:background="@color/gray_background"
                     android:contentDescription="@null"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -90,6 +95,7 @@
 
                 <ImageView
                     android:id="@+id/iv_camera"
+                    setKkiLogImageVisible="@{viewModel.kkiLogImage}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="117dp"
@@ -102,6 +108,7 @@
                 <TextView
                     android:id="@+id/tv_food_image"
                     style="@style/Body3"
+                    setKkiLogImageVisible="@{viewModel.kkiLogImage}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -137,6 +144,7 @@
                     android:textColor="@color/brown_gray_500"
                     android:textColorHint="@color/brown_gray_200"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@id/tv_introduce"
                     app:layout_constraintTop_toBottomOf="@id/tv_introduce" />
 
@@ -162,37 +170,21 @@
                     app:layout_constraintStart_toStartOf="@id/et_introduce"
                     app:layout_constraintTop_toBottomOf="@id/et_introduce" />
 
-                <EditText
-                    android:id="@+id/et_ingredient"
-                    style="@style/Body1_Regular"
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_ingredient"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:autofillHints="no"
-                    android:ellipsize="end"
-                    android:hint="예) 소고기 300g"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:paddingBottom="20dp"
-                    android:textColor="@color/brown_gray_500"
-                    android:textColorHint="@color/brown_gray_200"
+                    android:layout_marginTop="24dp"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@id/tv_add_ingredient"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/tv_ingredient"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_ingredient" />
 
-                <LinearLayout
-                    android:id="@+id/ll_add_ingredient"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="@id/et_ingredient"
-                    app:layout_constraintStart_toStartOf="@id/et_ingredient"
-                    app:layout_constraintTop_toBottomOf="@id/et_ingredient">
-
-                </LinearLayout>
-
                 <TextView
-                    android:id="@+id/btn_add_ingredient"
+                    android:id="@+id/tv_add_ingredient"
                     style="@style/Body2_Bold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -202,9 +194,9 @@
                     android:text="재료 추가"
                     android:textAlignment="center"
                     android:textColor="@color/brown_gray_200"
-                    app:layout_constraintEnd_toEndOf="@id/ll_add_ingredient"
-                    app:layout_constraintStart_toStartOf="@id/ll_add_ingredient"
-                    app:layout_constraintTop_toBottomOf="@id/ll_add_ingredient" />
+                    app:layout_constraintEnd_toEndOf="@id/rv_ingredient"
+                    app:layout_constraintStart_toStartOf="@id/rv_ingredient"
+                    app:layout_constraintTop_toBottomOf="@id/rv_ingredient" />
 
                 <TextView
                     android:id="@+id/tv_recipe"
@@ -214,32 +206,21 @@
                     android:layout_marginTop="72dp"
                     android:text="레시피"
                     android:textColor="@color/brown_gray_200"
-                    app:layout_constraintStart_toStartOf="@id/btn_add_ingredient"
-                    app:layout_constraintTop_toBottomOf="@id/btn_add_ingredient" />
+                    app:layout_constraintStart_toStartOf="@id/tv_add_ingredient"
+                    app:layout_constraintTop_toBottomOf="@id/tv_add_ingredient" />
 
-                <include
-                    android:id="@+id/view_recipe"
-                    layout="@layout/item_detail_kki_log_recipe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintEnd_toEndOf="@id/tv_recipe"
-                    app:layout_constraintStart_toStartOf="@id/tv_recipe"
-                    app:layout_constraintTop_toBottomOf="@id/tv_recipe" />
-
-                <LinearLayout
-                    android:id="@+id/ll_add_recipe"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_recipe"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginBottom="24dp"
                     android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintBottom_toTopOf="@id/tv_add_recipe"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/view_recipe">
-
-                </LinearLayout>
+                    app:layout_constraintStart_toStartOf="@id/tv_recipe"
+                    app:layout_constraintTop_toBottomOf="@id/tv_recipe" />
 
                 <TextView
                     android:id="@+id/tv_add_recipe"

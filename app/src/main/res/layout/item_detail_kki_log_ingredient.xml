@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/tv_step"
-        style="@style/Body1_Regular"
+    <data>
+
+        <variable
+            name="item"
+            type="com.example.king_bob_nae.features.create.detail.domain.KkiLogIngredient" />
+
+        <variable
+            name="viewModel"
+            type="com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="STEP.1"
-        android:textColor="@color/brown_gray_500"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical">
 
-     <View
-        android:id="@+id/view_divide_line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="12dp"
-        android:background="@color/brown_gray_300"
-        android:backgroundTint="@color/brown_gray_100"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_food_image" />
-</LinearLayout>
+        <EditText
+            android:id="@+id/et_ingredient"
+            style="@style/Body1_Regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="no"
+            android:ellipsize="end"
+            android:layout_marginTop="18dp"
+            android:hint="예) 소고기 300g"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingBottom="20dp"
+            android:textColor="@color/brown_gray_500"
+            android:textColorHint="@color/brown_gray_200" />
+
+    </LinearLayout>
+</layout>
