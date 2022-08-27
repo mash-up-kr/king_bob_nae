@@ -1,7 +1,11 @@
 package com.example.king_bob_nae.features.create.detail.presentaion
 
+import android.content.Context
 import android.content.Intent
+import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -25,6 +29,10 @@ import com.example.king_bob_nae.features.create.detail.presentaion.adapter.Detai
 import com.example.king_bob_nae.utils.NLog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 
 @AndroidEntryPoint
 class DetailKkiLogFragment :
@@ -165,13 +173,27 @@ class DetailKkiLogFragment :
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 if (it.resultCode == AppCompatActivity.RESULT_OK && it.data != null) {
                     val currentImageUri = it.data?.data
-                    detailKkiLogViewModel.setImage(currentImageUri)
+                    val file = File(changeToAbsolutePath(currentImageUri, requireContext()))
+                    val requestFile = file.asRequestBody(("image/*".toMediaTypeOrNull()))
+                    val body = MultipartBody.Part.createFormData("proFile", file.name, requestFile)
+                    detailKkiLogViewModel.setImage(currentImageUri, body)
                 } else if (it.resultCode == AppCompatActivity.RESULT_CANCELED) {
                     Toast.makeText(requireContext(), "사진 선택 취소", Toast.LENGTH_SHORT).show()
                 } else {
                     NLog.d("Kelly", "error")
                 }
             }
+    }
+
+    fun changeToAbsolutePath(path: Uri?, context: Context): String {
+        val proj: Array<String> = arrayOf(MediaStore.Images.Media.DATA)
+        val c: Cursor? = context.contentResolver.query(path!!, proj, null, null, null)
+        val index = c?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+        c?.moveToFirst()
+
+        val result = c?.getString(index ?: 0)
+
+        return result ?: ""
     }
 
     override fun onStartDrag(viewHolder: RecyclerView.ViewHolder?) {

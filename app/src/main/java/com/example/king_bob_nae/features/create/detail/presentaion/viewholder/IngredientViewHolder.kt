@@ -9,7 +9,7 @@ import com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogV
 
 class IngredientViewHolder(
     private val binding: ItemDetailKkiLogIngredientBinding,
-    detailKkiLogViewModel: DetailKkiLogViewModel
+    private val detailKkiLogViewModel: DetailKkiLogViewModel
 ) : RecyclerView.ViewHolder(binding.root) {
     private lateinit var item: KkiLogIngredient
 
@@ -22,12 +22,11 @@ class IngredientViewHolder(
 
         binding.etIngredient.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                if (binding.etIngredient.text.isEmpty()) {
+                if (binding.etIngredient.text.isNotEmpty()) {
                     detailKkiLogViewModel.updateIngredient(item)
                 }
                 binding.etIngredient.apply {
                     clearFocus()
-                    isFocusable = false
                     isEnabled = false
                     inputType = InputType.TYPE_NULL
                 }
@@ -37,8 +36,10 @@ class IngredientViewHolder(
 
     fun bind(item: KkiLogIngredient) {
         this.item = item
+
         binding.run {
             this.item = item
+            executePendingBindings()
         }
     }
 }

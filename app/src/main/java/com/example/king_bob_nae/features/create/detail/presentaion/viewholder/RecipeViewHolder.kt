@@ -34,12 +34,11 @@ class RecipeViewHolder(
             if (!hasFocus) {
                 if (binding.etRecipeDescription.text.isNotEmpty()) {
                     detailKkiLogViewModel.updateRecipeDescription(item)
-                }
-                binding.etRecipeDescription.apply {
-                    clearFocus()
-                    isFocusable = false
-                    isEnabled = false
-                    inputType = InputType.TYPE_NULL
+                    binding.etRecipeDescription.apply {
+                        clearFocus()
+                        isEnabled = false
+                        inputType = InputType.TYPE_NULL
+                    }
                 }
             }
         }

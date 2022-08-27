@@ -13,6 +13,7 @@ import com.example.king_bob_nae.utils.NLog
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,6 +30,9 @@ class DetailKkiLogViewModel @Inject constructor(
     private val _kkiLogImage = MutableStateFlow<Uri?>(null) // 요리이미지
     val kkiLogImage = _kkiLogImage.asStateFlow()
 
+    private val _kkiLogImageBody = MutableStateFlow<MultipartBody.Part?>(null) // 요리이미지
+    val kkiLogImageBody = _kkiLogImageBody.asStateFlow()
+
     private val _kkiLogIntroduce = MutableStateFlow("") // 한줄소개
     val kkiLogIntroduce = _kkiLogIntroduce.asStateFlow()
 
@@ -41,7 +45,7 @@ class DetailKkiLogViewModel @Inject constructor(
     private val _descriptionList = MutableStateFlow(emptyList<String>()) // 레시피 설명 리스트
     val descriptionList = _descriptionList.asStateFlow()
 
-    private val _recipeImageList = MutableStateFlow(emptyList<Uri?>()) // 레시피 이미지 리스트
+    private val _recipeImageList = MutableStateFlow(emptyList<MultipartBody.Part?>()) // 레시피 이미지 리스트
     val recipeImageList = _recipeImageList.asStateFlow()
 
     val emptyDescription: MutableStateFlow<String> = MutableStateFlow("")
@@ -83,7 +87,7 @@ class DetailKkiLogViewModel @Inject constructor(
     private fun addView() {
         viewModelScope.launch {
             _ingredientList.emit(listOf(KkiLogIngredient(ingredientNum, "")))
-            _recipeList.emit(listOf(KkiLogRecipe(stepNum, "", null, false)))
+            _recipeList.emit(listOf(KkiLogRecipe(stepNum, "", null, null, false)))
         }
     }
 
@@ -118,12 +122,16 @@ class DetailKkiLogViewModel @Inject constructor(
         }
     }
 
-    fun addRecipeImage(imageUri: Uri?) {
+    fun addRecipeImage(imageUri: Uri?, recipeImageBody: MultipartBody.Part?) {
         viewModelScope.launch {
             _recipeList.update {
                 _recipeList.value.map {
                     if (it.stepNumber == _recipeItem.value.stepNumber) {
-                        it.copy(imageUri = imageUri, description = emptyDescription.value)
+                        it.copy(
+                            imageUri = imageUri,
+                            description = emptyDescription.value,
+                            imageBody = recipeImageBody
+                        )
                     } else {
                         it
                     }
@@ -136,11 +144,12 @@ class DetailKkiLogViewModel @Inject constructor(
         _recipeItem.value = item
     }
 
-    fun setImage(imageUri: Uri?) {
+    fun setImage(imageUri: Uri?, body: MultipartBody.Part?) {
         if (_kkiLogImage.value == null) {
             _kkiLogImage.value = imageUri
+            _kkiLogImageBody.value = body
         } else {
-            addRecipeImage(imageUri)
+            addRecipeImage(imageUri, body)
         }
     }
 
@@ -157,6 +166,7 @@ class DetailKkiLogViewModel @Inject constructor(
     }
 
     fun updateIngredient(item: KkiLogIngredient) {
+        NLog.d("kelly", item.toString())
         _ingredientList.update {
             _ingredientList.value.map {
                 if (it.num == item.num) {
@@ -166,27 +176,39 @@ class DetailKkiLogViewModel @Inject constructor(
                 }
             }
         }
+        NLog.d("kelly", _ingredientList.value.toString())
     }
 
     fun requestDetailKkiLog() {
         viewModelScope.launch {
             val title = _kkiLogTitle.value
-            val kkiLogImage = _kkiLogImage.value
+            val kkiLogImage = _kkiLogImageBody.value
             val introduce = _kkiLogIntroduce.value
             val ingredientList = convertIngredientListUseCase(_ingredientList.value)
             val descriptionList = convertDescriptionListUseCase(recipeList.value)
-            val imageList = convertImageListUseCase(recipeList.value)
+            val recipeImageList = convertImageListUseCase(recipeList.value)
 
-            if (title.isEmpty() || kkiLogImage == null || introduce.isEmpty() || ingredientList.isEmpty() || descriptionList.isEmpty() || imageList.isEmpty()) {
+            if (title.isEmpty() || kkiLogImage == null || introduce.isEmpty() || ingredientList.isEmpty() || descriptionList.isEmpty() || recipeImageList.isEmpty()) {
                 _showToastMessage.emit("입력되지 않은 곳을 확인해주세요.")
             } else {
-                // TODO 서버 요청
+                requestDetailKkiLogUseCase(
+                    kkiLogImage,
+                    recipeImageList,
+                    descriptionList,
+                    title,
+                    introduce,
+                    ingredientList
+                ).catch { e ->
+                    NLog.d("kelly request detail kkilog failed", e.message.toString())
+                }.collect {
+                    NLog.d("kelly", it.toString())
+                }
             }
             NLog.d("kelly", "title = $title image = $kkiLogImage 한줄소개 = $introduce")
             NLog.d("kelly 레시피 리스트", recipeList.value.toString())
             NLog.d("kelly 재료 리스트", ingredientList)
             NLog.d("kelly 설명 리스트", descriptionList)
-            NLog.d("kelly 이미지 리스트", imageList.toString())
+            NLog.d("kelly 이미지 리스트", recipeImageList.toString())
         }
     }
 

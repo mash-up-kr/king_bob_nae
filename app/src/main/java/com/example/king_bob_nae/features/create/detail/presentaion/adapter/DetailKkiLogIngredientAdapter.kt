@@ -33,7 +33,7 @@ class DetailKkiLogIngredientAdapter(
     companion object {
         private val diffCallback = object : DiffUtil.ItemCallback<KkiLogIngredient>() {
             override fun areItemsTheSame(oldItem: KkiLogIngredient, newItem: KkiLogIngredient): Boolean =
-                oldItem.ingredient == newItem.ingredient
+                oldItem.num == newItem.num
 
             override fun areContentsTheSame(oldItem: KkiLogIngredient, newItem: KkiLogIngredient): Boolean =
                 oldItem == newItem
