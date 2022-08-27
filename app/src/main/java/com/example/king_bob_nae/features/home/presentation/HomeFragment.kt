@@ -3,7 +3,6 @@ package com.example.king_bob_nae.features.home.presentation
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -43,6 +42,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         }
         binding.ivMy.setOnClickListener {
             startActivity(Intent(requireActivity(), MyProfileActivity::class.java))
+        }
+        binding.commonHomeLayout.ivAdd.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_followingFragment2)
         }
     }
 

@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_detailKkiLogFragment"
             app:destination="@id/detailKkiLogFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_followingFragment2"
+            app:destination="@id/followingFragment2" />
     </fragment>
     <fragment
         android:id="@+id/imagePickerFragment"
@@ -68,4 +71,8 @@
             android:id="@+id/action_detailKkiLogResultFragment_to_detailKkiLogResultItemFragment"
             app:destination="@id/detailKkiLogResultItemFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/followingFragment2"
+        android:name="com.example.king_bob_nae.features.myprofile.presentation.follow.FollowingFragment"
+        android:label="FollowingFragment" />
 </navigation>
