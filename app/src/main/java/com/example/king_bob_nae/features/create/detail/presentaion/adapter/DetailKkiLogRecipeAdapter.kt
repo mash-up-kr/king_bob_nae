@@ -8,12 +8,17 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.features.create.detail.domain.model.KkiLogRecipe
 import com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel
+import com.example.king_bob_nae.features.create.detail.presentaion.RecipeItemDragListener
+import com.example.king_bob_nae.features.create.detail.presentaion.RecipeItemTouchHelperAdapter
 import com.example.king_bob_nae.features.create.detail.presentaion.viewholder.RecipeViewHolder
+import java.util.*
+import javax.inject.Inject
 
-class DetailKkiLogRecipeAdapter(
+class DetailKkiLogRecipeAdapter @Inject constructor(
     private val detailKkiLogViewModel: DetailKkiLogViewModel,
-    private val onItemClick: (KkiLogRecipe) -> Unit
-) : ListAdapter<KkiLogRecipe, RecipeViewHolder>(diffCallback) {
+    private val onItemClick: (KkiLogRecipe) -> Unit,
+    val listener: RecipeItemDragListener?
+) : ListAdapter<KkiLogRecipe, RecipeViewHolder>(diffCallback), RecipeItemTouchHelperAdapter {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         return RecipeViewHolder(
@@ -24,12 +29,24 @@ class DetailKkiLogRecipeAdapter(
                 false
             ),
             detailKkiLogViewModel,
-            onItemClick
+            onItemClick,
+            listener
         )
     }
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
         holder.bind(getItem(position))
+    }
+
+    override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
+        val recipeList = this.currentList.toMutableList()
+        if (toPosition < 0 || toPosition >= currentList.size) {
+            Collections.swap(recipeList, fromPosition, fromPosition)
+        } else {
+            Collections.swap(recipeList, fromPosition, toPosition)
+        }
+        detailKkiLogViewModel.updateRecipeList(recipeList)
+        return true
     }
 
     companion object {

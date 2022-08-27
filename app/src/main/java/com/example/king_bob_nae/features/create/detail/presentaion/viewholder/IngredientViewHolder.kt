@@ -1,7 +1,7 @@
 package com.example.king_bob_nae.features.create.detail.presentaion.viewholder
 
 import android.text.InputType
-import androidx.core.widget.doOnTextChanged
+import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import com.example.king_bob_nae.databinding.ItemDetailKkiLogIngredientBinding
 import com.example.king_bob_nae.features.create.detail.domain.model.KkiLogIngredient
@@ -15,21 +15,21 @@ class IngredientViewHolder(
 
     init {
         binding.viewModel = detailKkiLogViewModel
-        binding.etIngredient.doOnTextChanged { text, _, _, _ ->
-            detailKkiLogViewModel.emptyIngredient.value = text.toString()
+
+        binding.etIngredient.doAfterTextChanged {
+            detailKkiLogViewModel.setEmptyIngredient(it.toString())
         }
 
         binding.etIngredient.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 if (binding.etIngredient.text.isEmpty()) {
                     detailKkiLogViewModel.updateIngredient(item)
-                } else {
-                    binding.etIngredient.apply {
-                        clearFocus()
-                        isFocusable = false
-                        isEnabled = false
-                        inputType = InputType.TYPE_NULL
-                    }
+                }
+                binding.etIngredient.apply {
+                    clearFocus()
+                    isFocusable = false
+                    isEnabled = false
+                    inputType = InputType.TYPE_NULL
                 }
             }
         }

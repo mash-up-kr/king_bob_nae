@@ -85,9 +85,10 @@
 
                 <ImageView
                     android:id="@+id/iv_food_image"
-                    recipeUri="@{viewModel.kkiLogImage}"
+                    kkiLogImageUri="@{viewModel.kkiLogImage}"
                     android:layout_width="0dp"
                     android:layout_height="312dp"
+                    onThrottleClick="@{()-> viewModel.setKkiLogImage()}"
                     android:contentDescription="@null"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -208,6 +209,18 @@
                     android:textColor="@color/brown_gray_200"
                     app:layout_constraintStart_toStartOf="@id/tv_add_ingredient"
                     app:layout_constraintTop_toBottomOf="@id/tv_add_ingredient" />
+
+                <TextView
+                    android:id="@+id/tv_edit"
+                    style="@style/Body3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="편집"
+                    onThrottleClick="@{()->viewModel.onEditClick()}"
+                    android:textColor="@color/brown_gray_200"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_recipe"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_recipe" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_recipe"

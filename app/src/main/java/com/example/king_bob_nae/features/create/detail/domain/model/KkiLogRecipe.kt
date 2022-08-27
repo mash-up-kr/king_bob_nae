@@ -5,5 +5,6 @@ import android.net.Uri
 data class KkiLogRecipe(
     val stepNumber: Int = 0,
     val description: String = "",
-    val imageUri: Uri? = null
+    val imageUri: Uri? = null,
+    val isEditable: Boolean = false
 )
