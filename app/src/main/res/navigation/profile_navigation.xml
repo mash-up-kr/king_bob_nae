@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_followFragment_to_followingFragment"
             app:destination="@id/followingFragment" />
+        <argument
+            android:name="label"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/followingFragment"

@@ -6,7 +6,7 @@
 
         <variable
             name="follower_list"
-            type="com.example.king_bob_nae.features.myprofile.data.Users" />
+            type="com.example.king_bob_nae.features.myprofile.domain.userfollow.UsersFollowUiState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
