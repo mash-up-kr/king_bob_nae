@@ -17,7 +17,8 @@ class HomeViewModel @Inject constructor(
     private val homeStatus: GetHomeUserStateUseCase,
     private val friendList: GetFriendListUseCase
 ) : ViewModel() {
-    private val _homeUserState: MutableStateFlow<HomeUserState> = MutableStateFlow<HomeUserState>(HomeUserState())
+    private val _homeUserState: MutableStateFlow<HomeUserState> =
+        MutableStateFlow<HomeUserState>(HomeUserState())
     val userList = _homeUserState.asStateFlow()
 
     private val _homeUserFriendList: MutableStateFlow<List<UserListItem>> =
@@ -33,7 +34,14 @@ class HomeViewModel @Inject constructor(
     fun getFriendList() {
         viewModelScope.launch {
             friendList()?.let {
-                _homeUserFriendList.value = it
+                _homeUserFriendList.value =
+                    listOf(
+                        UserListItem(
+                            -1,
+                            homeStatus().smallImageUrl,
+                            homeStatus().userNickName
+                        )
+                    ) + it
             }
         }
     }
