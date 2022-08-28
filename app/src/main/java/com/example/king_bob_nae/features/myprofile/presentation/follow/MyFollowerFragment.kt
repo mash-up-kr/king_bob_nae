@@ -53,10 +53,6 @@ class MyFollowerFragment : BaseFragment<FragmentMyFollowerBinding>(R.layout.frag
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 if (item.following) {
-                    /**
-                     * 팔로우가 follow 상태일 때 unfollow가 성공하면 들어감
-                     * 성공시 uiState follow를 false로 바꿔줌 (현재는 true)
-                     */
                     myProfileViewModel.doUnFollow(item)
                 } else {
                     myProfileViewModel.doFollow(item)
