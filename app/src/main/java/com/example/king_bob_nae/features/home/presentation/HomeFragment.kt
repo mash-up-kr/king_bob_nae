@@ -3,12 +3,12 @@ package com.example.king_bob_nae.features.home.presentation
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentHomeBinding
@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
-    private val userListAdapter by lazy { UserListAdapter() }
+    private val userListAdapter by lazy { UserListAdapter(homeViewModel) }
     private val homeViewModel: HomeViewModel by activityViewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,22 +44,35 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         binding.ivMy.setOnClickListener {
             startActivity(Intent(requireActivity(), MyProfileActivity::class.java))
         }
+        binding.commonHomeLayout.ivAdd.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_followingFragment)
+        }
     }
 
     private fun collectFlows() {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                homeViewModel.homeUserFriendList.collect {
-                    userListAdapter.submitList(it)
-                }
-            }
-        }
 
-        lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                homeViewModel.userList.collectLatest {
-                    binding.home = it
-                    binding.commonHomeLayout.home = it
+                homeViewModel.run {
+                    launch {
+                        homeUserFriendList.collect {
+                            userListAdapter.submitList(it)
+                        }
+                    }
+
+                    launch {
+                        userList.collectLatest {
+                            binding.home = it
+                            binding.commonHomeLayout.home = it
+                        }
+                    }
+
+                    launch {
+                        goFriendsHomeFragmentEvent.collect {
+                            val action = HomeFragmentDirections.actionHomeFragmentToFriendsHomeFragment(it)
+                            findNavController().navigate(action)
+                        }
+                    }
                 }
             }
         }

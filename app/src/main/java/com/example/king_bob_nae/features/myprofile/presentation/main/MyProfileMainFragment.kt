@@ -41,19 +41,31 @@ class MyProfileMainFragment :
         binding.apply {
             userprofile = UserProfileUiState()
             tvMyProfileTotalFollowerCount.setOnClickListener {
-                val action = MyProfileMainFragmentDirections.actionMyProfileMainFragmentToFollowFragment(MY_FOLLOWER)
+                val action =
+                    MyProfileMainFragmentDirections.actionMyProfileMainFragmentToFollowFragment(
+                        MY_FOLLOWER
+                    )
                 it.findNavController().navigate(action)
             }
             tvMyProfileFollower.setOnClickListener {
-                val action = MyProfileMainFragmentDirections.actionMyProfileMainFragmentToFollowFragment(MY_FOLLOWER)
+                val action =
+                    MyProfileMainFragmentDirections.actionMyProfileMainFragmentToFollowFragment(
+                        MY_FOLLOWER
+                    )
                 it.findNavController().navigate(action)
             }
             tvMyProfileFollowing.setOnClickListener {
-                val action = MyProfileMainFragmentDirections.actionMyProfileMainFragmentToFollowFragment(MY_FOLLOWING)
+                val action =
+                    MyProfileMainFragmentDirections.actionMyProfileMainFragmentToFollowFragment(
+                        MY_FOLLOWING
+                    )
                 it.findNavController().navigate(action)
             }
             tvMyProfileTotalFollowingCount.setOnClickListener {
-                val action = MyProfileMainFragmentDirections.actionMyProfileMainFragmentToFollowFragment(MY_FOLLOWING)
+                val action =
+                    MyProfileMainFragmentDirections.actionMyProfileMainFragmentToFollowFragment(
+                        MY_FOLLOWING
+                    )
                 it.findNavController().navigate(action)
             }
             btnMyProfileSetting.setOnClickListener {
@@ -64,6 +76,7 @@ class MyProfileMainFragment :
                 requireActivity().finish()
             }
             rvMyProfileScrap.adapter = myProfileAdapter
+            rvMyProfileScrap.itemAnimator = null
         }
     }
 
@@ -93,9 +106,9 @@ class MyProfileMainFragment :
     private fun itemClick(scrapedImage: UserProfileUiState.ScrapedImage) {
         val clicked = !scrapedImage.clicked
         if (clicked) {
-            Snackbar.make(view!!, "스크랩에서 추가됐어요.", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(requireView(), "스크랩에서 추가됐어요.", Snackbar.LENGTH_SHORT).show()
         } else {
-            Snackbar.make(view!!, "스크랩에서 삭제됐어요.", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(requireView(), "스크랩에서 삭제됐어요.", Snackbar.LENGTH_SHORT).show()
         }
         myProfileViewModel.updateScrapState(scrapedImage.copy(clicked = clicked))
     }

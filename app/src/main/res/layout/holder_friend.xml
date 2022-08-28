@@ -9,11 +9,16 @@
             name="user"
             type="com.example.king_bob_nae.features.home.domain.freindlist.UserListItem" />
 
+        <variable
+            name="viewModel"
+            type="com.example.king_bob_nae.features.home.presentation.viewmodel.HomeViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        onThrottleClick="@{()-> viewModel.onFriendsItemClick(user)}">
 
         <ImageView
             android:id="@+id/iv_add"
