@@ -11,21 +11,25 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentMyDetailKkilogBinding
+import com.example.king_bob_nae.features.mykkilog.data.MyKkiLogThumbNail
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MyDetailKkiLogFragment :
     BaseFragment<FragmentMyDetailKkilogBinding>(R.layout.fragment_my_detail_kkilog) {
-    private val itemAdapter: MyKkiLogAdapter by lazy { MyKkiLogAdapter() }
+    private val itemAdapter: MyKkiLogAdapter by lazy {
+        MyKkiLogAdapter(
+            itemClickListener = { doOnClick(it) }
+        )
+    }
 
     private val myKkiLogViewModel: MyKkiLogViewModel by activityViewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        myKkiLogViewModel.getDetailKkiLog()
         collectFlow()
         initView()
+        myKkiLogViewModel.getDetailKkiLog()
     }
 
     private fun initView() {
@@ -45,12 +49,15 @@ class MyDetailKkiLogFragment :
     private fun collectFlow() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                myKkiLogViewModel.myDetailKkiLog.collectLatest { myDetailKkiLogList ->
+                myKkiLogViewModel.myDetailKkiLog.collect { myDetailKkiLogList ->
                     showEmptyMark(myDetailKkiLogList.isNullOrEmpty())
                     itemAdapter.submitList(myDetailKkiLogList?.toList())
                 }
             }
         }
     }
-    
+
+    private fun doOnClick(item: MyKkiLogThumbNail) {
+        //TODO 기록화면으로 id 넘겨주며 이동
+    }
 }

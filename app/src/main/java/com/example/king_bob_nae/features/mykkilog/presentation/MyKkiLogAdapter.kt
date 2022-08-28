@@ -10,7 +10,8 @@ import com.example.king_bob_nae.R
 import com.example.king_bob_nae.databinding.ItemMyKkilogBinding
 import com.example.king_bob_nae.features.mykkilog.data.MyKkiLogThumbNail
 
-class MyKkiLogAdapter : ListAdapter<MyKkiLogThumbNail, MyKkiLogAdapter.KkilogViewHolder>(diffUtil) {
+class MyKkiLogAdapter(private val itemClickListener: (MyKkiLogThumbNail) -> Unit) :
+    ListAdapter<MyKkiLogThumbNail, MyKkiLogAdapter.KkilogViewHolder>(diffUtil) {
 
     override fun onBindViewHolder(holder: KkilogViewHolder, position: Int) {
         holder.bind(getItem(position))
@@ -23,16 +24,31 @@ class MyKkiLogAdapter : ListAdapter<MyKkiLogThumbNail, MyKkiLogAdapter.KkilogVie
                 R.layout.item_my_kkilog,
                 parent,
                 false
-            )
+            ),
+            itemClickListener
         )
     }
 
     class KkilogViewHolder(
-        private val binding: ItemMyKkilogBinding
+        private val binding: ItemMyKkilogBinding,
+        private val itemClickListener: (MyKkiLogThumbNail) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.apply {
+                itemView.setOnClickListener {
+                    kkilog!!.run {
+                        itemClickListener(this)
+                    }
+                }
+            }
+        }
+
         fun bind(item: MyKkiLogThumbNail) {
-            binding.item = item
-            binding.executePendingBindings()
+            binding.apply {
+                kkilog = item
+                executePendingBindings()
+            }
         }
     }
 

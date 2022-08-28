@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="item"
+            name="kkilog"
             type="com.example.king_bob_nae.features.mykkilog.data.MyKkiLogThumbNail" />
     </data>
 
@@ -23,8 +23,8 @@
             android:layout_marginEnd="36dp"
             android:contentDescription="@null"
             android:scaleType="fitXY"
-            app:imageUrl="@{item.imageUrl}"
-            app:isSimple="@{item.isSimple}"
+            app:imageUrl="@{kkilog.imageUrl}"
+            app:isSimple="@{kkilog.isSimple}"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@{item.title}"
+            android:text="@{kkilog.title}"
             android:textColor="@color/brown_gray_500"
             app:layout_constraintBottom_toTopOf="@id/tv_my_kkilog_date"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
             style="@style/Caption_Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{item.date}"
+            android:text="@{kkilog.date}"
             android:textColor="@color/brown_gray_300"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

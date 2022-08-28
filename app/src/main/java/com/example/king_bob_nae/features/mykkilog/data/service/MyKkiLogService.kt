@@ -6,9 +6,9 @@ import retrofit2.http.GET
 interface MyKkiLogService {
 
     @GET("logs")
-    suspend fun getMyKkiLog(): List<MyKkiLogResponse>
+    suspend fun getMyKkiLog(): MyKkiLogResponse
 
     @GET("detail-log")
-    suspend fun getMyDetailKkiLog(): List<MyKkiLogResponse>
+    suspend fun getMyDetailKkiLog(): MyKkiLogResponse
 
 }
