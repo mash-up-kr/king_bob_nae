@@ -1,7 +1,8 @@
 package com.example.king_bob_nae.features.myprofile.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.king_bob_nae.features.myprofile.domain.serach.SearchFriendUseCase
 import com.example.king_bob_nae.features.myprofile.domain.userfollow.UserFollowUseCase
 import com.example.king_bob_nae.features.myprofile.domain.userfollow.UsersFollowUiState
 import com.example.king_bob_nae.features.myprofile.domain.userfriend.follow.UserFriendFollowUseCase
@@ -9,10 +10,11 @@ import com.example.king_bob_nae.features.myprofile.domain.userfriend.unfollow.Us
 import com.example.king_bob_nae.features.myprofile.domain.userprofile.UserProfileUiState
 import com.example.king_bob_nae.features.myprofile.domain.userprofile.UserProfileUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class MyProfileViewModel @Inject constructor(
@@ -20,18 +22,25 @@ class MyProfileViewModel @Inject constructor(
     private val userFollowUseCase: UserFollowUseCase,
     private val userFriendFollow: UserFriendFollowUseCase,
     private val userFriendUnFollow: UserFriendUnFollowUseCase,
+    private val searchFriendUseCase: SearchFriendUseCase
 ) :
     ViewModel() {
 
-    private val _userProfileUiState: MutableStateFlow<UserProfileUiState> = MutableStateFlow(UserProfileUiState())
+    private val _userProfileUiState: MutableStateFlow<UserProfileUiState> =
+        MutableStateFlow(UserProfileUiState())
     val userProfileUiState = _userProfileUiState.asStateFlow()
 
     private val _userProfileScrapListUiState: MutableStateFlow<List<UserProfileUiState.ScrapedImage>> =
         MutableStateFlow(listOf(UserProfileUiState.ScrapedImage()))
     val userProfileScrapListUiState = _userProfileScrapListUiState.asStateFlow()
 
-    private val _followListUiState: MutableStateFlow<List<UsersFollowUiState>> = MutableStateFlow(listOf(UsersFollowUiState()))
+    private val _followListUiState: MutableStateFlow<List<UsersFollowUiState>> =
+        MutableStateFlow(listOf(UsersFollowUiState()))
     val followListUiState = _followListUiState.asStateFlow()
+
+    private val _searchFriendState: MutableStateFlow<UsersFollowUiState> =
+        MutableStateFlow(UsersFollowUiState())
+    val searchFriendState = _searchFriendState.asStateFlow()
 
     suspend fun getUserProfile() {
         userProfileUseCase().apply {
@@ -54,9 +63,52 @@ class MyProfileViewModel @Inject constructor(
         }
     }
 
+    suspend fun searchFriend(type: String, keyword: String, onSuccess: () -> Unit) {
+        kotlin.runCatching {
+            searchFriendUseCase(type, keyword)
+        }.onSuccess { result ->
+            if (result.isNotEmpty()) {
+                _searchFriendState.value = result.first()
+                onSuccess()
+            }
+        }
+    }
+
     suspend fun getUserFollow(type: String, keyword: String? = null) {
-        userFollowUseCase(type, keyword).apply {
-            _followListUiState.value = this
+        kotlin.runCatching {
+            userFollowUseCase(type, keyword)
+        }.onSuccess {
+            if (it.isNotEmpty()) {
+                _followListUiState.value = it
+            }
+        }
+    }
+
+    fun friendsDoUnFollow(item: UsersFollowUiState?) {
+        viewModelScope.launch {
+            kotlin.runCatching {
+                item?.id?.let {
+                    userFriendUnFollow(it)
+                }
+            }.onSuccess {
+                _searchFriendState.value = _searchFriendState.value.copy(following = false)
+            }.onFailure {
+                _searchFriendState.value = _searchFriendState.value.copy(following = true)
+            }
+        }
+    }
+
+    fun friendsDoFollow(item: UsersFollowUiState?) {
+        viewModelScope.launch {
+            kotlin.runCatching {
+                item?.id?.let {
+                    userFriendFollow(it)
+                }
+            }.onSuccess {
+                _searchFriendState.value = _searchFriendState.value.copy(following = true)
+            }.onFailure {
+                _searchFriendState.value = _searchFriendState.value.copy(following = false)
+            }
         }
     }
 
