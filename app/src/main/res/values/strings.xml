@@ -135,6 +135,7 @@
 
     <!-- 내 끼록  -->
     <string name="my_kkilog">내 끼록</string>
+    <string name="empty_kkilog">흠..기록한 끼록이 없어요...\n지금 추가해 보세요!</string>
     <string-array name="my_kkilog_list">
         <item>@string/simple_kki_log</item>
         <item>@string/detail_kki_log</item>
