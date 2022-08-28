@@ -41,12 +41,13 @@
 
         <ImageView
             android:id="@+id/btn_follow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            bindFollow="@{item.following}"
+            android:layout_width="61dp"
+            android:layout_height="33dp"
             android:contentDescription="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_following_true" />
+            tools:src="@drawable/ic_following_true" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

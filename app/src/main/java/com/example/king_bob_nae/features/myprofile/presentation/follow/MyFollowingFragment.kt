@@ -1,6 +1,7 @@
 package com.example.king_bob_nae.features.myprofile.presentation.follow
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -44,7 +45,7 @@ class MyFollowingFragment :
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 myProfileViewModel.followListUiState.collect {
-                    followAdapter.submitList(it)
+                    followAdapter.submitList(it.toList())
                 }
             }
         }
@@ -53,6 +54,7 @@ class MyFollowingFragment :
     private fun itemClick(item: UsersFollowUiState) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                Log.d("tjrwn", "itemClick: $item")
                 if (item.following) {
                     myProfileViewModel.doUnFollow(item)
                 } else {

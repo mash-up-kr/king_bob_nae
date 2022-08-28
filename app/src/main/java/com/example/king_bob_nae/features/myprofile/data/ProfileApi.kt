@@ -1,8 +1,9 @@
 package com.example.king_bob_nae.features.myprofile.data
 
+import com.example.king_bob_nae.features.myprofile.data.userfollow.follow.UserFriendFollowResult
 import com.example.king_bob_nae.features.myprofile.data.userfollow.getuserfollow.UserFollowResult
-import retrofit2.http.GET
-import retrofit2.http.Query
+import com.example.king_bob_nae.features.myprofile.data.userfollow.unfollow.UserFriendUnFollowResult
+import retrofit2.http.*
 
 interface ProfileApi {
 
@@ -15,4 +16,15 @@ interface ProfileApi {
         @Query("keyword") keyword: String?,
     ): UserFollowResult
 
+    @FormUrlEncoded
+    @POST("/user/friend/unfollow")
+    suspend fun postUserFriendUnFollow(
+        @Field("id") id: Int,
+    ): UserFriendUnFollowResult
+
+    @FormUrlEncoded
+    @POST("/user/friend/follow")
+    suspend fun postUserFriendFollow(
+        @Field("id") id: Int,
+    ): UserFriendFollowResult
 }
