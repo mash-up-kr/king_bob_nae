@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="friend"
+            type="com.example.king_bob_nae.features.myprofile.domain.userfollow.UsersFollowUiState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,6 +61,7 @@
             app:layout_constraintTop_toBottomOf="@id/following_constraintLayout">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tf_et_friend_nickname"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/my_profile_search_nick"
@@ -70,6 +73,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_search"
+            android:visibility="gone"
             android:layout_width="0dp"
             android:layout_height="206dp"
             android:layout_marginStart="24dp"
@@ -89,6 +93,7 @@
                 <ImageView
                     android:id="@+id/iv_search_result_character"
                     android:layout_width="74dp"
+                    bindImage="@{friend.imageUrl}"
                     android:layout_height="74dp"
                     android:layout_marginTop="26dp"
                     android:contentDescription="@null"
@@ -104,6 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:textColor="@color/black"
+                    android:text="@{friend.name}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/iv_search_result_character"
@@ -124,9 +130,10 @@
 
                 <ImageView
                     android:id="@+id/btn_search_follow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="61dp"
+                    android:layout_height="33dp"
                     android:layout_marginTop="8dp"
+                    bindFollow="@{friend.following}"
                     android:contentDescription="@null"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
