@@ -54,7 +54,7 @@
     </fragment>
     <fragment
         android:id="@+id/recipeFragment"
-        android:name="com.example.king_bob_nae.features.mykkilog.MyKkiLogFragment"
+        android:name="com.example.king_bob_nae.features.mykkilog.presentation.MyKkiLogFragment"
         android:label="RecipeFragment"
         tools:layout="@layout/fragment_my_kkilog" />
     <fragment
