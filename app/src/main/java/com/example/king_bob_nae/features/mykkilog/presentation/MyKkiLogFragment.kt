@@ -1,4 +1,4 @@
-package com.example.king_bob_nae.features.mykkilog
+package com.example.king_bob_nae.features.mykkilog.presentation
 
 import android.os.Bundle
 import android.view.View
