@@ -1,4 +1,4 @@
-package com.example.king_bob_nae.features.myprofile.data.userfollow
+package com.example.king_bob_nae.features.myprofile.data.userfollow.getuserfollow
 
 import com.example.king_bob_nae.features.myprofile.domain.userfollow.UsersFollowUiState
 

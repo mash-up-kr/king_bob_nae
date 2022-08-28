@@ -1,8 +1,11 @@
 package com.example.king_bob_nae.features.myprofile.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.king_bob_nae.features.myprofile.domain.userfollow.UserFollowUseCase
 import com.example.king_bob_nae.features.myprofile.domain.userfollow.UsersFollowUiState
+import com.example.king_bob_nae.features.myprofile.domain.userfriend.follow.UserFriendFollowUseCase
+import com.example.king_bob_nae.features.myprofile.domain.userfriend.unfollow.UserFriendUnFollowUseCase
 import com.example.king_bob_nae.features.myprofile.domain.userprofile.UserProfileUiState
 import com.example.king_bob_nae.features.myprofile.domain.userprofile.UserProfileUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,6 +18,8 @@ import javax.inject.Inject
 class MyProfileViewModel @Inject constructor(
     private val userProfileUseCase: UserProfileUseCase,
     private val userFollowUseCase: UserFollowUseCase,
+    private val userFriendFollow: UserFriendFollowUseCase,
+    private val userFriendUnFollow: UserFriendUnFollowUseCase,
 ) :
     ViewModel() {
 
@@ -54,4 +59,38 @@ class MyProfileViewModel @Inject constructor(
             _followListUiState.value = this
         }
     }
+
+    suspend fun doUnFollow(item: UsersFollowUiState) {
+        kotlin.runCatching {
+            userFriendUnFollow(item.id)
+        }.onSuccess {
+            updateFollowState(item.copy(following = false))
+        }.onFailure {
+            updateFollowState(item.copy(following = true))
+        }
+    }
+
+    suspend fun doFollow(item: UsersFollowUiState) {
+        kotlin.runCatching {
+            userFriendFollow(item.id)
+        }.onSuccess {
+            updateFollowState(item.copy(following = true))
+        }.onFailure {
+            updateFollowState(item.copy(following = false))
+        }
+    }
+
+    fun updateFollowState(item: UsersFollowUiState) {
+        _followListUiState.update {
+            _followListUiState.value.map { uiState ->
+                if (uiState.id == item.id) {
+                    item
+                } else {
+                    uiState
+                }
+            }
+        }
+    }
+
+
 }
