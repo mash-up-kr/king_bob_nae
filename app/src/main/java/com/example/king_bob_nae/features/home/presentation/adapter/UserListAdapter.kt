@@ -8,8 +8,11 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.features.home.domain.freindlist.UserListItem
 import com.example.king_bob_nae.features.home.presentation.viewholder.UserHolder
+import com.example.king_bob_nae.features.home.presentation.viewmodel.HomeViewModel
 
-class UserListAdapter : ListAdapter<UserListItem, UserHolder>(diffCallback) {
+class UserListAdapter(
+    private val viewModel: HomeViewModel
+) : ListAdapter<UserListItem, UserHolder>(diffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHolder {
         return UserHolder(
             DataBindingUtil.inflate(
@@ -17,7 +20,8 @@ class UserListAdapter : ListAdapter<UserListItem, UserHolder>(diffCallback) {
                 R.layout.holder_friend,
                 parent,
                 false
-            )
+            ),
+            viewModel
         )
     }
 

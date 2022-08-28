@@ -1,15 +1,17 @@
-package com.example.king_bob_nae.features.myprofile.data.userfollow
+package com.example.king_bob_nae.features.myprofile.data.userfollow.unfollow
+
 
 import com.example.king_bob_nae.features.intro.data.dto.ErrorDto
-import com.example.king_bob_nae.features.myprofile.domain.userfollow.UsersFollowUiState
 import com.google.gson.annotations.SerializedName
 
-data class UserFollowResult(
+data class UserFriendUnFollowResult(
+    @SerializedName("error")
     val error: ErrorDto,
-    val data: List<UsersFollowUiState>,
+    @SerializedName("data")
+    val data: UserFriendUnFollow,
 )
 
-data class UserFollow(
+data class UserFriendUnFollow(
     @SerializedName("following")
     val following: Boolean,
     @SerializedName("id")

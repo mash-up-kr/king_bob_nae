@@ -8,16 +8,28 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.king_bob_nae.databinding.ItemFriendBinding
 import com.example.king_bob_nae.features.myprofile.domain.userfollow.UsersFollowUiState
+import com.example.king_bob_nae.shared.setOnThrottleClickListener
 
-class FollowAdapter : ListAdapter<UsersFollowUiState, FollowAdapter.FollowViewHolder>(followDiffUtil) {
-    class FollowViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
+class FollowAdapter(private val itemClick: (UsersFollowUiState) -> Unit) :
+    ListAdapter<UsersFollowUiState, FollowAdapter.FollowViewHolder>(followDiffUtil) {
+    class FollowViewHolder(parent: ViewGroup, private val itemClick: (UsersFollowUiState) -> Unit) : RecyclerView.ViewHolder(
         ItemFriendBinding.inflate(LayoutInflater.from(parent.context), parent, false).root
     ) {
         private val binding: ItemFriendBinding = DataBindingUtil.bind(itemView) ?: throw IllegalStateException("fail to bind")
+        private lateinit var item: UsersFollowUiState
 
-        fun bind(item: UsersFollowUiState?) {
-            binding.item = item
-            binding.executePendingBindings()
+        init {
+            binding.btnFollow.setOnThrottleClickListener {
+                itemClick(item)
+            }
+        }
+
+        fun bind(bindItem: UsersFollowUiState) {
+            item = bindItem
+            binding.run {
+                this.item = bindItem
+                executePendingBindings()
+            }
         }
     }
 
@@ -34,7 +46,7 @@ class FollowAdapter : ListAdapter<UsersFollowUiState, FollowAdapter.FollowViewHo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowViewHolder {
-        return FollowViewHolder(parent)
+        return FollowViewHolder(parent, itemClick)
     }
 
     override fun onBindViewHolder(holder: FollowViewHolder, position: Int) {

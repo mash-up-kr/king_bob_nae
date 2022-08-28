@@ -7,7 +7,9 @@ import com.example.king_bob_nae.features.home.domain.freindlist.UserListItem
 import com.example.king_bob_nae.features.home.domain.userstate.GetHomeUserStateUseCase
 import com.example.king_bob_nae.features.home.domain.userstate.HomeUserState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,12 +19,19 @@ class HomeViewModel @Inject constructor(
     private val homeStatus: GetHomeUserStateUseCase,
     private val friendList: GetFriendListUseCase
 ) : ViewModel() {
-    private val _homeUserState: MutableStateFlow<HomeUserState> = MutableStateFlow<HomeUserState>(HomeUserState())
+    private val _homeUserState: MutableStateFlow<HomeUserState> =
+        MutableStateFlow<HomeUserState>(HomeUserState())
     val userList = _homeUserState.asStateFlow()
 
     private val _homeUserFriendList: MutableStateFlow<List<UserListItem>> =
         MutableStateFlow<List<UserListItem>>(emptyList())
     val homeUserFriendList = _homeUserFriendList.asStateFlow()
+
+    private val _goFriendsHomeFragmentEvent = MutableSharedFlow<Int>()
+    val goFriendsHomeFragmentEvent = _goFriendsHomeFragmentEvent.asSharedFlow()
+
+    private val _goHomeFragmentEvent = MutableSharedFlow<Int>()
+    val goHomeFragmentEvent = _goHomeFragmentEvent.asSharedFlow()
 
     fun getHomeStatus() {
         viewModelScope.launch {
@@ -33,7 +42,24 @@ class HomeViewModel @Inject constructor(
     fun getFriendList() {
         viewModelScope.launch {
             friendList()?.let {
-                _homeUserFriendList.value = it
+                _homeUserFriendList.value =
+                    listOf(
+                        UserListItem(
+                            -1,
+                            homeStatus().smallImageUrl,
+                            homeStatus().userNickName
+                        )
+                    ) + it
+            }
+        }
+    }
+
+    fun onFriendsItemClick(item: UserListItem) {
+        viewModelScope.launch {
+            if (item.id < 0) {
+                _goHomeFragmentEvent.emit(item.id)
+            } else {
+                _goFriendsHomeFragmentEvent.emit(item.id)
             }
         }
     }
