@@ -17,8 +17,14 @@
             android:id="@+id/action_homeFragment_to_detailKkiLogFragment"
             app:destination="@id/detailKkiLogFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_followingFragment2"
-            app:destination="@id/followingFragment2" />
+            android:id="@+id/action_homeFragment_to_followingFragment"
+            app:destination="@id/followingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_friendsHomeFragment"
+            app:destination="@id/friendsHomeFragment" />
+        <argument
+            android:name="userId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/imagePickerFragment"
@@ -72,7 +78,18 @@
             app:destination="@id/detailKkiLogResultItemFragment" />
     </fragment>
     <fragment
-        android:id="@+id/followingFragment2"
+        android:id="@+id/followingFragment"
         android:name="com.example.king_bob_nae.features.myprofile.presentation.follow.FollowingFragment"
         android:label="FollowingFragment" />
+    <fragment
+        android:id="@+id/friendsHomeFragment"
+        android:name="com.example.king_bob_nae.features.home.presentation.FriendsHomeFragment"
+        android:label="FriendsHomeFragment" >
+        <action
+            android:id="@+id/action_friendsHomeFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </fragment>
 </navigation>
