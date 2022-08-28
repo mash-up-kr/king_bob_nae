@@ -59,18 +59,24 @@
             app:layout_constraintTop_toBottomOf="@id/tv_my_profile_food_name"
             tools:text="상세 끼록" />
 
-        <ImageView
-            android:id="@+id/iv_my_profile_bookmark"
-            bindBookMark="@{scrapedimage}"
+        <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@null"
-            android:elevation="100dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="5dp"
             app:layout_constraintEnd_toEndOf="@id/iv_my_profile_food_image"
             app:layout_constraintHorizontal_bias="1.2"
             app:layout_constraintStart_toStartOf="@id/iv_my_profile_food_image"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_bookmark_on" />
+            app:layout_constraintTop_toTopOf="parent">
 
+            <ImageView
+                android:id="@+id/iv_my_profile_bookmark"
+                bindBookMark="@{scrapedimage}"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@null"
+                android:elevation="100dp"
+                tools:src="@drawable/ic_bookmark_on" />
+        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
