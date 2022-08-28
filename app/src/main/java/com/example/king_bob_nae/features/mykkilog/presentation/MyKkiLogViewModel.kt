@@ -5,11 +5,13 @@ import androidx.lifecycle.viewModelScope
 import com.example.king_bob_nae.features.mykkilog.data.MyKkiLogThumbNail
 import com.example.king_bob_nae.features.mykkilog.domain.GetMyDetailKkiLogUseCase
 import com.example.king_bob_nae.features.mykkilog.domain.GetMyKkiLogUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class MyKkiLogViewModel @Inject constructor(
     private val getMyKkiLogUseCase: GetMyKkiLogUseCase,
     private val getMyDetailKkiLogUseCase: GetMyDetailKkiLogUseCase
