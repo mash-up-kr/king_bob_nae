@@ -1,5 +1,6 @@
 package com.example.king_bob_nae.features.myprofile.presentation.follow
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -10,6 +11,7 @@ import androidx.navigation.findNavController
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentFollowingBinding
+import com.example.king_bob_nae.features.HomeActivity
 import com.example.king_bob_nae.features.myprofile.presentation.MyProfileViewModel
 import com.example.king_bob_nae.shared.setOnThrottleClickListener
 import com.example.king_bob_nae.utils.afterTextChangedFlow
@@ -44,6 +46,17 @@ class FollowingFragment : BaseFragment<FragmentFollowingBinding>(R.layout.fragme
                     } else {
                         myProfileViewModel.friendsDoFollow(friend)
                     }
+                }
+            }
+            cvSearch.setOnThrottleClickListener {
+                friend?.let {
+                    startActivity(
+                        Intent(
+                            requireContext(),
+                            HomeActivity::class.java
+                        ).apply {
+                            putExtra("id", "${friend?.id}")
+                        })
                 }
             }
         }

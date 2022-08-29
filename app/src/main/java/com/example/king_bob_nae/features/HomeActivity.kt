@@ -7,17 +7,18 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseActivity
 import com.example.king_bob_nae.databinding.ActivityHomeBinding
 import com.example.king_bob_nae.features.create.AddKkiLogBottomSheetFragment
+import com.example.king_bob_nae.features.home.presentation.HomeFragmentDirections
 import com.example.king_bob_nae.features.imagepicker.presentation.ImageListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,9 +45,24 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
         navController.navigate(resId)
     }
 
+    private fun navigateWithId(userId: Int) {
+        val action =
+            HomeFragmentDirections.actionHomeFragmentToFriendsHomeFragment(userId)
+        val option = NavOptions.Builder().setPopUpTo(R.id.homeFragment, true).build()
+        navController.navigate(action, option)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initView()
+        initNavigateFriendsHomeFragment()
+    }
+
+    private fun initNavigateFriendsHomeFragment() {
+        val id = intent.getStringExtra("id")
+        if (!id.isNullOrEmpty()) {
+            navigateWithId(id.toInt())
+        }
     }
 
     private fun checkPermission(permission: String): Boolean {
