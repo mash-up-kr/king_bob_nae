@@ -49,6 +49,14 @@
         </provider>
 
         <activity
+            android:name=".features.onboarding.presentation.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".features.myprofile.presentation.MyProfileActivity"
             android:exported="true" />
         <activity
@@ -64,12 +72,7 @@
         <activity
             android:name="com.example.king_bob_nae.features.onboarding.presentation.OnBoardingActivity"
             android:exported="true"
-            android:theme="@style/FullScreenTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/FullScreenTheme"></activity>
     </application>
 
 </manifest>

@@ -45,11 +45,11 @@
             style="@style/Body2_Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="45dp"
             android:text="@string/today_text"
             android:textColor="@color/brown_gray_400"
             app:layout_constraintStart_toStartOf="@id/iv_add"
-            app:layout_constraintTop_toBottomOf="@id/rv_friends" />
+            app:layout_constraintTop_toBottomOf="@id/iv_add" />
 
         <TextView
             android:id="@+id/tv_date"

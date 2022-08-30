@@ -43,6 +43,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         }
         binding.ivMy.setOnClickListener {
             startActivity(Intent(requireActivity(), MyProfileActivity::class.java))
+            requireActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         }
         binding.commonHomeLayout.ivAdd.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_followingFragment)
@@ -73,7 +74,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
                     launch {
                         goFriendsHomeFragmentEvent.collect {
-                            val action = HomeFragmentDirections.actionHomeFragmentToFriendsHomeFragment(it)
+                            val action =
+                                HomeFragmentDirections.actionHomeFragmentToFriendsHomeFragment(it)
                             findNavController().navigate(action)
                         }
                     }

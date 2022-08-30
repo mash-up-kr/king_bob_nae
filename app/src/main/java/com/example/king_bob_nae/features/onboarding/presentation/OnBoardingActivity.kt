@@ -29,9 +29,11 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>(R.layout.acti
             } else {
                 if (isAccessTokenEmpty()) {
                     startActivity(Intent(this@OnBoardingActivity, IntroActivity::class.java))
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
                     finish()
                 } else {
                     startActivity(Intent(this@OnBoardingActivity, HomeActivity::class.java))
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
                     finish()
                 }
             }
