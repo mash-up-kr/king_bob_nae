@@ -2,7 +2,9 @@ package com.example.king_bob_nae.features.home.data
 
 import com.example.king_bob_nae.features.home.data.freindlist.Friends
 import com.example.king_bob_nae.features.home.data.userstate.HomeStatusResult
+import com.example.king_bob_nae.features.myprofile.data.UserProfile
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface HomeApi {
 
@@ -11,4 +13,13 @@ interface HomeApi {
 
     @GET("home/friends")
     suspend fun getFriendsList(): Friends
+
+    @GET("user") // 유저 정보 조회
+    suspend fun getUserInfo(): UserProfile
+
+    @GET("home/status/{userId}") // 친구 상태 정보 조회
+    suspend fun getFriendsStatus(
+        @Path("userId")
+        userId: Int
+    ): HomeStatusResult
 }

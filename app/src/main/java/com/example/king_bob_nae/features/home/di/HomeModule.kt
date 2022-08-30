@@ -2,8 +2,10 @@ package com.example.king_bob_nae.features.home.di
 
 import com.example.king_bob_nae.features.home.data.HomeApi
 import com.example.king_bob_nae.features.home.data.freindlist.RemoteGetFriendListImpl
+import com.example.king_bob_nae.features.home.data.freindsstatus.RemoteGetFriendsStatusImpl
 import com.example.king_bob_nae.features.home.data.userstate.RemoteGetHomeUserStatusImpl
 import com.example.king_bob_nae.features.home.domain.freindlist.RemoteGetFriendList
+import com.example.king_bob_nae.features.home.domain.friendsStatus.RemoteGetFriendsUserStatus
 import com.example.king_bob_nae.features.home.domain.userstate.RemoteGetHomeUserStatus
 import dagger.Binds
 import dagger.Module
@@ -30,4 +32,8 @@ abstract class HomeModule {
     @Binds
     @Singleton
     abstract fun bindRemoteGetFriendList(remoteGetFriendList: RemoteGetFriendListImpl): RemoteGetFriendList
+
+    @Binds
+    @Singleton
+    abstract fun bindRemoteGetFriendsStatus(remoteGetFriendsUserStatus: RemoteGetFriendsStatusImpl): RemoteGetFriendsUserStatus
 }

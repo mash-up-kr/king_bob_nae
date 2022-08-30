@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="home"
+            type="com.example.king_bob_nae.features.home.domain.userstate.HomeUserState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
