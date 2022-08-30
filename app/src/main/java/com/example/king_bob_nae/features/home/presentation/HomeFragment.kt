@@ -47,6 +47,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         binding.commonHomeLayout.ivAdd.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_followingFragment)
         }
+        binding.commonHomeLayout.ivCharacter.setOnClickListener {
+            val dialog = HomeLevelUpDialog()
+            dialog.show(requireActivity().supportFragmentManager, "level_up")
+        }
     }
 
     private fun collectFlows() {
