@@ -7,6 +7,7 @@ object SharedPreferences {
     private const val KKILOG_PREFS = "kkilog_prefs"
     private const val ACCESS_TOKEN_KEY = "kkilog_access_token"
     private const val FISRT_CHECK_KEY = "kkilog_onboarding"
+    private const val COACH_MARK_KEY = "kkilog_coach_mark"
 
     private lateinit var prefs: SharedPreferences
 
@@ -21,6 +22,10 @@ object SharedPreferences {
     var appFirstCheck: Boolean
         get() = prefs.getBoolean(FISRT_CHECK_KEY, false)
         set(value) = prefs.edit().putBoolean(FISRT_CHECK_KEY, value).apply()
+
+    var coachMarkCheck: Boolean
+        get() = prefs.getBoolean(COACH_MARK_KEY, false)
+        set(value) = prefs.edit().putBoolean(COACH_MARK_KEY, value).apply()
 
     fun clearAccessToken() {
         prefs.edit().apply {
