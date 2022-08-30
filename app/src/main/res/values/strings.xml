@@ -141,4 +141,11 @@
         <item>@string/detail_kki_log</item>
     </string-array>
 
+    <!-- 툴팁 -->
+    <string name="tip_kkilog">맛있게 먹은 끼니를 공유하거나 음식 레시피를 기록하기</string>
+    <string name="tip_follow_text">팔로잉 추가</string>
+    <string name="tip_follow">친구 닉네임으로 연결하고, 끼니 상황을 함께 공유하기</string>
+    <string name="tip_grow_text">캐릭터의 성장</string>
+    <string name="tip_grow">끼록 추가를 통해 캐릭터와 함께 먹레벨 성장하기</string>
+
 </resources>
