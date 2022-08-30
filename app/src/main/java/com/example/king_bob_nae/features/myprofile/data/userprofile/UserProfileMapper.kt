@@ -12,6 +12,7 @@ fun UserProfileResult.toUserProfileUiState() = UserProfileUiState(
     totalKKini = "${this.data.logStats.total}",
     following = "${this.data.followingCount}",
     follower = "${this.data.followerCount}",
+    max = this.data.logStats.max,
     scrapList = this.data.scrappedLogs.map {
         UserProfileUiState.ScrapedImage(id = "${it.id}${it.type}",
             title = it.title,
