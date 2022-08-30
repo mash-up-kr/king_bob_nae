@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.king_bob_nae.features.home.domain.freindlist.GetFriendListUseCase
 import com.example.king_bob_nae.features.home.domain.freindlist.UserListItem
+import com.example.king_bob_nae.features.home.domain.friendsStatus.GetFriendsStatusUseCase
 import com.example.king_bob_nae.features.home.domain.userstate.GetHomeUserStateUseCase
 import com.example.king_bob_nae.features.home.domain.userstate.HomeUserState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,11 +18,16 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val homeStatus: GetHomeUserStateUseCase,
+    private val friendsStatus: GetFriendsStatusUseCase,
     private val friendList: GetFriendListUseCase
 ) : ViewModel() {
     private val _homeUserState: MutableStateFlow<HomeUserState> =
         MutableStateFlow<HomeUserState>(HomeUserState())
     val userList = _homeUserState.asStateFlow()
+
+    private val _homeFriendsStatus: MutableStateFlow<HomeUserState> =
+        MutableStateFlow<HomeUserState>(HomeUserState())
+    val homeFriendsStatus = _homeFriendsStatus.asStateFlow()
 
     private val _homeUserFriendList: MutableStateFlow<List<UserListItem>> =
         MutableStateFlow<List<UserListItem>>(emptyList())
@@ -32,6 +38,12 @@ class HomeViewModel @Inject constructor(
 
     private val _goHomeFragmentEvent = MutableSharedFlow<Int>()
     val goHomeFragmentEvent = _goHomeFragmentEvent.asSharedFlow()
+
+    var userId: Int = 0
+
+    fun setSelectedUserId(userId: Int) {
+        this.userId = userId
+    }
 
     fun getHomeStatus() {
         viewModelScope.launch {
@@ -61,6 +73,12 @@ class HomeViewModel @Inject constructor(
             } else {
                 _goFriendsHomeFragmentEvent.emit(item.id)
             }
+        }
+    }
+
+    fun getFriendsStatus() {
+        viewModelScope.launch {
+            _homeFriendsStatus.value = friendsStatus(userId)
         }
     }
 }
