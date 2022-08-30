@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -161,6 +162,7 @@ class ImagePickerFragment :
             sortType
         )?.use { cursor ->
             val columnIndexData = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA)
+
             while (cursor.moveToNext()) {
                 val columnString = cursor.getString(columnIndexData)
 
