@@ -10,18 +10,22 @@ import android.provider.Settings
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.king_bob_nae.KkiLogApplication
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseActivity
 import com.example.king_bob_nae.databinding.ActivityHomeBinding
 import com.example.king_bob_nae.features.create.AddKkiLogBottomSheetFragment
 import com.example.king_bob_nae.features.create.kkilog.presenter.KkiLogViewModel
 import com.example.king_bob_nae.features.home.presentation.HomeFragmentDirections
+import com.example.king_bob_nae.features.home.presentation.viewmodel.HomeViewModel
 import com.example.king_bob_nae.features.imagepicker.presentation.ImageListViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
@@ -32,6 +36,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
         private const val CAMERA = Manifest.permission.CAMERA
     }
 
+    private val homeViewModel: HomeViewModel by viewModels()
     private val imageListViewModel: ImageListViewModel by viewModels()
     private val kkiLogViewModel: KkiLogViewModel by viewModels()
     private lateinit var navHostFragment: NavHostFragment
@@ -56,6 +61,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        collectFlowForBottomNav()
         initView()
         initNavigateFriendsHomeFragment()
     }
@@ -107,10 +113,21 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
         }
     }
 
+    private fun collectFlowForBottomNav() {
+        lifecycleScope.launch {
+            homeViewModel.isTutorial.collect { state ->
+                binding.bottomNavHome.menu.setGroupEnabled(R.id.menu_bottom_nav, !state)
+            }
+        }
+    }
+
     private fun initView() {
         navHostFragment =
             supportFragmentManager.findFragmentById(R.id.home_nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
+        if (KkiLogApplication.prefs.coachMarkCheck) {
+            navController.navigate(R.id.action_firstTutorialFragment_to_homeFragment)
+        }
         with(binding.bottomNavHome) {
             setupWithNavController(navController)
             setOnItemSelectedListener {
