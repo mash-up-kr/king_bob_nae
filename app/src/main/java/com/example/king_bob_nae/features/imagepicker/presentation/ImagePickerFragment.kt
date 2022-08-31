@@ -23,6 +23,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentImagePickerBinding
+import com.example.king_bob_nae.features.create.kkilog.presenter.KkiLogViewModel
 import com.example.king_bob_nae.utils.isEnabled
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -36,6 +37,7 @@ class ImagePickerFragment :
     private val imageAdapter by lazy {
         ImageListAdapter(::itemClick)
     }
+    private val kkiLogViewModel: KkiLogViewModel by activityViewModels()
     private val imageListViewModel: ImageListViewModel by activityViewModels()
     private lateinit var registerPictureLauncher: ActivityResultLauncher<Uri>
     private lateinit var callback: OnBackPressedCallback
@@ -88,7 +90,7 @@ class ImagePickerFragment :
                 registerPictureLauncher.launch(uri)
             }
             btnImagePickerBack.setOnClickListener {
-                imageListViewModel.resetAllData()
+                clearList()
                 findNavController().navigate(R.id.action_imagePickerFragment_to_homeFragment)
             }
         }
@@ -209,10 +211,15 @@ class ImagePickerFragment :
     private fun handlingBackPressed() {
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                imageListViewModel.resetAllData()
+                clearList()
                 findNavController().navigate(R.id.action_imagePickerFragment_to_homeFragment)
             }
         }
+    }
+
+    private fun clearList() {
+        imageListViewModel.resetAllData()
+        kkiLogViewModel.clearList()
     }
 
     override fun onDetach() {
