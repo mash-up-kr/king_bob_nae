@@ -14,9 +14,10 @@ fun HomeStatus.toHomeState() = HomeUserState(
     max = this.logStats.max,
     progressBar = this.logStats.progress,
     level = "Lv.${this.logStats.level}",
-    totalKkirokCount = "${this.logStats.total}/${this.logStats.max}",
+    levelTotalKkirokCount = "${this.logStats.progress}/${this.logStats.max}",
     largeImageUrl = this.fullImageUrl,
-    smallImageUrl = this.miniImageUrl
+    smallImageUrl = this.miniImageUrl,
+    totalKkilogCount = this.logStats.total
 )
 
 fun Friends.toUserListItem() = this.friends.map {

@@ -11,7 +11,8 @@ data class HomeUserState(
     val max: Int = 0,
     val progressBar: Int = 0,
     val level: String = "",
-    val totalKkirokCount: String = "",
+    val levelTotalKkirokCount: String = "",
     val largeImageUrl: String = "",
     val smallImageUrl: String = "",
+    val totalKkilogCount: Int = 0,
 )

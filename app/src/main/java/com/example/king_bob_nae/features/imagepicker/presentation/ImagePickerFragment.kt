@@ -41,6 +41,8 @@ class ImagePickerFragment :
     private val imageListViewModel: ImageListViewModel by activityViewModels()
     private lateinit var registerPictureLauncher: ActivityResultLauncher<Uri>
     private lateinit var callback: OnBackPressedCallback
+    private lateinit var uri: Uri
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getPhotoAlbumList()
@@ -60,7 +62,8 @@ class ImagePickerFragment :
     private fun initRegister() {
         registerPictureLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) {
             if (it) {
-                findNavController().navigate(R.id.kkiLogFragment)
+                imageListViewModel.updateImageList(ImageState(clicked = true, imageUrl = uri.toString()))
+                sendImageUrlListAction()
             }
         }
     }
@@ -73,20 +76,14 @@ class ImagePickerFragment :
                  * 즉, 여러개의 데이터를 (사진 array 를 넘겨야 할 때)
                  */
                 if (imageListViewModel.selectedImageList.value.size > 0) {
-                    val action =
-                        ImagePickerFragmentDirections.actionImagePickerFragmentToKkiLogFragment(
-                            image = null,
-                            imageList = imageListViewModel.getImageListUrl()
-                        )
-                    findNavController().navigate(action)
-                    imageListViewModel.resetAllData()
+                    sendImageUrlListAction()
                 }
             }
             ivTakeAPhoto.setOnClickListener {
                 /**
                  * 여긴 이미지 찍고 한개만 넘길 때, 즉 initRegister 안의 코드가 실행되어 viewmodel에 사진 딱 한개만 저장될 때
                  */
-                val uri = requireContext().getCacheFileProviderImageUri()
+                uri = requireContext().getCacheFileProviderImageUri()
                 registerPictureLauncher.launch(uri)
             }
             btnImagePickerBack.setOnClickListener {
@@ -96,13 +93,22 @@ class ImagePickerFragment :
         }
     }
 
+    private fun sendImageUrlListAction() {
+        val action =
+            ImagePickerFragmentDirections.actionImagePickerFragmentToKkiLogFragment(
+                imageList = imageListViewModel.getImageListUrl()
+            )
+        findNavController().navigate(action)
+        imageListViewModel.resetAllData()
+    }
+
     fun Context.getCacheFileProviderImageUri(): Uri {
         var image: File? = null
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             val dateFormat = SimpleDateFormat("yyyyMMdd_HHmmss")
             val filename = "IMG_${dateFormat.format(Date(System.currentTimeMillis()))}.jpg"
-            val file = File(Environment.getExternalStorageDirectory().path + "/Pictures/", filename)
+            val file = File(Environment.getExternalStorageDirectory().path + "/Pictures/")
             file.mkdir()
             image = File(file, filename)
         } else {
@@ -203,7 +209,7 @@ class ImagePickerFragment :
 
     private fun getSavedListCount() {
         val args: ImagePickerFragmentArgs by navArgs()
-        args.itemCount?.let {
+        args.itemCount.let {
             imageListViewModel.savedImageListCount = it
         }
     }

@@ -50,13 +50,10 @@
         android:label="KkiLogFragment"
         tools:layout="@layout/fragment_kki_log">
         <argument
-            android:name="image"
-            app:argType="android.graphics.Bitmap"
-            app:nullable="true" />
-        <argument
             android:name="imageList"
             app:argType="com.example.king_bob_nae.features.create.kkilog.data.KkiLogRecipe[]"
-            app:nullable="true" />
+            app:nullable="true"
+            android:defaultValue="@null" />
         <action
             android:id="@+id/action_kkiLogFragment_to_imagePickerFragment"
             app:destination="@id/imagePickerFragment"

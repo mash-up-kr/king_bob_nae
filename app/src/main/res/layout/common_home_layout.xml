@@ -95,7 +95,7 @@
 
         <ImageView
             android:id="@+id/iv_character"
-            bindImage="@{home.largeImageUrl}"
+            bindHomeImage="@{home}"
             android:layout_width="0dp"
             android:layout_height="240dp"
             android:contentDescription="@null"
@@ -103,6 +103,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_kkilog"
             tools:src="@drawable/carrot_lv3_happy" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/level_up_lottie"
+            bindLottie="@{home}"
+            android:layout_width="0dp"
+            android:layout_height="240dp"
+            android:contentDescription="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_kkilog"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/level_up" />
 
         <TextView
             android:id="@+id/tv_click"
@@ -112,9 +125,10 @@
             android:layout_marginTop="6dp"
             android:text="@string/home_click_text"
             android:textColor="@color/brown_gray_200"
+            clickTextVisible="@{home}"
             android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/iv_character"
-            app:layout_constraintStart_toStartOf="@id/iv_character"
-            app:layout_constraintTop_toBottomOf="@id/iv_character" />
+            app:layout_constraintEnd_toEndOf="@id/level_up_lottie"
+            app:layout_constraintStart_toStartOf="@id/level_up_lottie"
+            app:layout_constraintTop_toBottomOf="@id/level_up_lottie" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

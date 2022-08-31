@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.king_bob_nae.features.home.domain.freindlist.GetFriendListUseCase
 import com.example.king_bob_nae.features.home.domain.freindlist.UserListItem
 import com.example.king_bob_nae.features.home.domain.friendsStatus.GetFriendsStatusUseCase
+import com.example.king_bob_nae.features.home.domain.levelup.HomeLevelUpUseCase
 import com.example.king_bob_nae.features.home.domain.userstate.GetHomeUserStateUseCase
 import com.example.king_bob_nae.features.home.domain.userstate.HomeUserState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +20,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val homeStatus: GetHomeUserStateUseCase,
     private val friendsStatus: GetFriendsStatusUseCase,
-    private val friendList: GetFriendListUseCase
+    private val friendList: GetFriendListUseCase,
+    private val levelUp: HomeLevelUpUseCase,
 ) : ViewModel() {
     private val _homeUserState: MutableStateFlow<HomeUserState> =
         MutableStateFlow<HomeUserState>(HomeUserState())
@@ -79,6 +81,16 @@ class HomeViewModel @Inject constructor(
     fun getFriendsStatus() {
         viewModelScope.launch {
             _homeFriendsStatus.value = friendsStatus(userId)
+        }
+    }
+
+    fun postLevelUp() {
+        viewModelScope.launch {
+            kotlin.runCatching {
+                levelUp()
+            }.onFailure {
+                // doNothing
+            }
         }
     }
 }
