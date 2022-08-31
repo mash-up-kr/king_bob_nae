@@ -10,6 +10,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
@@ -37,7 +38,7 @@ class ImagePickerFragment :
     }
     private val imageListViewModel: ImageListViewModel by activityViewModels()
     private lateinit var registerPictureLauncher: ActivityResultLauncher<Uri>
-
+    private lateinit var callback: OnBackPressedCallback
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getPhotoAlbumList()
@@ -46,7 +47,8 @@ class ImagePickerFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        handlingBackPressed()
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
         initRegister()
         initBinding()
         initSubmitList()
@@ -202,5 +204,19 @@ class ImagePickerFragment :
         args.itemCount?.let {
             imageListViewModel.savedImageListCount = it
         }
+    }
+
+    private fun handlingBackPressed() {
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                imageListViewModel.resetAllData()
+                findNavController().navigate(R.id.action_imagePickerFragment_to_homeFragment)
+            }
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        callback.remove()
     }
 }

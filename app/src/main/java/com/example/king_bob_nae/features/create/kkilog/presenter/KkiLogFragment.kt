@@ -2,11 +2,12 @@ package com.example.king_bob_nae.features.create.kkilog.presenter
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
@@ -22,9 +23,11 @@ class KkiLogFragment : BaseFragment<FragmentKkiLogBinding>(R.layout.fragment_kki
             doOnClick()
         })
     }
-
+    private lateinit var callback: OnBackPressedCallback
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        handlingBackPressed()
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
         getImageList()
         initView()
         collectFlow()
@@ -35,7 +38,7 @@ class KkiLogFragment : BaseFragment<FragmentKkiLogBinding>(R.layout.fragment_kki
             rvPhoto.adapter = foodListAdapter
             ivBack.setOnClickListener {
                 kkiLogViewModel.clearList()
-                it.findNavController().popBackStack()
+                findNavController().popBackStack()
             }
         }
     }
@@ -61,8 +64,21 @@ class KkiLogFragment : BaseFragment<FragmentKkiLogBinding>(R.layout.fragment_kki
                 KkiLogFragmentDirections.actionKkiLogFragmentToImagePickerFragment(
                     kkiLogViewModel.getListCount()
                 )
-            requireView().findNavController().navigate(action)
+            findNavController().navigate(action)
         }
     }
 
+    private fun handlingBackPressed() {
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                kkiLogViewModel.clearList()
+                findNavController().popBackStack()
+            }
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        callback.remove()
+    }
 }
