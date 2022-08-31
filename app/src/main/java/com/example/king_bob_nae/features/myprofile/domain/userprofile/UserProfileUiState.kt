@@ -4,6 +4,7 @@ data class UserProfileUiState(
     val profileImageUrl: String = "",
     val level: String = "",
     val nickName: String = "",
+    val max: Int = 0,
     val progressbarPercent: Int = 0,
     val totalKkilogCount: String = "",
     val totalKKini: String = "",

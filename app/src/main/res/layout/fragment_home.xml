@@ -112,8 +112,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="20dp"
-                android:max="100"
-                android:progress="@{home.progressBarPercent}"
+                android:max="@{home.max}"
+                android:progress="@{home.progressBar}"
                 android:progressDrawable="@drawable/progress_lv" />
 
             <TextView
@@ -130,10 +130,10 @@
             <TextView
                 android:id="@+id/tv_total_kkirok_count"
                 style="@style/Caption_Regular"
-                android:text="@{home.totalKkirokCount}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:text="@{home.levelTotalKkirokCount}"
                 android:textColor="@color/brown_gray_200"
                 tools:text="5/10끼니" />
 

@@ -23,6 +23,7 @@ import kotlinx.coroutines.launch
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private val userListAdapter by lazy { UserListAdapter(homeViewModel) }
     private val homeViewModel: HomeViewModel by activityViewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -47,6 +48,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         }
         binding.commonHomeLayout.ivAdd.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_followingFragment)
+        }
+        binding.commonHomeLayout.levelUpLottie.setOnClickListener {
+            if (binding.progressLv.progress >= binding.progressLv.max && binding.home!!.totalKkilogCount <= 30) {
+                homeViewModel.postLevelUp()
+                val dialog = HomeLevelUpDialog()
+                dialog.show(requireActivity().supportFragmentManager, "level_up")
+            }
         }
     }
 
