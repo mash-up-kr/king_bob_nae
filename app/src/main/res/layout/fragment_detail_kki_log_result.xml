@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,6 +60,7 @@
 
                 <ImageView
                     android:id="@+id/iv_food_image"
+                    bindImage="@{viewModel.detailKkiLogResult.image.original}"
                     android:layout_width="0dp"
                     android:layout_height="360dp"
                     android:contentDescription="@null"
@@ -70,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:gravity="center"
-                    android:text="특급 제육"
+                    android:text="@{viewModel.detailKkiLogResult.title}"
                     android:textColor="@color/brown_gray_500"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="2022년 3월 2일"
+                    android:text="@{viewModel.detailKkiLogResult.createdAt}"
                     android:textColor="@color/brown_gray_200"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -90,6 +95,7 @@
 
                 <ImageView
                     android:id="@+id/iv_bookmark"
+                    setIsScrapped="@{viewModel.detailKkiLogResult.scrapped}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -109,7 +115,7 @@
                     android:background="@drawable/detail_kki_log_result_description_background"
                     android:gravity="center"
                     android:paddingVertical="12dp"
-                    android:text="엄마가 해주던 그맛입니다."
+                    android:text="@{viewModel.detailKkiLogResult.description}"
                     android:textColor="@color/brown_gray_500"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -131,6 +137,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginEnd="24dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_ingredient"
                     app:layout_constraintTop_toBottomOf="@id/tv_ingredient"
@@ -144,6 +151,7 @@
                     android:layout_marginTop="24dp"
                     android:text="레시피"
                     android:textColor="@color/brown_gray_200"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="@id/rv_ingredient"
                     app:layout_constraintTop_toBottomOf="@id/rv_ingredient" />
 
@@ -171,12 +179,12 @@
 
                     <ImageView
                         android:id="@+id/iv_like"
+                        setIsLiked="@{viewModel.detailKkiLogResult.like.isLike}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginVertical="10dp"
                         android:layout_marginStart="20dp"
-                        android:background="@drawable/ic_like_disable_48"
                         android:contentDescription="@null"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

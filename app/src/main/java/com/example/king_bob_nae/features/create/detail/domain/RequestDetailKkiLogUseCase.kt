@@ -3,22 +3,24 @@ package com.example.king_bob_nae.features.create.detail.domain
 import com.example.king_bob_nae.base.di.DispatcherModule
 import com.example.king_bob_nae.features.create.detail.data.repository.DetailKkiLogRepository
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import javax.inject.Inject
 
 class RequestDetailKkiLogUseCase @Inject constructor(
     private val detailKkiLogRepository: DetailKkiLogRepository,
     @DispatcherModule.DispatcherDefault private val defaultDisPatcher: CoroutineDispatcher
 ) {
-    operator fun invoke(
+    suspend operator fun invoke(
         brandImage: MultipartBody.Part,
         recipeImages: List<MultipartBody.Part>,
-        recipes: String,
-        title: String,
-        description: String,
-        ingredients: String
-    ) =
+        recipes: RequestBody,
+        title: RequestBody,
+        description: RequestBody,
+        ingredients: RequestBody
+    ) = withContext(defaultDisPatcher) {
         detailKkiLogRepository.requestDetailKkiLog(
             brandImage,
             recipeImages,
@@ -26,5 +28,8 @@ class RequestDetailKkiLogUseCase @Inject constructor(
             title,
             description,
             ingredients
-        ).flowOn(defaultDisPatcher)
+        ).map {
+            it.data.toDetailKkiLogResult()
+        }
+    }
 }

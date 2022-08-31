@@ -1,14 +1,13 @@
-package com.example.king_bob_nae.features.create.detail.presentaion.viewholder
+package com.example.king_bob_nae.features.create.detail.presentaion.write.viewholder
 
 import android.annotation.SuppressLint
-import android.text.InputType
 import android.view.MotionEvent
-import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import com.example.king_bob_nae.databinding.ItemDetailKkiLogRecipeBinding
 import com.example.king_bob_nae.features.create.detail.domain.model.KkiLogRecipe
 import com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel
-import com.example.king_bob_nae.features.create.detail.presentaion.RecipeItemDragListener
+import com.example.king_bob_nae.features.create.detail.presentaion.write.RecipeItemDragListener
 
 @SuppressLint("ClickableViewAccessibility")
 class RecipeViewHolder(
@@ -26,22 +25,28 @@ class RecipeViewHolder(
             onItemClick(item)
         }
 
-        binding.etRecipeDescription.doAfterTextChanged {
-            detailKkiLogViewModel.setEmptyDescription(it.toString())
-        }
-
-        binding.etRecipeDescription.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                if (binding.etRecipeDescription.text.isNotEmpty()) {
-                    detailKkiLogViewModel.updateRecipeDescription(item)
-                    binding.etRecipeDescription.apply {
-                        clearFocus()
-                        isEnabled = false
-                        inputType = InputType.TYPE_NULL
-                    }
-                }
+        binding.etRecipeDescription.doOnTextChanged { text, start, before, count ->
+//            detailKkiLogViewModel.setEmptyDescription(it.toString())
+            // TODO updaterecipeDescription 이거 debounce 걸어야하는데
+            if (binding.etRecipeDescription.text.isNotEmpty()) {
+                detailKkiLogViewModel.updateRecipeDescription(item, text.toString())
             }
         }
+
+        // TODO focus가 이상함 false, true 가 번갈아서 나옴
+//        binding.etRecipeDescription.setOnFocusChangeListener { _, hasFocus ->
+//            if (!hasFocus) {
+//                if (binding.etRecipeDescription.text.isNotEmpty()) {
+//                    detailKkiLogViewModel.updateRecipeDescription(item)
+//                    binding.etRecipeDescription.apply {
+//                        clearFocus()
+//                        isEnabled = false
+//                        inputType = InputType.TYPE_NULL
+//                    }
+//                }
+//            }
+//        }
+
         binding.ivReorder.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 listener?.onStartDrag(this@RecipeViewHolder)

@@ -16,10 +16,9 @@ fun ImageView.bindRecipeImage(recipeUri: Uri?) {
             context,
             R.color.gray_background
         )
-        this.setImageResource(R.drawable.ic_plus_32)
     } else {
         recipeUri.let {
-            Glide.with(this).load(it).into(this)
+            Glide.with(this).load(it).fitCenter().into(this)
         }
     }
 }
@@ -33,7 +32,7 @@ fun ImageView.bindKkiLogImage(kkiLogImageUri: Uri?) {
         )
     } else {
         kkiLogImageUri.let {
-            Glide.with(this).load(it).into(this)
+            Glide.with(this).load(it).fitCenter().into(this)
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.king_bob_nae.features.create.detail.presentaion.adapter
+package com.example.king_bob_nae.features.create.detail.presentaion.write.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.features.create.detail.domain.model.KkiLogIngredient
 import com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel
-import com.example.king_bob_nae.features.create.detail.presentaion.viewholder.IngredientViewHolder
+import com.example.king_bob_nae.features.create.detail.presentaion.write.viewholder.IngredientViewHolder
 
 class DetailKkiLogIngredientAdapter(
     private val detailKkiLogViewModel: DetailKkiLogViewModel
@@ -32,10 +32,16 @@ class DetailKkiLogIngredientAdapter(
 
     companion object {
         private val diffCallback = object : DiffUtil.ItemCallback<KkiLogIngredient>() {
-            override fun areItemsTheSame(oldItem: KkiLogIngredient, newItem: KkiLogIngredient): Boolean =
+            override fun areItemsTheSame(
+                oldItem: KkiLogIngredient,
+                newItem: KkiLogIngredient
+            ): Boolean =
                 oldItem.num == newItem.num
 
-            override fun areContentsTheSame(oldItem: KkiLogIngredient, newItem: KkiLogIngredient): Boolean =
+            override fun areContentsTheSame(
+                oldItem: KkiLogIngredient,
+                newItem: KkiLogIngredient
+            ): Boolean =
                 oldItem == newItem
         }
     }

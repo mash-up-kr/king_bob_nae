@@ -7,9 +7,11 @@ import com.example.king_bob_nae.features.create.detail.domain.ConvertDescription
 import com.example.king_bob_nae.features.create.detail.domain.ConvertImageListUseCase
 import com.example.king_bob_nae.features.create.detail.domain.ConvertIngredientListUseCase
 import com.example.king_bob_nae.features.create.detail.domain.RequestDetailKkiLogUseCase
+import com.example.king_bob_nae.features.create.detail.domain.model.DetailKkiLogResult
 import com.example.king_bob_nae.features.create.detail.domain.model.KkiLogIngredient
 import com.example.king_bob_nae.features.create.detail.domain.model.KkiLogRecipe
 import com.example.king_bob_nae.utils.NLog
+import com.example.king_bob_nae.utils.stringToRequestBody
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -45,8 +47,8 @@ class DetailKkiLogViewModel @Inject constructor(
     private val _descriptionList = MutableStateFlow(emptyList<String>()) // 레시피 설명 리스트
     val descriptionList = _descriptionList.asStateFlow()
 
-    private val _recipeImageList = MutableStateFlow(emptyList<MultipartBody.Part?>()) // 레시피 이미지 리스트
-    val recipeImageList = _recipeImageList.asStateFlow()
+    private val _detailKkiLogResult = MutableStateFlow(DetailKkiLogResult())
+    val detailKkiLogResult = _detailKkiLogResult.asStateFlow()
 
     val emptyDescription: MutableStateFlow<String> = MutableStateFlow("")
     val emptyIngredient: MutableStateFlow<String> = MutableStateFlow("")
@@ -114,10 +116,7 @@ class DetailKkiLogViewModel @Inject constructor(
     fun addIngredient() {
         viewModelScope.launch {
             _ingredientList.emit(
-                _ingredientList.value.toMutableList() + KkiLogIngredient(
-                    ++ingredientNum,
-                    ""
-                )
+                _ingredientList.value.toMutableList() + KkiLogIngredient(++ingredientNum, "")
             )
         }
     }
@@ -144,71 +143,79 @@ class DetailKkiLogViewModel @Inject constructor(
         _recipeItem.value = item
     }
 
-    fun setImage(imageUri: Uri?, body: MultipartBody.Part?) {
+    fun setImage(imageUri: Uri?, body: MultipartBody.Part?, body2: MultipartBody.Part?) {
         if (_kkiLogImage.value == null) {
             _kkiLogImage.value = imageUri
-            _kkiLogImageBody.value = body
+            _kkiLogImageBody.value = body2
         } else {
             addRecipeImage(imageUri, body)
         }
     }
 
-    fun updateRecipeDescription(item: KkiLogRecipe) {
-        _recipeList.update {
-            _recipeList.value.map {
-                if (it.stepNumber == item.stepNumber) {
-                    it.copy(description = emptyDescription.value)
-                } else {
-                    it
+    fun updateRecipeDescription(item: KkiLogRecipe, description: String) {
+        viewModelScope.launch {
+            emptyDescription.value = description
+            _recipeList.update {
+                _recipeList.value.map {
+                    if (it.stepNumber == item.stepNumber) {
+                        it.copy(description = emptyDescription.value)
+                    } else {
+                        it
+                    }
                 }
             }
         }
     }
 
-    fun updateIngredient(item: KkiLogIngredient) {
-        NLog.d("kelly", item.toString())
-        _ingredientList.update {
-            _ingredientList.value.map {
-                if (it.num == item.num) {
-                    it.copy(ingredient = emptyIngredient.value)
-                } else {
-                    it
+    fun updateIngredient(item: KkiLogIngredient, ingredient: String) {
+        viewModelScope.launch {
+            emptyIngredient.value = ingredient
+            _ingredientList.update {
+                _ingredientList.value.map {
+                    if (it.num == item.num) {
+                        it.copy(ingredient = emptyIngredient.value)
+                    } else {
+                        it
+                    }
                 }
             }
         }
-        NLog.d("kelly", _ingredientList.value.toString())
     }
 
     fun requestDetailKkiLog() {
         viewModelScope.launch {
-            val title = _kkiLogTitle.value
-            val kkiLogImage = _kkiLogImageBody.value
-            val introduce = _kkiLogIntroduce.value
-            val ingredientList = convertIngredientListUseCase(_ingredientList.value)
-            val descriptionList = convertDescriptionListUseCase(recipeList.value)
-            val recipeImageList = convertImageListUseCase(recipeList.value)
-
-            if (title.isEmpty() || kkiLogImage == null || introduce.isEmpty() || ingredientList.isEmpty() || descriptionList.isEmpty() || recipeImageList.isEmpty()) {
+            if (_kkiLogTitle.value.isEmpty() || _kkiLogImageBody.value == null || _kkiLogIntroduce.value.isEmpty() || _ingredientList.value.isEmpty() || _recipeList.value.isEmpty()) {
                 _showToastMessage.emit("입력되지 않은 곳을 확인해주세요.")
             } else {
-                requestDetailKkiLogUseCase(
-                    kkiLogImage,
-                    recipeImageList,
-                    descriptionList,
-                    title,
-                    introduce,
-                    ingredientList
-                ).catch { e ->
-                    NLog.d("kelly request detail kkilog failed", e.message.toString())
-                }.collect {
-                    NLog.d("kelly", it.toString())
+                val title = _kkiLogTitle.value
+                val kkiLogImage = _kkiLogImageBody.value
+                val introduce = _kkiLogIntroduce.value
+                val ingredientList = convertIngredientListUseCase(_ingredientList.value)
+                val descriptionList = convertDescriptionListUseCase(recipeList.value)
+                val recipeImageList = convertImageListUseCase(recipeList.value)
+
+                if (kkiLogImage != null) {
+                    requestDetailKkiLogUseCase(
+                        kkiLogImage,
+                        recipeImageList,
+                        descriptionList.stringToRequestBody(),
+                        title.stringToRequestBody(),
+                        introduce.stringToRequestBody(),
+                        ingredientList.stringToRequestBody()
+                    ).catch { e ->
+                        NLog.d("kelly", e.message.toString())
+                        _showToastMessage.emit("작성 실패")
+                    }.collect {
+                        _detailKkiLogResult.emit(it)
+                        _showToastMessage.emit("작성 완료!")
+                    }
                 }
             }
-            NLog.d("kelly", "title = $title image = $kkiLogImage 한줄소개 = $introduce")
-            NLog.d("kelly 레시피 리스트", recipeList.value.toString())
-            NLog.d("kelly 재료 리스트", ingredientList)
-            NLog.d("kelly 설명 리스트", descriptionList)
-            NLog.d("kelly 이미지 리스트", recipeImageList.toString())
+//            NLog.d("kelly", "title = $title image = $kkiLogImage 한줄소개 = $introduce")
+//            NLog.d("kelly 레시피 리스트", recipeList.value.toString())
+//            NLog.d("kelly 재료 리스트", ingredientList)
+//            NLog.d("kelly 설명 리스트", descriptionList)
+//            NLog.d("kelly 이미지 리스트", recipeImageList.toString())
         }
     }
 

@@ -1,6 +1,5 @@
-package com.example.king_bob_nae.features.create.detail.presentaion.viewholder
+package com.example.king_bob_nae.features.create.detail.presentaion.write.viewholder
 
-import android.text.InputType
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import com.example.king_bob_nae.databinding.ItemDetailKkiLogIngredientBinding
@@ -8,7 +7,7 @@ import com.example.king_bob_nae.features.create.detail.domain.model.KkiLogIngred
 import com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel
 
 class IngredientViewHolder(
-    private val binding: ItemDetailKkiLogIngredientBinding,
+    val binding: ItemDetailKkiLogIngredientBinding,
     private val detailKkiLogViewModel: DetailKkiLogViewModel
 ) : RecyclerView.ViewHolder(binding.root) {
     private lateinit var item: KkiLogIngredient
@@ -17,19 +16,8 @@ class IngredientViewHolder(
         binding.viewModel = detailKkiLogViewModel
 
         binding.etIngredient.doAfterTextChanged {
-            detailKkiLogViewModel.setEmptyIngredient(it.toString())
-        }
-
-        binding.etIngredient.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                if (binding.etIngredient.text.isNotEmpty()) {
-                    detailKkiLogViewModel.updateIngredient(item)
-                }
-                binding.etIngredient.apply {
-                    clearFocus()
-                    isEnabled = false
-                    inputType = InputType.TYPE_NULL
-                }
+            if (binding.etIngredient.text.isNotEmpty()) {
+                detailKkiLogViewModel.updateIngredient(item, it.toString())
             }
         }
     }

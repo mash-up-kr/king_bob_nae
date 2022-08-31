@@ -1,4 +1,4 @@
-package com.example.king_bob_nae.features.create.detail.presentaion.adapter
+package com.example.king_bob_nae.features.create.detail.presentaion.write.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.features.create.detail.domain.model.KkiLogRecipe
 import com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel
-import com.example.king_bob_nae.features.create.detail.presentaion.RecipeItemDragListener
-import com.example.king_bob_nae.features.create.detail.presentaion.RecipeItemTouchHelperAdapter
-import com.example.king_bob_nae.features.create.detail.presentaion.viewholder.RecipeViewHolder
+import com.example.king_bob_nae.features.create.detail.presentaion.write.RecipeItemDragListener
+import com.example.king_bob_nae.features.create.detail.presentaion.write.RecipeItemTouchHelperAdapter
+import com.example.king_bob_nae.features.create.detail.presentaion.write.viewholder.RecipeViewHolder
 import java.util.*
 import javax.inject.Inject
 

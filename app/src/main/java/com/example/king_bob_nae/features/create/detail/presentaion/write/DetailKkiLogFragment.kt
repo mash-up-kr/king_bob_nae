@@ -1,7 +1,9 @@
-package com.example.king_bob_nae.features.create.detail.presentaion
+package com.example.king_bob_nae.features.create.detail.presentaion.write
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
@@ -11,6 +13,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
@@ -18,14 +21,16 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentDetailKkiLogBinding
 import com.example.king_bob_nae.features.create.detail.domain.model.KkiLogRecipe
-import com.example.king_bob_nae.features.create.detail.presentaion.adapter.DetailKkiLogIngredientAdapter
-import com.example.king_bob_nae.features.create.detail.presentaion.adapter.DetailKkiLogRecipeAdapter
+import com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel
+import com.example.king_bob_nae.features.create.detail.presentaion.write.adapter.DetailKkiLogIngredientAdapter
+import com.example.king_bob_nae.features.create.detail.presentaion.write.adapter.DetailKkiLogRecipeAdapter
 import com.example.king_bob_nae.utils.NLog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -65,6 +70,7 @@ class DetailKkiLogFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        requestPermission()
         collectFlows()
     }
 
@@ -83,7 +89,7 @@ class DetailKkiLogFragment :
             rvIngredient.adapter = detailKkiLogIngredientAdapter
             rvRecipe.apply {
                 adapter = detailKkiLogRecipeAdapter
-                itemAnimator = null
+//                itemAnimator = null
             }
             itemTouchHelper.attachToRecyclerView(rvRecipe)
 
@@ -155,6 +161,12 @@ class DetailKkiLogFragment :
                             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
                         }
                     }
+
+                    launch {
+                        detailKkiLogResult.collect {
+                            findNavController().navigate(R.id.action_detailKkiLogFragment_to_detailKkiLogResultFragment)
+                        }
+                    }
                 }
             }
         }
@@ -175,12 +187,15 @@ class DetailKkiLogFragment :
                     val currentImageUri = it.data?.data
                     val file = File(changeToAbsolutePath(currentImageUri, requireContext()))
                     val requestFile = file.asRequestBody(("image/*".toMediaTypeOrNull()))
-                    val body = MultipartBody.Part.createFormData("proFile", file.name, requestFile)
-                    detailKkiLogViewModel.setImage(currentImageUri, body)
+                    val body =
+                        MultipartBody.Part.createFormData("recipeImages", file.name, requestFile)
+                    val body2 =
+                        MultipartBody.Part.createFormData("brandImage", file.name, requestFile)
+                    detailKkiLogViewModel.setImage(currentImageUri, body, body2)
                 } else if (it.resultCode == AppCompatActivity.RESULT_CANCELED) {
                     Toast.makeText(requireContext(), "사진 선택 취소", Toast.LENGTH_SHORT).show()
                 } else {
-                    NLog.d("Kelly", "error")
+                    NLog.d("Kelly select picture error", "")
                 }
             }
     }
@@ -194,6 +209,27 @@ class DetailKkiLogFragment :
         val result = c?.getString(index ?: 0)
 
         return result ?: ""
+    }
+
+    private fun requestPermission() {
+        val REQUEST_EXTERNAL_STORAGE = 1
+        val PERMISSIONS_STORAGE = arrayOf<String>(
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+
+        val permission = ActivityCompat.checkSelfPermission(
+            requireActivity(),
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                PERMISSIONS_STORAGE,
+                REQUEST_EXTERNAL_STORAGE
+            )
+        }
     }
 
     override fun onStartDrag(viewHolder: RecyclerView.ViewHolder?) {

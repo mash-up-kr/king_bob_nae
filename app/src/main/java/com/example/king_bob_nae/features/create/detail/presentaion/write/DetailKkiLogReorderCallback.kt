@@ -1,4 +1,4 @@
-package com.example.king_bob_nae.features.create.detail.presentaion
+package com.example.king_bob_nae.features.create.detail.presentaion.write
 
 import android.graphics.Canvas
 import androidx.recyclerview.widget.ItemTouchHelper

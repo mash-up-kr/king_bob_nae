@@ -22,15 +22,15 @@
 
         <ImageView
             android:id="@+id/iv_remove_recipe"
+            onThrottleClick="@{() -> viewModel.deleteRecipe(item)}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_red_error"
             android:contentDescription="@null"
-            onThrottleClick="@{() -> viewModel.deleteRecipe(item)}"
-            app:visible="@{item.isEditable}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:visible="@{item.isEditable}" />
 
         <TextView
             android:id="@+id/tv_step"
@@ -69,10 +69,21 @@
             android:layout_height="90dp"
             android:layout_marginEnd="8dp"
             android:contentDescription="@null"
-            android:padding="29dp"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toStartOf="@id/iv_reorder"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_plus"
+            setKkiLogImageVisible="@{item.imageUri}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_plus_32"
+            app:layout_constraintBottom_toBottomOf="@id/iv_food_image"
+            app:layout_constraintEnd_toEndOf="@id/iv_food_image"
+            app:layout_constraintStart_toStartOf="@id/iv_food_image"
+            app:layout_constraintTop_toTopOf="@id/iv_food_image" />
 
         <ImageView
             android:id="@+id/iv_reorder"
@@ -80,10 +91,10 @@
             android:layout_height="wrap_content"
             android:background="@drawable/ic_reorder_32"
             android:contentDescription="@null"
-            app:visible="@{item.isEditable}"
             app:layout_constraintBottom_toBottomOf="@id/iv_food_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/iv_food_image" />
+            app:layout_constraintTop_toTopOf="@id/iv_food_image"
+            app:visible="@{item.isEditable}" />
 
         <View
             android:id="@+id/view_divide_line"

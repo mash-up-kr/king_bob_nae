@@ -88,6 +88,7 @@
                     kkiLogImageUri="@{viewModel.kkiLogImage}"
                     android:layout_width="0dp"
                     android:layout_height="312dp"
+                    android:scaleType="fitXY"
                     onThrottleClick="@{()-> viewModel.setKkiLogImage()}"
                     android:contentDescription="@null"
                     app:layout_constraintEnd_toEndOf="parent"

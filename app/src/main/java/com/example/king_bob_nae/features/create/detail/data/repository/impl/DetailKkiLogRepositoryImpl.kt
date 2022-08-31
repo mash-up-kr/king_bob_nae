@@ -6,6 +6,7 @@ import com.example.king_bob_nae.features.create.detail.data.service.DetailKkiLog
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import javax.inject.Inject
 
 class DetailKkiLogRepositoryImpl @Inject constructor(
@@ -14,18 +15,20 @@ class DetailKkiLogRepositoryImpl @Inject constructor(
     override fun requestDetailKkiLog(
         brandImage: MultipartBody.Part,
         recipeImages: List<MultipartBody.Part>,
-        recipes: String,
-        title: String,
-        description: String,
-        ingredients: String
+        recipes: RequestBody,
+        title: RequestBody,
+        description: RequestBody,
+        ingredients: RequestBody
     ): Flow<DetailKkiLogDto> = flow {
-        service.requestDetailKkiLog(
-            brandImage,
-            recipeImages,
-            recipes,
-            title,
-            description,
-            ingredients
+        emit(
+            service.requestDetailKkiLog(
+                brandImage,
+                recipeImages,
+                recipes,
+                title,
+                description,
+                ingredients
+            )
         )
     }
 }
