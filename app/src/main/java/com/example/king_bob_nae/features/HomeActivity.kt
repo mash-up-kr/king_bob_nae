@@ -121,8 +121,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
                         checkPermission()
                         AddKkiLogBottomSheetFragment().show(supportFragmentManager, "")
                     }
-                    R.id.recipeFragment -> {
-                        navigate(R.id.recipeFragment)
+                    R.id.myKkiLogFragment -> {
+                        navigate(R.id.myKkiLogFragment)
                         imageListViewModel.resetAllData()
                     }
                 }

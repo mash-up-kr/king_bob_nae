@@ -32,11 +32,17 @@
         android:label="ImagePickerFragment"
         tools:layout="@layout/fragment_image_picker">
         <action
-            android:id="@+id/action_imagePickerFragment_to_recipeFragment"
-            app:destination="@id/recipeFragment" />
-        <action
             android:id="@+id/action_imagePickerFragment_to_kkiLogFragment"
             app:destination="@id/kkiLogFragment" />
+        <argument
+            android:name="itemCount"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_imagePickerFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/kkiLogFragment"
@@ -49,18 +55,24 @@
             app:nullable="true" />
         <argument
             android:name="imageList"
-            app:argType="string[]"
+            app:argType="com.example.king_bob_nae.features.create.kkilog.data.KkiLogRecipe[]"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_kkiLogFragment_to_imagePickerFragment"
+            app:destination="@id/imagePickerFragment"
+            app:popUpTo="@id/kkiLogFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/recipeFragment"
+        android:id="@+id/myKkiLogFragment"
         android:name="com.example.king_bob_nae.features.mykkilog.presentation.MyKkiLogFragment"
-        android:label="RecipeFragment"
+        android:label="MyKkiLogFragment"
         tools:layout="@layout/fragment_my_kkilog" />
     <fragment
         android:id="@+id/detailKkiLogFragment"
         android:name="com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogFragment"
-        android:label="DetailKkiLogFragment">
+        android:label="DetailKkiLogFragment"
+        tools:layout="@layout/fragment_detail_kki_log">
         <action
             android:id="@+id/action_detailKkiLogFragment_to_detailKkiLogResultFragment"
             app:destination="@id/detailKkiLogResultFragment" />
@@ -68,11 +80,13 @@
     <fragment
         android:id="@+id/detailKkiLogResultItemFragment"
         android:name="com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogResultItemFragment"
-        android:label="DetailKkiLogResultItemFragment" />
+        android:label="DetailKkiLogResultItemFragment"
+        tools:layout="@layout/fragment_detail_kki_log_result_item" />
     <fragment
         android:id="@+id/detailKkiLogResultFragment"
         android:name="com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogResultFragment"
-        android:label="DetailKkiLogResultFragment">
+        android:label="DetailKkiLogResultFragment"
+        tools:layout="@layout/fragment_detail_kki_log_result">
         <action
             android:id="@+id/action_detailKkiLogResultFragment_to_detailKkiLogResultItemFragment"
             app:destination="@id/detailKkiLogResultItemFragment" />
@@ -80,11 +94,13 @@
     <fragment
         android:id="@+id/followingFragment"
         android:name="com.example.king_bob_nae.features.myprofile.presentation.follow.FollowingFragment"
-        android:label="FollowingFragment" />
+        android:label="FollowingFragment"
+        tools:layout="@layout/fragment_following" />
     <fragment
         android:id="@+id/friendsHomeFragment"
         android:name="com.example.king_bob_nae.features.home.presentation.FriendsHomeFragment"
-        android:label="FriendsHomeFragment" >
+        android:label="FriendsHomeFragment"
+        tools:layout="@layout/fragment_friends_home">
         <action
             android:id="@+id/action_friendsHomeFragment_to_homeFragment"
             app:destination="@id/homeFragment" />

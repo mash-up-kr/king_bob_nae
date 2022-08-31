@@ -13,7 +13,7 @@
         android:title="@string/PLUS" />
 
     <item
-        android:id="@+id/recipeFragment"
+        android:id="@+id/myKkiLogFragment"
         android:enabled="true"
         android:icon="@drawable/selector_bottom_nav_recipe"
         android:title="@string/RECIPE" />

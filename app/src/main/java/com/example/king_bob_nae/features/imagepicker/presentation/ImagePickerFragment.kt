@@ -8,9 +8,9 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
@@ -19,9 +19,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentImagePickerBinding
+import com.example.king_bob_nae.features.create.kkilog.presenter.KkiLogViewModel
+import com.example.king_bob_nae.utils.isEnabled
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.io.File
@@ -34,17 +37,20 @@ class ImagePickerFragment :
     private val imageAdapter by lazy {
         ImageListAdapter(::itemClick)
     }
+    private val kkiLogViewModel: KkiLogViewModel by activityViewModels()
     private val imageListViewModel: ImageListViewModel by activityViewModels()
     private lateinit var registerPictureLauncher: ActivityResultLauncher<Uri>
-
+    private lateinit var callback: OnBackPressedCallback
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getPhotoAlbumList()
+        getSavedListCount()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        handlingBackPressed()
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
         initRegister()
         initBinding()
         initSubmitList()
@@ -67,7 +73,12 @@ class ImagePickerFragment :
                  * 즉, 여러개의 데이터를 (사진 array 를 넘겨야 할 때)
                  */
                 if (imageListViewModel.selectedImageList.value.size > 0) {
-                    findNavController().navigate(R.id.kkiLogFragment)
+                    val action =
+                        ImagePickerFragmentDirections.actionImagePickerFragmentToKkiLogFragment(
+                            image = null,
+                            imageList = imageListViewModel.getImageListUrl()
+                        )
+                    findNavController().navigate(action)
                     imageListViewModel.resetAllData()
                 }
             }
@@ -77,6 +88,10 @@ class ImagePickerFragment :
                  */
                 val uri = requireContext().getCacheFileProviderImageUri()
                 registerPictureLauncher.launch(uri)
+            }
+            btnImagePickerBack.setOnClickListener {
+                clearList()
+                findNavController().navigate(R.id.action_imagePickerFragment_to_homeFragment)
             }
         }
     }
@@ -135,6 +150,7 @@ class ImagePickerFragment :
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {
                 imageListViewModel.imageList.collectLatest { imageList ->
                     imageAdapter.submitList(imageList)
+                    binding.btnImagePickerNext.isEnabled(imageListViewModel.isValidCount())
                 }
             }
         }
@@ -183,5 +199,31 @@ class ImagePickerFragment :
         }
         imageListViewModel.updateImageList(imageState.copy(clicked = !imageState.clicked))
         imageAdapter.notifyDataSetChanged()
+    }
+
+    private fun getSavedListCount() {
+        val args: ImagePickerFragmentArgs by navArgs()
+        args.itemCount?.let {
+            imageListViewModel.savedImageListCount = it
+        }
+    }
+
+    private fun handlingBackPressed() {
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                clearList()
+                findNavController().navigate(R.id.action_imagePickerFragment_to_homeFragment)
+            }
+        }
+    }
+
+    private fun clearList() {
+        imageListViewModel.resetAllData()
+        kkiLogViewModel.clearList()
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        callback.remove()
     }
 }
