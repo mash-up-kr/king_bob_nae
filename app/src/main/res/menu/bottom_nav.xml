@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/homeFragment"
-        android:enabled="true"
-        android:icon="@drawable/selector_bottom_nav_home"
-        android:title="@string/HOME" />
+    <group android:id="@+id/menu_bottom_nav">
+        <item
+            android:id="@+id/homeFragment"
+            android:enabled="true"
+            android:icon="@drawable/selector_bottom_nav_home"
+            android:title="@string/HOME" />
 
-    <item
-        android:id="@+id/imagePickerFragment"
-        android:enabled="true"
-        android:icon="@drawable/ic_add_48"
-        android:title="@string/PLUS" />
+        <item
+            android:id="@+id/imagePickerFragment"
+            android:enabled="true"
+            android:icon="@drawable/ic_add_48"
+            android:title="@string/PLUS" />
 
-    <item
-        android:id="@+id/myKkiLogFragment"
-        android:enabled="true"
-        android:icon="@drawable/selector_bottom_nav_recipe"
-        android:title="@string/RECIPE" />
+        <item
+            android:id="@+id/myKkiLogFragment"
+            android:enabled="true"
+            android:icon="@drawable/selector_bottom_nav_recipe"
+            android:title="@string/RECIPE" />
+    </group>
 </menu>

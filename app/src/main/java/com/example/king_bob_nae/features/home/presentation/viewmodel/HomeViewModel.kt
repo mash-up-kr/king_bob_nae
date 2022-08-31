@@ -41,6 +41,8 @@ class HomeViewModel @Inject constructor(
     private val _goHomeFragmentEvent = MutableSharedFlow<Int>()
     val goHomeFragmentEvent = _goHomeFragmentEvent.asSharedFlow()
 
+    val isTutorial = MutableStateFlow(true)
+
     var userId: Int = 0
 
     fun setSelectedUserId(userId: Int) {
