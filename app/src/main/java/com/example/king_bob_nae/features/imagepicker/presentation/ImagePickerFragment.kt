@@ -87,7 +87,7 @@ class ImagePickerFragment :
             }
             btnImagePickerBack.setOnClickListener {
                 imageListViewModel.resetAllData()
-                findNavController().popBackStack()
+                findNavController().navigate(R.id.action_imagePickerFragment_to_homeFragment)
             }
         }
     }
@@ -196,7 +196,7 @@ class ImagePickerFragment :
         imageListViewModel.updateImageList(imageState.copy(clicked = !imageState.clicked))
         imageAdapter.notifyDataSetChanged()
     }
-    
+
     private fun getSavedListCount() {
         val args: ImagePickerFragmentArgs by navArgs()
         args.itemCount?.let {
