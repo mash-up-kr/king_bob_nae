@@ -34,6 +34,10 @@
         <action
             android:id="@+id/action_imagePickerFragment_to_kkiLogFragment"
             app:destination="@id/kkiLogFragment" />
+        <argument
+            android:name="itemCount"
+            android:defaultValue="0"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/kkiLogFragment"
@@ -46,8 +50,11 @@
             app:nullable="true" />
         <argument
             android:name="imageList"
-            app:argType="string[]"
+            app:argType="com.example.king_bob_nae.features.create.kkilog.data.KkiLogRecipe[]"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_kkiLogFragment_to_imagePickerFragment"
+            app:destination="@id/imagePickerFragment" />
     </fragment>
     <fragment
         android:id="@+id/myKkiLogFragment"

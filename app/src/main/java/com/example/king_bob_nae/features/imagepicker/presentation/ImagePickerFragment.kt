@@ -8,7 +8,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -19,9 +18,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentImagePickerBinding
+import com.example.king_bob_nae.utils.isEnabled
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.io.File
@@ -40,6 +41,7 @@ class ImagePickerFragment :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getPhotoAlbumList()
+        getSavedListCount()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -67,7 +69,12 @@ class ImagePickerFragment :
                  * 즉, 여러개의 데이터를 (사진 array 를 넘겨야 할 때)
                  */
                 if (imageListViewModel.selectedImageList.value.size > 0) {
-                    findNavController().navigate(R.id.kkiLogFragment)
+                    val action =
+                        ImagePickerFragmentDirections.actionImagePickerFragmentToKkiLogFragment(
+                            image = null,
+                            imageList = imageListViewModel.getImageListUrl()
+                        )
+                    findNavController().navigate(action)
                     imageListViewModel.resetAllData()
                 }
             }
@@ -77,6 +84,10 @@ class ImagePickerFragment :
                  */
                 val uri = requireContext().getCacheFileProviderImageUri()
                 registerPictureLauncher.launch(uri)
+            }
+            btnImagePickerBack.setOnClickListener {
+                imageListViewModel.resetAllData()
+                findNavController().popBackStack()
             }
         }
     }
@@ -135,6 +146,7 @@ class ImagePickerFragment :
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {
                 imageListViewModel.imageList.collectLatest { imageList ->
                     imageAdapter.submitList(imageList)
+                    binding.btnImagePickerNext.isEnabled(imageListViewModel.isValidCount())
                 }
             }
         }
@@ -183,5 +195,12 @@ class ImagePickerFragment :
         }
         imageListViewModel.updateImageList(imageState.copy(clicked = !imageState.clicked))
         imageAdapter.notifyDataSetChanged()
+    }
+    
+    private fun getSavedListCount() {
+        val args: ImagePickerFragmentArgs by navArgs()
+        args.itemCount?.let {
+            imageListViewModel.savedImageListCount = it
+        }
     }
 }

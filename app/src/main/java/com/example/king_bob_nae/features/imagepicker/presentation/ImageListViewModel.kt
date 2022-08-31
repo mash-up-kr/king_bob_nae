@@ -1,6 +1,7 @@
 package com.example.king_bob_nae.features.imagepicker.presentation
 
 import androidx.lifecycle.ViewModel
+import com.example.king_bob_nae.features.create.kkilog.data.KkiLogRecipe
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -10,7 +11,10 @@ class ImageListViewModel : ViewModel() {
     private val _imageList = MutableStateFlow<List<ImageState>>(emptyList())
     val imageList: StateFlow<List<ImageState>> = _imageList.asStateFlow() // 모든 이미지 List
 
-    val selectedImageList = MutableStateFlow<MutableList<ImageState>>(mutableListOf()) // 선택된 이미지 List
+    val selectedImageList =
+        MutableStateFlow<MutableList<ImageState>>(mutableListOf()) // 선택된 이미지 List
+
+    var savedImageListCount = 0
 
     fun setImageList(imageList: List<ImageState>) {
         _imageList.value = imageList
@@ -19,7 +23,7 @@ class ImageListViewModel : ViewModel() {
     fun updateImageList(image: ImageState) { // 넘어온거 토글해서 저장, 현재 clicked 상태보고 + 1, -1 하면 되고, 0이나 10사이인지 체크하고, 중간값 빠지면 빠진 값부터 위로 -1 씩
         if (image.clicked) {  // 클릭해서 추가한 경우
             //selected size가 10개 미만이면 add 해줌
-            if (selectedImageList.value.size < 10) {
+            if (selectedImageList.value.size + savedImageListCount < 10) {
                 selectedImageList.value.add(image.copy(clickCount = selectedImageList.value.size + 1))
                 copyAndUpdateImageList()
             }
@@ -66,6 +70,14 @@ class ImageListViewModel : ViewModel() {
         }
     }
 
+    fun getImageListUrl(): Array<KkiLogRecipe> {
+        return selectedImageList.value.map {
+            KkiLogRecipe(
+                imageUrl = it.imageUrl
+            )
+        }.toTypedArray()
+    }
+
     fun resetAllData() {
         selectedImageList.value = mutableListOf()
         _imageList.update {
@@ -74,4 +86,6 @@ class ImageListViewModel : ViewModel() {
             }
         }
     }
+
+    fun isValidCount() = selectedImageList.value.count() in 1..(10 - savedImageListCount)
 }

@@ -5,17 +5,22 @@
 
     <data>
 
+        <variable
+            name="recipe"
+            type="com.example.king_bob_nae.features.create.kkilog.data.KkiLogRecipe" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp">
 
         <ImageView
             android:id="@+id/iv_food_image"
+            bindFood="@{recipe.imageUrl}"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginTop="9dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/radius_transparent_stroke"
             android:contentDescription="@null"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,12 +31,12 @@
             android:id="@+id/iv_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginBottom="60dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginBottom="64dp"
             android:background="@drawable/ic_delete_32"
+            android:contentDescription="@null"
             app:layout_constraintBottom_toBottomOf="@id/iv_food_image"
-            app:layout_constraintStart_toStartOf="@id/iv_food_image"
-            android:contentDescription="@null"/>
+            app:layout_constraintStart_toStartOf="@id/iv_food_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
