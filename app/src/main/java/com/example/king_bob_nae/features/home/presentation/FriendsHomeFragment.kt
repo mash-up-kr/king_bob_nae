@@ -43,6 +43,7 @@ class FriendsHomeFragment :
         binding.commonHomeLayout.rvFriends.apply {
             adapter = userListAdapter
         }
+
         binding.ivMy.setOnClickListener {
             startActivity(Intent(requireActivity(), MyProfileActivity::class.java))
         }
@@ -66,6 +67,7 @@ class FriendsHomeFragment :
                         homeFriendsStatus.collectLatest {
                             binding.home = it
                             binding.commonHomeLayout.home = it
+                            binding.commonHomeLayout.tvKkilog.text = "${it.userNickName}의 끼록"
                         }
                     }
 
@@ -76,6 +78,12 @@ class FriendsHomeFragment :
                                     it
                                 )
                             findNavController().navigate(action)
+                        }
+                    }
+
+                    launch {
+                        goFriendsHomeFragmentEvent.collect {
+                            homeViewModel.getFriendsStatus(it)
                         }
                     }
                 }

@@ -45,6 +45,7 @@ class HomeViewModel @Inject constructor(
 
     fun setSelectedUserId(userId: Int) {
         this.userId = userId
+        getFriendsStatus()
     }
 
     fun getHomeStatus() {
@@ -78,9 +79,9 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getFriendsStatus() {
+    fun getFriendsStatus(userIds: Int? = null) {
         viewModelScope.launch {
-            _homeFriendsStatus.value = friendsStatus(userId)
+            _homeFriendsStatus.value = friendsStatus(userIds ?: userId)
         }
     }
 
