@@ -18,6 +18,7 @@ import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseActivity
 import com.example.king_bob_nae.databinding.ActivityHomeBinding
 import com.example.king_bob_nae.features.create.AddKkiLogBottomSheetFragment
+import com.example.king_bob_nae.features.create.kkilog.presenter.KkiLogViewModel
 import com.example.king_bob_nae.features.home.presentation.HomeFragmentDirections
 import com.example.king_bob_nae.features.imagepicker.presentation.ImageListViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,6 +33,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
     }
 
     private val imageListViewModel: ImageListViewModel by viewModels()
+    private val kkiLogViewModel: KkiLogViewModel by viewModels()
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController
 
@@ -115,20 +117,25 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
                 when (it.itemId) {
                     R.id.homeFragment -> {
                         navigate(R.id.homeFragment)
-                        imageListViewModel.resetAllData()
+                        clearList()
                     }
                     R.id.imagePickerFragment -> {
                         checkPermission()
                         AddKkiLogBottomSheetFragment().show(supportFragmentManager, "")
                     }
-                    R.id.recipeFragment -> {
-                        navigate(R.id.recipeFragment)
-                        imageListViewModel.resetAllData()
+                    R.id.myKkiLogFragment -> {
+                        navigate(R.id.myKkiLogFragment)
+                        clearList()
                     }
                 }
                 true
             }
             itemIconTintList = null
         }
+    }
+
+    private fun clearList() {
+        imageListViewModel.resetAllData()
+        kkiLogViewModel.clearList()
     }
 }

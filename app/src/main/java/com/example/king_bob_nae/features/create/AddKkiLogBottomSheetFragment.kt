@@ -31,12 +31,12 @@ class AddKkiLogBottomSheetFragment :
             }
 
             llSimpleKkiLog.setOnClickListener {
-                navController.navigate(R.id.action_homeFragment_to_imagePickerFragment)
+                navController.navigate(R.id.imagePickerFragment)
                 dismiss()
             }
 
             llDetailKkiLog.setOnClickListener {
-                navController.navigate(R.id.action_homeFragment_to_detailKkiLogFragment)
+                navController.navigate(R.id.detailKkiLogFragment)
                 dismiss()
             }
         }
