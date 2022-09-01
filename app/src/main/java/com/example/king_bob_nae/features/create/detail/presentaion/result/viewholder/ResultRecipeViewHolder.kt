@@ -14,9 +14,10 @@ class ResultRecipeViewHolder(
         binding.viewModel = detailKkiLogViewModel
     }
 
-    fun bind(item: Recipe) {
+    fun bind(item: Recipe, position: Int) {
         binding.run {
             this.item = item
+            this.position = position + 1
             executePendingBindings()
         }
     }

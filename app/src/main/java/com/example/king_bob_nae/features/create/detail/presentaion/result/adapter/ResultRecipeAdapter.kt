@@ -27,7 +27,7 @@ class ResultRecipeAdapter(
     }
 
     override fun onBindViewHolder(holder: ResultRecipeViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), position)
     }
 
     companion object {

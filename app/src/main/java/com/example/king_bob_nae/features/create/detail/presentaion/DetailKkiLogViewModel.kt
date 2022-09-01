@@ -1,7 +1,6 @@
 package com.example.king_bob_nae.features.create.detail.presentaion
 
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.king_bob_nae.features.create.detail.domain.ConvertDescriptionListUseCase
@@ -155,20 +154,6 @@ class DetailKkiLogViewModel @Inject constructor(
         }
     }
 
-    fun updateRecipeDescription(item: KkiLogRecipe) {
-        viewModelScope.launch {
-            _recipeList.update {
-                _recipeList.value.map {
-                    if (it.stepNumber == item.stepNumber) {
-                        it.copy(description = emptyDescription.value)
-                    } else {
-                        it
-                    }
-                }
-            }
-        }
-    }
-
 //    fun updateRecipeDescription(item: KkiLogRecipe, description: String) {
 //        viewModelScope.launch {
 //            emptyDescription.value = description
@@ -203,11 +188,10 @@ class DetailKkiLogViewModel @Inject constructor(
         updateIngredientsJob[item.num]?.cancel()
         viewModelScope.launch {
             delay(500)
-            emptyIngredient.value = ingredient
             _ingredientList.update {
                 _ingredientList.value.map {
                     if (it.num == item.num) {
-                        it.copy(ingredient = emptyIngredient.value)
+                        it.copy(ingredient = ingredient)
                     } else {
                         it
                     }
@@ -215,6 +199,26 @@ class DetailKkiLogViewModel @Inject constructor(
             }
         }.also {
             updateIngredientsJob[item.num] = it
+        }
+    }
+
+    private val updateRecipeJob = hashMapOf<Int, Job>()
+    fun updateRecipeDescription(item: KkiLogRecipe, description: String) {
+        updateRecipeJob[item.stepNumber]?.cancel()
+        viewModelScope.launch {
+            delay(500)
+            emptyDescription.value = description
+            _recipeList.update {
+                _recipeList.value.map {
+                    if (it.stepNumber == item.stepNumber) {
+                        it.copy(description = emptyDescription.value)
+                    } else {
+                        it
+                    }
+                }
+            }
+        }.also {
+            updateRecipeJob[item.stepNumber] = it
         }
     }
 
@@ -258,6 +262,9 @@ class DetailKkiLogViewModel @Inject constructor(
     fun updateRecipeList(recipeList: List<KkiLogRecipe>) {
         viewModelScope.launch {
             _recipeList.value = recipeList
+        }
+        _recipeList.value.sortedBy {
+            it.stepNumber
         }
     }
 

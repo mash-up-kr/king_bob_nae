@@ -17,8 +17,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/et_ingredient"
+        <TextView
+            android:id="@+id/tv_ingredient"
             style="@style/Body1_Regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
