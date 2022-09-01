@@ -152,9 +152,8 @@ class DetailKkiLogViewModel @Inject constructor(
         }
     }
 
-    fun updateRecipeDescription(item: KkiLogRecipe, description: String) {
+    fun updateRecipeDescription(item: KkiLogRecipe) {
         viewModelScope.launch {
-            emptyDescription.value = description
             _recipeList.update {
                 _recipeList.value.map {
                     if (it.stepNumber == item.stepNumber) {
@@ -166,6 +165,35 @@ class DetailKkiLogViewModel @Inject constructor(
             }
         }
     }
+
+//    fun updateRecipeDescription(item: KkiLogRecipe, description: String) {
+//        viewModelScope.launch {
+//            emptyDescription.value = description
+//            _recipeList.update {
+//                _recipeList.value.map {
+//                    if (it.stepNumber == item.stepNumber) {
+//                        it.copy(description = emptyDescription.value)
+//                    } else {
+//                        it
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+//    fun updateIngredient(item: KkiLogIngredient) {
+//        viewModelScope.launch {
+//            _ingredientList.update {
+//                _ingredientList.value.map {
+//                    if (it.num == item.num) {
+//                        it.copy(ingredient = emptyIngredient.value)
+//                    } else {
+//                        it
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     fun updateIngredient(item: KkiLogIngredient, ingredient: String) {
         viewModelScope.launch {
