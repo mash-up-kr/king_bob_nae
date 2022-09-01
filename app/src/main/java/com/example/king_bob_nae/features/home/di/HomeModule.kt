@@ -3,10 +3,12 @@ package com.example.king_bob_nae.features.home.di
 import com.example.king_bob_nae.features.home.data.HomeApi
 import com.example.king_bob_nae.features.home.data.freindlist.RemoteGetFriendListImpl
 import com.example.king_bob_nae.features.home.data.freindsstatus.RemoteGetFriendsStatusImpl
+import com.example.king_bob_nae.features.home.data.friendshome.RemoteGetAllKkilogImpl
 import com.example.king_bob_nae.features.home.data.levelup.HomeLevelUpImpl
 import com.example.king_bob_nae.features.home.data.userstate.RemoteGetHomeUserStatusImpl
 import com.example.king_bob_nae.features.home.domain.freindlist.RemoteGetFriendList
 import com.example.king_bob_nae.features.home.domain.friendsStatus.RemoteGetFriendsUserStatus
+import com.example.king_bob_nae.features.home.domain.friendshome.RemoteGetAllkkilog
 import com.example.king_bob_nae.features.home.domain.levelup.HomeLevelUp
 import com.example.king_bob_nae.features.home.domain.userstate.RemoteGetHomeUserStatus
 import dagger.Binds
@@ -42,4 +44,8 @@ abstract class HomeModule {
     @Binds
     @Singleton
     abstract fun bindLevelUp(homeLevelUp: HomeLevelUpImpl): HomeLevelUp
+
+    @Binds
+    @Singleton
+    abstract fun bindAllKkilog(remoteGetAllKkilogImpl: RemoteGetAllKkilogImpl): RemoteGetAllkkilog
 }

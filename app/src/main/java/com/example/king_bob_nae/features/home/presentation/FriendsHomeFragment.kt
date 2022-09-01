@@ -13,6 +13,8 @@ import androidx.navigation.fragment.navArgs
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentFriendsHomeBinding
+import com.example.king_bob_nae.features.home.domain.friendshome.KkilogState
+import com.example.king_bob_nae.features.home.presentation.adapter.AllKkilogAdapter
 import com.example.king_bob_nae.features.home.presentation.adapter.UserListAdapter
 import com.example.king_bob_nae.features.home.presentation.viewmodel.HomeViewModel
 import com.example.king_bob_nae.features.myprofile.presentation.MyProfileActivity
@@ -24,6 +26,7 @@ import kotlinx.coroutines.launch
 class FriendsHomeFragment :
     BaseFragment<FragmentFriendsHomeBinding>(R.layout.fragment_friends_home) {
     private val userListAdapter by lazy { UserListAdapter(homeViewModel) }
+    private val allKkilogAdapter by lazy { AllKkilogAdapter(::itemClick) }
     private val homeViewModel: HomeViewModel by activityViewModels()
     var userId: Int = 0
 
@@ -38,8 +41,8 @@ class FriendsHomeFragment :
         userId = args.userId
 
         homeViewModel.setSelectedUserId(userId)
-        homeViewModel.getFriendsStatus()
 
+        binding.rvAllKkiLog.adapter = allKkilogAdapter
         binding.commonHomeLayout.rvFriends.apply {
             adapter = userListAdapter
         }
@@ -49,6 +52,9 @@ class FriendsHomeFragment :
         }
         binding.commonHomeLayout.ivAdd.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_followingFragment)
+        }
+        binding.tvSpeechBubble.setOnClickListener {
+            it.visibility = View.GONE
         }
     }
 
@@ -78,16 +84,28 @@ class FriendsHomeFragment :
                                     it
                                 )
                             findNavController().navigate(action)
+                            findNavController().popBackStack()
                         }
                     }
 
                     launch {
                         goFriendsHomeFragmentEvent.collect {
-                            homeViewModel.getFriendsStatus(it)
+                            homeViewModel.setSelectedUserId(it)
+                        }
+                    }
+
+                    launch {
+                        allKkilogList.collect { allKkilog ->
+                            allKkilogAdapter.submitList(allKkilog)
+                            binding.friendsCount = allKkilog.count()
                         }
                     }
                 }
             }
         }
+    }
+
+    private fun itemClick(kkilogState: KkilogState) {
+
     }
 }

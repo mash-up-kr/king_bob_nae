@@ -6,5 +6,4 @@ import javax.inject.Inject
 
 class HomeLevelUpImpl @Inject constructor(private val homeApi: HomeApi) : HomeLevelUp {
     override suspend fun postLevelUp() = homeApi.postLevelUp()
-
 }

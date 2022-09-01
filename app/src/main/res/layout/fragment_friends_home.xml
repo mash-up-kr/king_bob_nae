@@ -8,6 +8,10 @@
         <variable
             name="home"
             type="com.example.king_bob_nae.features.home.domain.userstate.HomeUserState" />
+
+        <variable
+            name="friendsCount"
+            type="Integer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,11 +83,12 @@
                     android:background="@drawable/radius_gray_stroke"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="2dp"
-                    android:text="30끼"
+                    android:text="@{@string/detail_kki_log_step_num(friendsCount)}"
                     android:textColor="@color/brown_gray_200"
                     app:layout_constraintBottom_toBottomOf="@id/tv_all"
                     app:layout_constraintStart_toEndOf="@id/tv_all"
-                    app:layout_constraintTop_toTopOf="@id/tv_all" />
+                    app:layout_constraintTop_toTopOf="@id/tv_all"
+                    tools:text="30끼" />
 
                 <TextView
                     android:id="@+id/tv_speech_bubble"
@@ -107,16 +112,15 @@
                     android:layout_width="0dp"
                     android:layout_height="200dp"
                     android:layout_marginHorizontal="24dp"
-                    android:layout_marginTop="25dp"
                     android:layout_marginBottom="20dp"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_all"
-                    tools:listitem="@layout/item_all_kki_log"
-                    tools:itemCount="2" />
+                    app:spanCount="2"
+                    tools:listitem="@layout/item_all_kki_log" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
