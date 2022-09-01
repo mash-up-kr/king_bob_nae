@@ -1,10 +1,13 @@
 package com.example.king_bob_nae.features.home.presentation.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.king_bob_nae.features.home.domain.freindlist.GetFriendListUseCase
 import com.example.king_bob_nae.features.home.domain.freindlist.UserListItem
 import com.example.king_bob_nae.features.home.domain.friendsStatus.GetFriendsStatusUseCase
+import com.example.king_bob_nae.features.home.domain.friendshome.GetAllKkilogUseCase
+import com.example.king_bob_nae.features.home.domain.friendshome.KkilogState
 import com.example.king_bob_nae.features.home.domain.levelup.HomeLevelUpUseCase
 import com.example.king_bob_nae.features.home.domain.userstate.GetHomeUserStateUseCase
 import com.example.king_bob_nae.features.home.domain.userstate.HomeUserState
@@ -22,6 +25,7 @@ class HomeViewModel @Inject constructor(
     private val friendsStatus: GetFriendsStatusUseCase,
     private val friendList: GetFriendListUseCase,
     private val levelUp: HomeLevelUpUseCase,
+    private val getAllKkilog: GetAllKkilogUseCase,
 ) : ViewModel() {
     private val _homeUserState: MutableStateFlow<HomeUserState> =
         MutableStateFlow<HomeUserState>(HomeUserState())
@@ -41,12 +45,14 @@ class HomeViewModel @Inject constructor(
     private val _goHomeFragmentEvent = MutableSharedFlow<Int>()
     val goHomeFragmentEvent = _goHomeFragmentEvent.asSharedFlow()
 
-    val isTutorial = MutableStateFlow(true)
+    private val _allKkilogList = MutableStateFlow<List<KkilogState>>(listOf())
+    val allKkilogList = _allKkilogList.asStateFlow()
 
-    var userId: Int = 0
+    private var userId: Int = 0
 
     fun setSelectedUserId(userId: Int) {
         this.userId = userId
+        getFriendsStatus()
     }
 
     fun getHomeStatus() {
@@ -83,6 +89,7 @@ class HomeViewModel @Inject constructor(
     fun getFriendsStatus() {
         viewModelScope.launch {
             _homeFriendsStatus.value = friendsStatus(userId)
+            getUserAllKkilogList()
         }
     }
 
@@ -92,6 +99,22 @@ class HomeViewModel @Inject constructor(
                 levelUp()
             }.onFailure {
                 // doNothing
+            }
+        }
+    }
+
+    fun getUserAllKkilogList() {
+        viewModelScope.launch {
+            kotlin.runCatching {
+                getAllKkilog(userId)
+            }.onSuccess { list ->
+                Log.d("tjrwn", "getUserAllKkilogList: $list 오긴함")
+                list?.let {
+                    _allKkilogList.value = list
+                }
+            }.onFailure {
+                Log.d("tjrwn", "getUserAllKkilogList:실패입니당 ${it.message} ")
+                // 에러입니다~
             }
         }
     }

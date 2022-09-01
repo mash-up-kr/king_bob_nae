@@ -6,12 +6,21 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.king_bob_nae.features.home.domain.userstate.HomeUserState
 
 @BindingAdapter("bindImage")
 fun ImageView.bindImage(url: String?) {
     url?.let {
         Glide.with(this).load(it).into(this)
+    }
+}
+
+@BindingAdapter("bindCircleImage")
+fun ImageView.bindCircleImage(url: String?) {
+    url?.let {
+        Glide.with(this).load(it).transform(CenterCrop(), RoundedCorners(20)).into(this)
     }
 }
 

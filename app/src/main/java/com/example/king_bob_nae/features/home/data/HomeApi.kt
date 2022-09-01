@@ -1,6 +1,7 @@
 package com.example.king_bob_nae.features.home.data
 
 import com.example.king_bob_nae.features.home.data.freindlist.Friends
+import com.example.king_bob_nae.features.home.data.friendshome.AllKkilogResult
 import com.example.king_bob_nae.features.home.data.levelup.LevelUpResult
 import com.example.king_bob_nae.features.home.data.userstate.HomeStatusResult
 import com.example.king_bob_nae.features.myprofile.data.UserProfile
@@ -27,4 +28,10 @@ interface HomeApi {
 
     @POST("home/level-up")
     suspend fun postLevelUp(): LevelUpResult
+
+    @GET("user/logs/{userId}")
+    suspend fun getUserAllKkilog(
+        @Path("userId")
+        userId: Int,
+    ): AllKkilogResult
 }

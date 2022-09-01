@@ -43,6 +43,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         binding.commonHomeLayout.rvFriends.apply {
             adapter = userListAdapter
         }
+        binding.commonHomeLayout.tvKkilog.text = "끼록"
         binding.ivMy.setOnClickListener {
             startActivity(Intent(requireActivity(), MyProfileActivity::class.java))
             requireActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
