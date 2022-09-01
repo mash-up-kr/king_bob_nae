@@ -39,6 +39,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun initView() {
+        homeViewModel.isTutorial.value = false
         binding.commonHomeLayout.rvFriends.apply {
             adapter = userListAdapter
         }

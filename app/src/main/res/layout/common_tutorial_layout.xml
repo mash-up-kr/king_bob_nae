@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_alarm_48"
+            android:contentDescription="@null"
+            app:layout_constraintEnd_toStartOf="@id/iv_my"
+            app:layout_constraintTop_toTopOf="@id/iv_my" />
+
+        <ImageView
+            android:id="@+id/iv_my"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/ic_mypage_48"
+            android:contentDescription="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/ic_add_friend"
+            android:contentDescription="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_today"
+            style="@style/Body2_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:text="@string/today_text"
+            android:textColor="@color/brown_gray_400"
+            app:layout_constraintStart_toStartOf="@id/iv_add"
+            app:layout_constraintTop_toBottomOf="@id/iv_add" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            style="@style/Body2_Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="7월 8일"
+            android:textColor="@color/brown_gray_400"
+            app:layout_constraintBottom_toBottomOf="@id/tv_today"
+            app:layout_constraintStart_toEndOf="@id/tv_today"
+            app:layout_constraintTop_toTopOf="@id/tv_today" />
+
+        <TextView
+            android:id="@+id/tv_kkilog"
+            style="@style/Headline1_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@string/kki_log_text"
+            android:textColor="@color/brown_gray_400"
+            app:layout_constraintStart_toStartOf="@id/tv_today"
+            app:layout_constraintTop_toBottomOf="@id/tv_today" />
+
+        <TextView
+            android:id="@+id/tv_count"
+            style="@style/Headline2_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/radius_orange_stroke"
+            android:paddingStart="12dp"
+            android:paddingEnd="4.5dp"
+            android:text="1끼"
+            android:textColor="@color/main_orange"
+            app:drawableEndCompat="@drawable/ic_plus_18"
+            app:layout_constraintBottom_toBottomOf="@id/tv_kkilog"
+            app:layout_constraintStart_toEndOf="@id/tv_kkilog"
+            app:layout_constraintTop_toTopOf="@id/tv_kkilog" />
+
+        <ImageView
+            android:id="@+id/iv_character"
+            android:layout_width="0dp"
+            android:layout_height="240dp"
+            android:contentDescription="@null"
+            android:src="@drawable/carrot_lv3_happy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_kkilog" />
+
+        <TextView
+            android:id="@+id/tv_click"
+            style="@style/Body2_Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/home_click_text"
+            android:textColor="@color/brown_gray_200"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/iv_character"
+            app:layout_constraintStart_toStartOf="@id/iv_character"
+            app:layout_constraintTop_toBottomOf="@id/iv_character" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="52dp"
+            app:layout_constraintStart_toEndOf="@id/iv_add"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_tutorial_friend" />
+
+        <LinearLayout
+            android:id="@+id/ll_left"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/line_top_and_bottom"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/view_divide_line"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/tv_nickname"
+                style="@style/Body2_Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="16dp"
+                android:text="콩순이"
+                android:textColor="@color/brown_gray_200" />
+
+            <TextView
+                android:id="@+id/tv_one_word"
+                style="@style/Body1_Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="16dp"
+                android:text="밥먹어서 신난다~"
+                android:textColor="@color/brown_gray_400" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_divide_line"
+            android:layout_width="0.75px"
+            android:layout_height="76dp"
+            android:layout_marginEnd="1dp"
+            android:background="@color/brown_gray_300"
+            app:layout_constraintBottom_toBottomOf="@id/ll_right"
+            app:layout_constraintEnd_toStartOf="@id/ll_right"
+            app:layout_constraintTop_toTopOf="@id/ll_right" />
+
+        <LinearLayout
+            android:id="@+id/ll_right"
+            android:layout_width="79dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/line_top_and_bottom"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ProgressBar
+                android:id="@+id/progress_lv"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="20dp"
+                android:max="100"
+                android:progressDrawable="@drawable/progress_lv" />
+
+            <TextView
+                android:id="@+id/tv_level"
+                style="@style/Caption_Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:text="level 1"
+                android:textColor="@color/brown_gray_300" />
+
+            <TextView
+                android:id="@+id/tv_total_kkirok_count"
+                style="@style/Caption_Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="5/10끼니"
+                android:textColor="@color/brown_gray_200" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
