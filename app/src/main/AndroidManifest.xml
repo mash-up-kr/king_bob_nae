@@ -58,11 +58,14 @@
         </activity>
         <activity
             android:name=".features.myprofile.presentation.MyProfileActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:taskAffinity="com.kkiloh.multiFinish" />
         <activity
             android:name=".features.HomeActivity"
             android:exported="true"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
+            android:taskAffinity="com.kkiloh.multiFinish"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".features.intro.presentation.IntroActivity"

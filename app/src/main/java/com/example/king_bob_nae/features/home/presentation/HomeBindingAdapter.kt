@@ -38,7 +38,7 @@ fun ImageView.bindHomeImage(home: HomeUserState?) {
                 // do nothing
             }
         } else {
-            if (home.level == "Lv.3") {
+            if (home.level == "Lv.3" || home.isFriend) {
                 visibility = View.VISIBLE
                 home.largeImageUrl.let {
                     Glide.with(this).load(it).into(this)
@@ -54,7 +54,7 @@ fun ImageView.bindHomeImage(home: HomeUserState?) {
 fun TextView.clickTextVisible(home: HomeUserState?) {
     home?.let {
         visibility = if (home.progressBar >= home.max) {
-            if (home.level != "Lv.3") {
+            if (home.level != "Lv.3" && !home.isFriend) {
                 View.VISIBLE
             } else {
                 View.GONE
@@ -69,7 +69,7 @@ fun TextView.clickTextVisible(home: HomeUserState?) {
 fun LottieAnimationView.bindLottie(home: HomeUserState?) {
     home?.let {
         visibility = if (home.progressBar >= home.max) {
-            if (home.level != "Lv.3") {
+            if (home.level != "Lv.3" && !home.isFriend) {
                 View.VISIBLE
             } else {
                 View.GONE
