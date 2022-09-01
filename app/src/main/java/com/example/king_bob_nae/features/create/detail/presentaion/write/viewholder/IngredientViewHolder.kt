@@ -34,6 +34,10 @@ class IngredientViewHolder(
 //                }
 //            }
 //        }
+
+        binding.etIngredient.viewTreeObserver.addOnGlobalLayoutListener {
+            binding.etIngredient.setSelection(binding.etIngredient.length())
+        }
     }
 
     fun bind(item: KkiLogIngredient) {

@@ -1,6 +1,7 @@
 package com.example.king_bob_nae.features.create.detail.presentaion
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.king_bob_nae.features.create.detail.domain.ConvertDescriptionListUseCase
@@ -13,6 +14,8 @@ import com.example.king_bob_nae.features.create.detail.domain.model.KkiLogRecipe
 import com.example.king_bob_nae.utils.NLog
 import com.example.king_bob_nae.utils.stringToRequestBody
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
@@ -195,8 +198,11 @@ class DetailKkiLogViewModel @Inject constructor(
 //        }
 //    }
 
+    private val updateIngredientsJob = hashMapOf<Int, Job>()
     fun updateIngredient(item: KkiLogIngredient, ingredient: String) {
+        updateIngredientsJob[item.num]?.cancel()
         viewModelScope.launch {
+            delay(500)
             emptyIngredient.value = ingredient
             _ingredientList.update {
                 _ingredientList.value.map {
@@ -207,6 +213,8 @@ class DetailKkiLogViewModel @Inject constructor(
                     }
                 }
             }
+        }.also {
+            updateIngredientsJob[item.num] = it
         }
     }
 
