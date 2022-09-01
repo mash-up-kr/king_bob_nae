@@ -134,8 +134,9 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_ingredient"
+                    setIngredientList="@{viewModel.detailKkiLogResult.ingredients}"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="100dp"
                     android:layout_marginEnd="24dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -157,8 +158,9 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_recipe"
+                    setRecipeList="@{viewModel.detailKkiLogResult.recipes}"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="100dp"
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="12dp"

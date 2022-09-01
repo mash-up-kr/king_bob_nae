@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -44,7 +44,7 @@ class DetailKkiLogFragment :
     BaseFragment<FragmentDetailKkiLogBinding>(R.layout.fragment_detail_kki_log),
     RecipeItemDragListener {
 
-    private val detailKkiLogViewModel by viewModels<DetailKkiLogViewModel>()
+    private val detailKkiLogViewModel by activityViewModels<DetailKkiLogViewModel>()
     private val detailKkiLogIngredientAdapter by lazy {
         DetailKkiLogIngredientAdapter(
             detailKkiLogViewModel
@@ -164,7 +164,8 @@ class DetailKkiLogFragment :
 
                     launch {
                         detailKkiLogResult.collect {
-                            findNavController().navigate(R.id.action_detailKkiLogFragment_to_detailKkiLogResultFragment)
+                            if (it.id != 0)
+                                findNavController().navigate(R.id.action_detailKkiLogFragment_to_detailKkiLogResultFragment)
                         }
                     }
                 }

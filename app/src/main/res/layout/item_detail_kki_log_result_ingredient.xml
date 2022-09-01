@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="item"
+            type="String" />
+
+        <variable
+            name="viewModel"
+            type="com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_ingredient"
+            style="@style/Body1_Regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:autofillHints="no"
+            android:ellipsize="end"
+            android:hint="예) 소고기 300g"
+            android:maxLines="1"
+            android:paddingBottom="20dp"
+            android:text="@{item}"
+            android:textColor="@color/brown_gray_500"
+            android:textColorHint="@color/brown_gray_200" />
+
+    </RelativeLayout>
+</layout>
