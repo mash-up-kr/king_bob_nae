@@ -67,7 +67,7 @@
         tools:layout="@layout/fragment_my_kkilog" />
     <fragment
         android:id="@+id/detailKkiLogFragment"
-        android:name="com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogFragment"
+        android:name="com.example.king_bob_nae.features.create.detail.presentaion.write.DetailKkiLogFragment"
         android:label="DetailKkiLogFragment"
         tools:layout="@layout/fragment_detail_kki_log">
         <action
@@ -81,7 +81,7 @@
         tools:layout="@layout/fragment_detail_kki_log_result_item" />
     <fragment
         android:id="@+id/detailKkiLogResultFragment"
-        android:name="com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogResultFragment"
+        android:name="com.example.king_bob_nae.features.create.detail.presentaion.result.DetailKkiLogResultFragment"
         android:label="DetailKkiLogResultFragment"
         tools:layout="@layout/fragment_detail_kki_log_result">
         <action
