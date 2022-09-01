@@ -57,7 +57,11 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 introViewModel.signInResult.collect { signInResponse ->
                     if (signInResponse.result) {
-                        startActivity(Intent(requireContext(), HomeActivity::class.java))
+                        startActivity(
+                            Intent(requireContext(), HomeActivity::class.java).setFlags(
+                                Intent.FLAG_ACTIVITY_NEW_TASK
+                            )
+                        )
                         requireActivity().apply {
                             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
                             finish()

@@ -33,6 +33,7 @@ class LogoutDialog : BaseDialogFragment<DialogLogoutBinding>(R.layout.dialog_log
             Intent(requireContext(), IntroActivity::class.java).apply {
                 startActivity(this)
             }
+            requireActivity().finishAffinity()
         }
         binding.btnLogoutCancel.setOnClickListener {
             dismiss()
