@@ -1,9 +1,11 @@
 package com.example.king_bob_nae.utils
 
 import android.os.Looper
+import android.widget.EditText
 import androidx.annotation.CheckResult
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.ViewDataBinding
 import com.example.king_bob_nae.R

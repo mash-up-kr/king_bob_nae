@@ -37,7 +37,7 @@
             app:layout_constraintTop_toTopOf="@id/iv_back" />
 
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_finish"
             style="@style/Caption_Bold"
             android:layout_width="42dp"

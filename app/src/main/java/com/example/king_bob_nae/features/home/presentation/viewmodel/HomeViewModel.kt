@@ -48,6 +48,8 @@ class HomeViewModel @Inject constructor(
     private val _allKkilogList = MutableStateFlow<List<KkilogState>>(listOf())
     val allKkilogList = _allKkilogList.asStateFlow()
 
+    val isTutorial = MutableStateFlow<Boolean>(true)
+
     private var userId: Int = 0
 
     fun setSelectedUserId(userId: Int) {

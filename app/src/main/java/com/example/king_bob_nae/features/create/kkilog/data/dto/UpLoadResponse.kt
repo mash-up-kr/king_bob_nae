@@ -4,7 +4,6 @@ import androidx.annotation.Keep
 import com.example.king_bob_nae.features.intro.data.dto.ErrorDto
 import kotlinx.serialization.Serializable
 
-
 @Keep
 @Serializable
 data class UpLoadResponse(
