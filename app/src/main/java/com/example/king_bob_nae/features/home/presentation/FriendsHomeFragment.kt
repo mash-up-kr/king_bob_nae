@@ -84,7 +84,6 @@ class FriendsHomeFragment :
                                     it
                                 )
                             findNavController().navigate(action)
-                            findNavController().popBackStack()
                         }
                     }
 

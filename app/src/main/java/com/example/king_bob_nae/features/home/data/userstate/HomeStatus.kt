@@ -9,7 +9,7 @@ data class HomeStatusResult(
     @SerializedName("error")
     val error: ErrorDto?,
     @SerializedName("data")
-    val data: HomeStatus
+    val data: HomeStatus,
 )
 
 data class HomeStatus(
@@ -30,7 +30,9 @@ data class HomeStatus(
     @SerializedName("status")
     val status: CharacterStatus,
     @SerializedName("type")
-    val type: CHARACTER
+    val type: CHARACTER,
+    @SerializedName("isFriend")
+    val isFriend: Boolean,
 ) {
     data class LogStats(
         @SerializedName("level")
@@ -42,6 +44,6 @@ data class HomeStatus(
         @SerializedName("today")
         val today: Int,
         @SerializedName("total")
-        val total: Int
+        val total: Int,
     )
 }

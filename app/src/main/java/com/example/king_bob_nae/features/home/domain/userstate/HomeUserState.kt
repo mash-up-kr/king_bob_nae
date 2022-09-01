@@ -15,4 +15,5 @@ data class HomeUserState(
     val largeImageUrl: String = "",
     val smallImageUrl: String = "",
     val totalKkilogCount: Int = 0,
+    val isFriend: Boolean = false,
 )
