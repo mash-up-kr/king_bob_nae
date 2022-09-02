@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.king_bob_nae.features.create.kkilog.data.KkiLogRecipe
 import com.example.king_bob_nae.features.create.kkilog.data.dto.UpLoadDto
 import com.example.king_bob_nae.features.create.kkilog.data.getImageUrl
+import com.example.king_bob_nae.features.create.kkilog.domain.SavedKkilog
 import com.example.king_bob_nae.features.create.kkilog.domain.UpLoadKkiLogUseCase
 import com.example.king_bob_nae.features.create.kkilog.domain.ValidCheck
 import com.example.king_bob_nae.features.create.kkilog.presenter.adapter.FIRST_HOLDER
@@ -25,6 +26,8 @@ class KkiLogViewModel @Inject constructor(
     val imageList = _imageList.asStateFlow()
 
     val isValidFormat = MutableStateFlow(ValidCheck())
+
+    val savedKkilog = MutableStateFlow(SavedKkilog())
 
     fun setImageList(imageList: ArrayList<KkiLogRecipe>) {
         _imageList.value = _imageList.value + imageList
@@ -64,5 +67,19 @@ class KkiLogViewModel @Inject constructor(
 
     fun checkImageEmpty(state: Boolean) {
         isValidFormat.update { isValidFormat.value.copy(isImageEmpty = state) }
+    }
+
+    fun saveKkilog(title: String, description: String?, kick: String?) {
+        savedKkilog.update {
+            savedKkilog.value.copy(
+                title = title,
+                description = description,
+                kick = kick
+            )
+        }
+    }
+
+    fun clearSaved() {
+        savedKkilog.value = SavedKkilog()
     }
 }

@@ -38,10 +38,11 @@ class KkiLogFragment : BaseFragment<FragmentKkiLogBinding>(R.layout.fragment_kki
     }
 
     private fun initView() {
+        kkiLogViewModel.checkTitleEmpty(true)
         binding.apply {
             rvPhoto.adapter = foodListAdapter
             ivBack.setOnClickListener {
-                kkiLogViewModel.clearList()
+                clearList()
                 kkiLogViewModel.checkTitleEmpty(true)
                 findNavController().popBackStack()
             }
@@ -58,6 +59,11 @@ class KkiLogFragment : BaseFragment<FragmentKkiLogBinding>(R.layout.fragment_kki
                 kkiLogViewModel.checkTitleEmpty(text.isNullOrBlank())
             }
         }
+    }
+
+    private fun clearList() {
+        kkiLogViewModel.clearList()
+        kkiLogViewModel.clearSaved()
     }
 
     private fun collectFlow() {
@@ -77,6 +83,15 @@ class KkiLogFragment : BaseFragment<FragmentKkiLogBinding>(R.layout.fragment_kki
                             binding.btnFinish.isEnabled(true)
                     }
                 }
+                launch {
+                    kkiLogViewModel.savedKkilog.collect { uiState ->
+                        binding.apply {
+                            etFoodName.setText(uiState.title)
+                            etFoodDescription.setText(uiState.description)
+                            etMyKick.setText(uiState.kick)
+                        }
+                    }
+                }
             }
         }
     }
@@ -93,6 +108,11 @@ class KkiLogFragment : BaseFragment<FragmentKkiLogBinding>(R.layout.fragment_kki
                     kkiLogViewModel.getListCount()
                 )
             findNavController().navigate(action)
+            kkiLogViewModel.saveKkilog(
+                binding.etFoodName.text.toString(),
+                binding.etFoodDescription.text.toString(),
+                binding.etMyKick.text.toString()
+            )
         }
     }
 
@@ -110,5 +130,4 @@ class KkiLogFragment : BaseFragment<FragmentKkiLogBinding>(R.layout.fragment_kki
         super.onDetach()
         callback.remove()
     }
-
 }
