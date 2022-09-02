@@ -8,6 +8,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_kkilog"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -74,98 +75,199 @@
             app:layout_constraintStart_toStartOf="@id/rv_photo"
             app:layout_constraintTop_toBottomOf="@id/rv_photo" />
 
-        <EditText
-            android:id="@+id/et_food_name"
-            style="@style/Body1_Bold"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:autofillHints="no"
-            android:background="@null"
-            android:hint="@string/kkilog_food_name_text"
-            android:inputType="text"
-            android:maxLength="20"
-            android:textColor="@color/brown_gray_500"
-            android:textColorHint="@color/brown_gray_200"
-            app:layout_constraintEnd_toEndOf="@id/view_divide_top"
-            app:layout_constraintStart_toStartOf="@id/view_divide_top"
-            app:layout_constraintTop_toBottomOf="@id/view_divide_top" />
-
-        <View
-            android:id="@+id/view_divide_bottom"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="16dp"
-            android:background="@color/brown_gray_100"
-            app:layout_constraintEnd_toEndOf="@id/et_food_name"
-            app:layout_constraintStart_toStartOf="@id/et_food_name"
-            app:layout_constraintTop_toBottomOf="@id/et_food_name" />
-
         <ScrollView
-            android:id="@+id/scrollView"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="42dp"
-            app:layout_constraintBottom_toTopOf="@id/et_my_kick"
-            app:layout_constraintEnd_toEndOf="@id/view_divide_bottom"
-            app:layout_constraintStart_toStartOf="@id/view_divide_bottom"
-            app:layout_constraintTop_toBottomOf="@id/view_divide_bottom">
+            android:layout_below="@id/cl_kkilog"
+            android:fillViewport="true"
+            android:paddingHorizontal="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_divide_top">
 
-            <EditText
-                android:id="@+id/et_food_description"
-                style="@style/Body3"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints="no"
-                android:background="@null"
-                android:hint="@string/kkilog_food_description_text"
-                android:inputType="text"
-                android:maxLength="300"
-                android:textColor="@color/brown_gray_500"
-                android:textColorHint="@color/brown_gray_200" />
+                android:layout_height="0dp">
+
+                <EditText
+                    android:id="@+id/et_food_name"
+                    style="@style/Body1_Bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:autofillHints="no"
+                    android:background="@null"
+                    android:hint="@string/kkilog_food_name_text"
+                    android:inputType="text"
+                    android:maxLength="20"
+                    android:textColor="@color/brown_gray_500"
+                    android:textColorHint="@color/brown_gray_200"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view_divide_bottom"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/brown_gray_100"
+                    app:layout_constraintEnd_toEndOf="@id/et_food_name"
+                    app:layout_constraintStart_toStartOf="@id/et_food_name"
+                    app:layout_constraintTop_toBottomOf="@id/et_food_name" />
+
+                <ScrollView
+                    android:id="@+id/scrollView"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="42dp"
+                    app:layout_constraintBottom_toTopOf="@id/et_my_kick"
+                    app:layout_constraintEnd_toEndOf="@id/view_divide_bottom"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/view_divide_bottom"
+                    app:layout_constraintTop_toBottomOf="@id/view_divide_bottom"
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <EditText
+                        android:id="@+id/et_food_description"
+                        style="@style/Body3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="no"
+                        android:background="@null"
+                        android:hint="@string/kkilog_food_description_text"
+                        android:inputType="text"
+                        android:maxLength="300"
+                        android:textColor="@color/brown_gray_500"
+                        android:textColorHint="@color/brown_gray_200" />
+                </ScrollView>
+
+                <EditText
+                    android:id="@+id/et_my_kick"
+                    style="@style/Body3"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="12dp"
+                    android:autofillHints="no"
+                    android:background="@drawable/radius_ivory"
+                    android:hint="@string/kkilog_kick_hint_text"
+                    android:inputType="text"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="12dp"
+                    android:textColor="@color/brown_gray_500"
+                    android:textColorHint="@color/brown_gray_200"
+                    app:layout_constraintBottom_toTopOf="@id/tv_kick_count"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginBottom="40dp"
+                    android:background="@drawable/ic_my_kick"
+                    android:contentDescription="@null"
+                    android:maxLength="20"
+                    app:layout_constraintBottom_toBottomOf="@id/et_my_kick"
+                    app:layout_constraintStart_toStartOf="@id/et_my_kick" />
+
+                <TextView
+                    android:id="@+id/tv_kick_count"
+                    style="@style/Caption_Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="42dp"
+                    android:text="@string/kkilog_kick_count"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <!--  <EditText
+                  android:id="@+id/et_food_name2"
+                  style="@style/Body1_Bold"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="16dp"
+                  android:autofillHints="no"
+                  android:background="@null"
+                  android:hint="@string/kkilog_food_name_text"
+                  android:inputType="text"
+                  android:maxLength="20"
+                  android:textColor="@color/brown_gray_500"
+                  app:layout_constraintTop_toTopOf="parent"
+                  android:textColorHint="@color/brown_gray_200" />
+-->
+
+
         </ScrollView>
 
-        <EditText
-            android:id="@+id/et_my_kick"
-            style="@style/Body3"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="12dp"
-            android:autofillHints="no"
-            android:background="@drawable/radius_ivory"
-            android:hint="@string/kkilog_kick_hint_text"
-            android:inputType="text"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="12dp"
-            android:textColor="@color/brown_gray_500"
-            android:textColorHint="@color/brown_gray_200"
-            app:layout_constraintBottom_toTopOf="@id/tv_kick_count"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+        <!--
+         <ScrollView
+             android:id="@+id/scrollView"
+             android:layout_width="0dp"
+             android:layout_height="0dp"
+             android:layout_marginTop="12dp"
+             android:layout_marginBottom="42dp"
+             app:layout_constraintBottom_toTopOf="@id/et_my_kick"
+             app:layout_constraintEnd_toEndOf="@id/view_divide_bottom"
+             app:layout_constraintStart_toStartOf="@id/view_divide_bottom"
+             app:layout_constraintTop_toBottomOf="@id/view_divide_bottom">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginBottom="40dp"
-            android:background="@drawable/ic_my_kick"
-            android:contentDescription="@null"
-            android:maxLength="20"
-            app:layout_constraintBottom_toBottomOf="@id/et_my_kick"
-            app:layout_constraintStart_toStartOf="@id/et_my_kick" />
+             <EditText
+                 android:id="@+id/et_food_description"
+                 style="@style/Body3"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:autofillHints="no"
+                 android:background="@null"
+                 android:hint="@string/kkilog_food_description_text"
+                 android:inputType="text"
+                 android:maxLength="300"
+                 android:textColor="@color/brown_gray_500"
+                 android:textColorHint="@color/brown_gray_200" />
+         </ScrollView>
 
-        <TextView
-            android:id="@+id/tv_kick_count"
-            style="@style/Caption_Regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="42dp"
-            android:text="@string/kkilog_kick_count"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+         <EditText
+             android:id="@+id/et_my_kick"
+             style="@style/Body3"
+             android:layout_width="0dp"
+             android:layout_height="48dp"
+             android:layout_marginHorizontal="24dp"
+             android:layout_marginBottom="12dp"
+             android:autofillHints="no"
+             android:background="@drawable/radius_ivory"
+             android:hint="@string/kkilog_kick_hint_text"
+             android:inputType="text"
+             android:paddingHorizontal="12dp"
+             android:paddingVertical="12dp"
+             android:textColor="@color/brown_gray_500"
+             android:textColorHint="@color/brown_gray_200"
+             app:layout_constraintBottom_toTopOf="@id/tv_kick_count"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent" />
+
+         <ImageView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="5dp"
+             android:layout_marginBottom="40dp"
+             android:background="@drawable/ic_my_kick"
+             android:contentDescription="@null"
+             android:maxLength="20"
+             app:layout_constraintBottom_toBottomOf="@id/et_my_kick"
+             app:layout_constraintStart_toStartOf="@id/et_my_kick" />
+
+         <TextView
+             android:id="@+id/tv_kick_count"
+             style="@style/Caption_Regular"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginEnd="24dp"
+             android:layout_marginBottom="42dp"
+             android:text="@string/kkilog_kick_count"
+             app:layout_constraintBottom_toBottomOf="parent"
+             app:layout_constraintEnd_toEndOf="parent" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
