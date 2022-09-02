@@ -153,7 +153,7 @@
     <string name="level_up_dialog_text">"끼록을 먹고 자라면서 더욱 튼튼해졌어요.\n앞으로도 함께해요.</string>
     <string name="level_up_dialog_button_text">기쁘게 반겨주기</string>
 
-    <string name="detail_kki_log_step_num">%d끼</string>
+   <!-- <string name="detail_kki_log_step_num">%d끼</string>-->
 
     <string name="detail_kki_log_step_num">STEP.%d</string>
     <string name="detail_kki_log_introduce_length_count">%d/20자</string>
