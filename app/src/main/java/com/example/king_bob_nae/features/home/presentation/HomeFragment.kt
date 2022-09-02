@@ -43,9 +43,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         binding.commonHomeLayout.rvFriends.apply {
             adapter = userListAdapter
         }
-        binding.tvNickname.setOnClickListener { // 테스트 떔에 넣은 click
-            findNavController().navigate(R.id.kkilogResultFragment)
-        }
         binding.commonHomeLayout.tvKkilog.text = "끼록"
         binding.ivMy.setOnClickListener {
             startActivity(Intent(requireActivity(), MyProfileActivity::class.java))

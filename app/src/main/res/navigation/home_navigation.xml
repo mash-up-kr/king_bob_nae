@@ -71,6 +71,12 @@
         android:label="MyKkiLogFragment"
         tools:layout="@layout/fragment_my_kkilog">
         <action
+            android:id="@+id/action_myKkiLogFragment_to_myDetailKkiLogFragment"
+            app:destination="@id/myDetailKkiLogFragment" />
+        <action
+            android:id="@+id/action_myKkiLogFragment_to_mySimpleKkiLogFragment"
+            app:destination="@id/mySimpleKkiLogFragment" />
+        <action
             android:id="@+id/action_myKkiLogFragment_to_kkilogResultFragment"
             app:destination="@id/kkilogResultFragment" />
     </fragment>
@@ -184,4 +190,20 @@
         android:name="com.example.king_bob_nae.features.mykkilog.presentation.detail.DetailResultItemFragment"
         android:label="DetailResultItemFragment"
         tools:layout="@layout/fragment_detail_result_item" />
+
+    <fragment
+        android:id="@+id/mySimpleKkiLogFragment"
+        android:name="com.example.king_bob_nae.features.mykkilog.presentation.mykkilog.MySimpleKkiLogFragment"
+        android:label="MySimpleKkiLogFragment"
+        tools:layout="@layout/fragment_my_simple_kkilog">
+        <action
+            android:id="@+id/action_mySimpleKkiLogFragment_to_kkilogResultFragment"
+            app:destination="@id/kkilogResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myDetailKkiLogFragment"
+        android:name="com.example.king_bob_nae.features.mykkilog.presentation.mykkilog.MyDetailKkiLogFragment"
+        android:label="MyDetailKkiLogFragment"
+        tools:layout="@layout/fragment_my_detail_kkilog"/>
+
 </navigation>

@@ -32,6 +32,6 @@ fun Friends.toUserListItem() = this.friends.map {
 }
 
 fun List<AllKkilogItem>.toKkilogState() = this.map {
-    KkilogState(imageUrl = it.image.original, title = it.title, type = if (it.type == "detail") "상세 끼록" else "간단 끼록"
+    KkilogState(id = it.id, imageUrl = it.image.original, title = it.title, type = if (it.type == "detail") "상세 끼록" else "간단 끼록"
     )
 }

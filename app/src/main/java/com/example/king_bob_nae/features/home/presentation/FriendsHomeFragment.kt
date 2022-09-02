@@ -84,7 +84,6 @@ class FriendsHomeFragment :
                                     it
                                 )
                             findNavController().navigate(action)
-                            findNavController().popBackStack()
                         }
                     }
 
@@ -106,6 +105,7 @@ class FriendsHomeFragment :
     }
 
     private fun itemClick(kkilogState: KkilogState) {
-
+        val action = FriendsHomeFragmentDirections.actionFriendsHomeFragmentToKkilogResultFragment(kkilogState.id)
+        findNavController().navigate(action)
     }
 }

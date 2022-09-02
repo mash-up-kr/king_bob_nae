@@ -26,7 +26,7 @@ class MyKkiLogFragment : BaseFragment<FragmentMyKkilogBinding>(R.layout.fragment
     }
 }
 
-class ViewPagerAdapter(fragment: Fragment) :
+class ViewPagerAdapter(val fragment: Fragment) :
     FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int = NUM_TABS
 
