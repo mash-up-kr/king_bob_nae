@@ -82,6 +82,11 @@ class DetailKkiLogViewModel @Inject constructor(
 
     fun clearDetail() {
         _detailKkiLogResult.value = DetailKkiLogResult()
+        _descriptionList.value = emptyList()
+        _recipeList.value = emptyList()
+        _kkiLogIntroduce.value = ""
+        _kkiLogImage.value = null
+        addView()
     }
 
     fun setEmptyDescription(text: String) {
