@@ -9,8 +9,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
@@ -49,9 +47,6 @@ class DetailKkiLogResultFragment :
     private fun initView() {
         binding.viewModel = detailKkiLogResultViewModel
 
-        val navHostFragment =
-            requireActivity().supportFragmentManager.findFragmentById(R.id.home_nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
         binding.run {
             ivMore.setOnClickListener { view ->
                 PopupMenu(root.context, view).apply {
@@ -63,7 +58,7 @@ class DetailKkiLogResultFragment :
             }
 
             ivBack.setOnClickListener {
-                navController.navigate(R.id.action_detailKkiLogResultFragment_to_homeFragment)
+                it.findNavController().popBackStack()
             }
 
             rvIngredient.adapter = resultIngredientAdapter
@@ -79,7 +74,7 @@ class DetailKkiLogResultFragment :
                         recipeClickPosition.collect {
                             val list = detailKkiLogResult.value.recipes
                             detailKkiLogSharedViewModel.setKkiLogRecipeList(it to list)
-                            findNavController().navigate(R.id.action_detailKkiLogResultFragment_to_detailResultItemFragment)
+                            requireView().findNavController().navigate(R.id.action_detailKkiLogResultFragment_to_detailResultItemFragment)
                         }
                     }
                 }

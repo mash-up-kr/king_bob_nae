@@ -1,7 +1,6 @@
 package com.example.king_bob_nae.features.myprofile.presentation.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -125,7 +124,6 @@ class MyProfileMainFragment :
                 MyProfileMainFragmentDirections.actionMyProfileMainFragmentToDetailKkiLogResultFragment2(
                     scrapedImage.realId
                 )
-            Log.d("realId", "itemClick: ${scrapedImage.realId}")
             findNavController().navigate(action)
         } else {
             val action =
