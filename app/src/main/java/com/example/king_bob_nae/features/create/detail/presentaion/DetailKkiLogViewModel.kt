@@ -185,9 +185,10 @@ class DetailKkiLogViewModel @Inject constructor(
         viewModelScope.launch {
             delay(500)
             _recipeList.update {
+                emptyDescription.value = description
                 _recipeList.value.map {
                     if (it.stepNumber == item.stepNumber) {
-                        it.copy(description = description)
+                        it.copy(description = emptyDescription.value)
                     } else {
                         it
                     }
