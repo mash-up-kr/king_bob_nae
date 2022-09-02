@@ -22,8 +22,7 @@ class DetailKkiLogViewModel @Inject constructor(
     private val requestDetailKkiLogUseCase: RequestDetailKkiLogUseCase,
     private val convertIngredientListUseCase: ConvertIngredientListUseCase,
     private val convertDescriptionListUseCase: ConvertDescriptionListUseCase,
-    private val convertImageListUseCase: ConvertImageListUseCase,
-    private val sortByStepNumRecipeListUseCase: SortByStepNumRecipeListUseCase
+    private val convertImageListUseCase: ConvertImageListUseCase
 ) : ViewModel() {
 
     private val _kkiLogTitle = MutableStateFlow("") // 요리이름
@@ -253,9 +252,12 @@ class DetailKkiLogViewModel @Inject constructor(
     }
 
     fun orderRecipeList() {
+        var step = 1
         viewModelScope.launch {
-            sortByStepNumRecipeListUseCase(_recipeList.value).collect {
-                _recipeList.value = it
+            _recipeList.update {
+                _recipeList.value.map {
+                    it.copy(stepNumber = step++)
+                }
             }
         }
     }
