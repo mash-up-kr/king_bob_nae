@@ -61,7 +61,9 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_kkiLogFragment_to_kkilogResultFragment"
-            app:destination="@id/kkilogResultFragment" />
+            app:destination="@id/kkilogResultFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/myKkiLogFragment"

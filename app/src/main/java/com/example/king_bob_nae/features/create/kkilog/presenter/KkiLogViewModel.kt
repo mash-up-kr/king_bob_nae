@@ -10,6 +10,7 @@ import com.example.king_bob_nae.features.create.kkilog.domain.UpLoadKkiLogUseCas
 import com.example.king_bob_nae.features.create.kkilog.domain.ValidCheck
 import com.example.king_bob_nae.features.create.kkilog.presenter.adapter.FIRST_HOLDER
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -32,6 +33,8 @@ class KkiLogViewModel @Inject constructor(
     fun setImageList(imageList: ArrayList<KkiLogRecipe>) {
         _imageList.value = _imageList.value + imageList
     }
+
+    val kkilogId = MutableSharedFlow<Int>()
 
     fun clearList() {
         _imageList.update {
@@ -57,7 +60,11 @@ class KkiLogViewModel @Inject constructor(
     fun upLoadKkiLog(title: String, description: String?, kick: String?) {
         viewModelScope.launch {
             val dto = UpLoadDto(_imageList.value.getImageUrl(), title, description, kick)
-            upLoadKkiLogUseCase(dto)
+            runCatching {
+                upLoadKkiLogUseCase(dto)
+            }.getOrNull()?.data?.id?.also {
+                kkilogId.emit(it)
+            }
         }
     }
 

@@ -92,6 +92,13 @@ class KkiLogFragment : BaseFragment<FragmentKkiLogBinding>(R.layout.fragment_kki
                         }
                     }
                 }
+                launch {
+                    kkiLogViewModel.kkilogId.collect {
+                        val action =
+                            KkiLogFragmentDirections.actionKkiLogFragmentToKkilogResultFragment(it)
+                        findNavController().navigate(action)
+                    }
+                }
             }
         }
     }
