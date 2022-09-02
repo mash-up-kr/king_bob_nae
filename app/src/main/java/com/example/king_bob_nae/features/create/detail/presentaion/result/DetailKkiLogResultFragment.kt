@@ -2,11 +2,13 @@ package com.example.king_bob_nae.features.create.detail.presentaion.result
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -23,6 +25,7 @@ class DetailKkiLogResultFragment :
     private val detailKkiLogResultViewModel by activityViewModels<DetailKkiLogResultViewModel>()
     private val detailKkiLogSharedViewModel by activityViewModels<DetailKkiLogSharedViewModel>()
 
+    private lateinit var callback: OnBackPressedCallback
     private val resultIngredientAdapter by lazy {
         ResultIngredientAdapter(
             detailKkiLogResultViewModel
@@ -36,6 +39,8 @@ class DetailKkiLogResultFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        blockingBackPressed()
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
         initView()
         collectFlows()
         fetchDetailKkiLog()
@@ -58,7 +63,7 @@ class DetailKkiLogResultFragment :
             }
 
             ivBack.setOnClickListener {
-                navController.popBackStack()
+                navController.navigate(R.id.action_detailKkiLogResultFragment_to_homeFragment)
             }
 
             rvIngredient.adapter = resultIngredientAdapter
@@ -74,7 +79,7 @@ class DetailKkiLogResultFragment :
                         recipeClickPosition.collect {
                             val list = detailKkiLogResult.value.recipes
                             detailKkiLogSharedViewModel.setKkiLogRecipeList(it to list)
-                            findNavController().navigate(R.id.action_detailKkiLogResultFragment_to_detailKkiLogResultItemFragment)
+                            findNavController().navigate(R.id.action_detailKkiLogResultFragment_to_detailResultItemFragment)
                         }
                     }
                 }
@@ -85,5 +90,19 @@ class DetailKkiLogResultFragment :
     private fun fetchDetailKkiLog() {
         val args: DetailKkiLogResultFragmentArgs by navArgs()
         detailKkiLogResultViewModel.setKkiLogUserId(args.userId)
+    }
+
+    private fun blockingBackPressed() {
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireView().findNavController()
+                    .navigate(R.id.action_detailKkiLogResultFragment_to_homeFragment)
+            }
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        callback.remove()
     }
 }

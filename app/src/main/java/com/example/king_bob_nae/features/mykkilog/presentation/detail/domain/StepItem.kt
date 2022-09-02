@@ -1,6 +1,6 @@
 package com.example.king_bob_nae.features.mykkilog.presentation.detail.domain
 
-import com.example.king_bob_nae.features.create.detail.data.DetailKkiLogDto
+import com.example.king_bob_nae.features.create.detail.data.Recipe
 
 data class StepItem(
     val image: String,
@@ -8,14 +8,14 @@ data class StepItem(
     val description: String,
 )
 
-fun DetailKkiLogDto.toStep(): List<StepItem> {
+fun List<Recipe>.toStep(): List<StepItem> {
     val list = mutableListOf<StepItem>()
-    this.data.recipes.map {
+    this.map {
         list.add(
             StepItem(
                 image = it.image.w1024,
                 description = it.description,
-                step = this.data.recipes.indexOf(it) + 1
+                step = this.indexOf(it) + 1
             )
         )
     }

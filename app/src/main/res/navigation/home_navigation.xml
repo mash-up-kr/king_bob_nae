@@ -99,6 +99,14 @@
         <argument
             android:name="userId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_detailKkiLogResultFragment_to_detailResultItemFragment"
+            app:destination="@id/detailResultItemFragment" />
+        <action
+            android:id="@+id/action_detailKkiLogResultFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/followingFragment"
@@ -171,4 +179,9 @@
             app:argType="integer"
             app:nullable="false" />
     </fragment>
+    <fragment
+        android:id="@+id/detailResultItemFragment"
+        android:name="com.example.king_bob_nae.features.mykkilog.presentation.detail.DetailResultItemFragment"
+        android:label="DetailResultItemFragment"
+        tools:layout="@layout/fragment_detail_result_item" />
 </navigation>

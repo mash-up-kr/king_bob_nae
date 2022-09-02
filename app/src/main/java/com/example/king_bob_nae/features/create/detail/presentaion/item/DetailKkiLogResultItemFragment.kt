@@ -6,34 +6,49 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
-import com.example.king_bob_nae.databinding.FragmentDetailKkiLogResultItemBinding
+import com.example.king_bob_nae.databinding.FragmentDetailResultItemBinding
 import com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogSharedViewModel
-import com.example.king_bob_nae.utils.NLog
+import com.example.king_bob_nae.features.mykkilog.presentation.detail.DetailStepAdapter
+import com.example.king_bob_nae.features.mykkilog.presentation.detail.domain.toStep
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class DetailKkiLogResultItemFragment :
-    BaseFragment<FragmentDetailKkiLogResultItemBinding>(R.layout.fragment_detail_kki_log_result_item) {
+    BaseFragment<FragmentDetailResultItemBinding>(R.layout.fragment_detail_result_item) {
     private val detailKkiLogSharedViewModel by activityViewModels<DetailKkiLogSharedViewModel>()
-
+    private val stepAdapter = DetailStepAdapter(getSteps(), detailKkiLogSharedViewModel)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-        collectFlows()
+        collectFlow()
     }
 
     private fun initView() {
+        binding.apply {
+            ivItemCancel.setOnClickListener {
+                it.findNavController().popBackStack()
+            }
+            vpDetailStep.apply {
+                adapter = stepAdapter
+            }
+        }
     }
 
-    private fun collectFlows() {
-        lifecycleScope.launch {
+    private fun collectFlow() {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                // first: position, second: 레시피 리스트 , position은 1부터 시작
-                detailKkiLogSharedViewModel.recipePair.collect {
-                    NLog.d("kelly list", "${it.first} +/+ ${it.second}")
+                detailKkiLogSharedViewModel.recipePair.collectLatest { pair ->
+                    binding.vpDetailStep.apply {
+                        setCurrentItem(pair.first, false)
+                    }
                 }
             }
         }
     }
+
+    private fun getSteps() =
+        detailKkiLogSharedViewModel.recipePair.value.second.toStep()
 }

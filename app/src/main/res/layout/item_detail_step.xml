@@ -9,17 +9,37 @@
             name="step"
             type="com.example.king_bob_nae.features.mykkilog.presentation.detail.domain.StepItem" />
 
+        <variable
+            name="stepViewModel"
+            type="com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogSharedViewModel" />
+
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/tv_detail_result_count"
+            style="@style/Body1_Regular"
+            bindPosition="@{step.step}"
+            bindTotal="@{stepViewModel}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/brown_gray_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1/3" />
+
         <ImageView
             android:id="@+id/iv_step_image"
             bindImage="@{step.image}"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="41dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_step"
             app:layout_constraintEnd_toEndOf="parent"
