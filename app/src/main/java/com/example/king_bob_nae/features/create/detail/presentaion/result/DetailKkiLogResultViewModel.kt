@@ -24,6 +24,10 @@ class DetailKkiLogResultViewModel @Inject constructor(
     private val _detailKkiLogResult = MutableStateFlow(DetailKkiLogResult())
     val detailKkiLogResult = _detailKkiLogResult.asStateFlow()
 
+    private val _recipeClickPosition: MutableSharedFlow<Int> =
+        MutableSharedFlow()
+    val recipeClickPosition = _recipeClickPosition.asSharedFlow()
+
     fun setKkiLogUserId(userId: Int) {
         this.userId = userId
         fetchDetailKkiLogResult(userId)
@@ -38,6 +42,12 @@ class DetailKkiLogResultViewModel @Inject constructor(
                 }.collect {
                     _detailKkiLogResult.emit(it)
                 }
+        }
+    }
+
+    fun onRecipeClick(position: Int) {
+        viewModelScope.launch {
+            _recipeClickPosition.emit(position)
         }
     }
 }

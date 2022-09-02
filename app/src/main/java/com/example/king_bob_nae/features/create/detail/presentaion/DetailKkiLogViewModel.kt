@@ -195,7 +195,6 @@ class DetailKkiLogViewModel @Inject constructor(
                 }
             }
         }.also {
-            NLog.d("kelly recipeList", _recipeList.value.toString())
             updateRecipeJob[item.stepNumber] = it
         }
     }
@@ -230,7 +229,6 @@ class DetailKkiLogViewModel @Inject constructor(
                 }
             }
 //            NLog.d("kelly", "title = $title image = $kkiLogImage 한줄소개 = $introduce")
-//            NLog.d("kelly 레시피 리스트", recipeList.value.toString())
 //            NLog.d("kelly 재료 리스트", ingredientList)
 //            NLog.d("kelly 설명 리스트", descriptionList)
 //            NLog.d("kelly 이미지 리스트", recipeImageList.toString())

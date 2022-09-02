@@ -83,7 +83,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailKkiLogResultItemFragment"
-        android:name="com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogResultItemFragment"
+        android:name="com.example.king_bob_nae.features.create.detail.presentaion.item.DetailKkiLogResultItemFragment"
         android:label="DetailKkiLogResultItemFragment"
         tools:layout="@layout/fragment_detail_kki_log_result_item" />
     <fragment

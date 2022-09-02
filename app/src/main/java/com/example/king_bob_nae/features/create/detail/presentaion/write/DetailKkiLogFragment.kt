@@ -159,7 +159,7 @@ class DetailKkiLogFragment :
 
                     launch {
                         detailKkiLogResult.collect {
-
+                            NLog.d("kelly result", it.toString())
                             if (it.id != 0) {
                                 val action =
                                     DetailKkiLogFragmentDirections.actionDetailKkiLogFragmentToDetailKkiLogResultFragment(
