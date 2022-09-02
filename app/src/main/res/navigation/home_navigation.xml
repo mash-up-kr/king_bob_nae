@@ -131,6 +131,9 @@
         <action
             android:id="@+id/action_friendsHomeFragment_to_followingFragment"
             app:destination="@id/followingFragment" />
+        <action
+            android:id="@+id/action_friendsHomeFragment_to_detailKkiLogResultFragment"
+            app:destination="@id/detailKkiLogResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/firstTutorialFragment"

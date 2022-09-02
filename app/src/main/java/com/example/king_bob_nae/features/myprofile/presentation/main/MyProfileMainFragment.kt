@@ -1,6 +1,7 @@
 package com.example.king_bob_nae.features.myprofile.presentation.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -77,7 +78,8 @@ class MyProfileMainFragment :
                 requireActivity().finish()
             }
             tvMyProfileTotalKkilog.setOnClickListener {
-                it.findNavController().navigate(R.id.action_myProfileMainFragment_to_myKkiLogFragment)
+                it.findNavController()
+                    .navigate(R.id.action_myProfileMainFragment_to_myKkiLogFragment)
             }
             rvMyProfileScrap.adapter = myProfileAdapter
             rvMyProfileScrap.itemAnimator = null
@@ -118,7 +120,19 @@ class MyProfileMainFragment :
     }
 
     private fun itemClick(scrapedImage: UserProfileUiState.ScrapedImage) {
-        val action = MyProfileMainFragmentDirections.actionMyProfileMainFragmentToKkilogResultFragment(scrapedImage.realId)
-        findNavController().navigate(action)
+        if (scrapedImage.type == "상세 끼록") {
+            val action =
+                MyProfileMainFragmentDirections.actionMyProfileMainFragmentToDetailKkiLogResultFragment2(
+                    scrapedImage.realId
+                )
+            Log.d("realId", "itemClick: ${scrapedImage.realId}")
+            findNavController().navigate(action)
+        } else {
+            val action =
+                MyProfileMainFragmentDirections.actionMyProfileMainFragmentToKkilogResultFragment(
+                    scrapedImage.realId
+                )
+            findNavController().navigate(action)
+        }
     }
 }
