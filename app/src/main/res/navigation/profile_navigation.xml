@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_myProfileMainFragment_to_kkilogResultFragment"
             app:destination="@id/kkilogResultFragment" />
+        <action
+            android:id="@+id/action_myProfileMainFragment_to_myKkiLogFragment"
+            app:destination="@id/myKkiLogFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
@@ -54,4 +57,10 @@
             app:argType="integer"
             app:nullable="false" />
     </fragment>
+
+    <fragment
+        android:id="@+id/myKkiLogFragment"
+        android:name="com.example.king_bob_nae.features.mykkilog.presentation.mykkilog.MyKkiLogFragment"
+        android:label="MyKkilogFragment"
+        tools:layout="@layout/fragment_my_kkilog" />
 </navigation>

@@ -39,6 +39,6 @@ fun ImageView.bindKkilogBookMark(kkilog: KkilogResultUiState?) {
 @BindingAdapter("bindDate")
 fun TextView.bindDate(date: String?) {
     date?.let {
-        text = date
+        text = date.dropLast(15)
     }
 }

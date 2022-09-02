@@ -14,7 +14,9 @@ fun UserProfileResult.toUserProfileUiState() = UserProfileUiState(
     follower = "${this.data.followerCount}",
     max = this.data.logStats.max,
     scrapList = this.data.scrappedLogs.map {
-        UserProfileUiState.ScrapedImage(id = "${it.id}${it.type}",
+        UserProfileUiState.ScrapedImage(
+            realId = it.id,
+            id = "${it.id}${it.type}",
             title = it.title,
             imageUrl = it.image.original,
             type = if (it.type == "simple") "간단 끼록" else "상세 끼록")

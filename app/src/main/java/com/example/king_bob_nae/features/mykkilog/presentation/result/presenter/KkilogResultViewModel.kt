@@ -50,4 +50,8 @@ class KkilogResultViewModel @Inject constructor(
             _kkilogResultUiState.value.copy(likeCount = _kkilogResultUiState.value.likeCount - 1, isLiked = postKkilogUnLikeUseCase(id).isLike)
     }
 
+    suspend fun delteKkilog(id: Int) {
+        deleteUseCase(id)
+    }
+
 }

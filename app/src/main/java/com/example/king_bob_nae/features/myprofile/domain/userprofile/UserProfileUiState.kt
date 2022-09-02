@@ -14,6 +14,7 @@ data class UserProfileUiState(
     val email: String = "",
 ) {
     data class ScrapedImage(
+        val realId: Int = 0,
         val id: String = "",
         val clicked: Boolean = true,
         val title: String = "",

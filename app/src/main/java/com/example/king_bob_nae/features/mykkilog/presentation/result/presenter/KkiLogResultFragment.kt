@@ -1,5 +1,6 @@
 package com.example.king_bob_nae.features.mykkilog.presentation.result.presenter
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -41,8 +42,30 @@ class KkiLogResultFragment :
         binding.likeCardView.setOnThrottleClickListener {
             // 여기서는 navigate -> 팔로우 팔로워로 이동
         }
+        binding.ivMore.setOnClickListener {
+            createDeleteAlertDialog()
+        }
         initBookMarkClick()
         initLikeClick()
+    }
+
+    private fun createDeleteAlertDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle(R.string.alert)
+            .setMessage("해당 끼록을 삭제하시겠습니까?")
+            .setNegativeButton(R.string.alert_no) { _, _ -> }
+            .setPositiveButton(R.string.alert_yes) { _, _ ->
+                doDelete()
+                findNavController().popBackStack()
+            }.show()
+    }
+
+    private fun doDelete() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                resultViewModel.delteKkilog(4)
+            }
+        }
     }
 
     private fun initLikeClick() {
