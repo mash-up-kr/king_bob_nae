@@ -3,10 +3,7 @@ package com.example.king_bob_nae.features.create.detail.presentaion
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.king_bob_nae.features.create.detail.domain.ConvertDescriptionListUseCase
-import com.example.king_bob_nae.features.create.detail.domain.ConvertImageListUseCase
-import com.example.king_bob_nae.features.create.detail.domain.ConvertIngredientListUseCase
-import com.example.king_bob_nae.features.create.detail.domain.RequestDetailKkiLogUseCase
+import com.example.king_bob_nae.features.create.detail.domain.*
 import com.example.king_bob_nae.features.create.detail.domain.model.DetailKkiLogResult
 import com.example.king_bob_nae.features.create.detail.domain.model.KkiLogIngredient
 import com.example.king_bob_nae.features.create.detail.domain.model.KkiLogRecipe
@@ -25,7 +22,8 @@ class DetailKkiLogViewModel @Inject constructor(
     private val requestDetailKkiLogUseCase: RequestDetailKkiLogUseCase,
     private val convertIngredientListUseCase: ConvertIngredientListUseCase,
     private val convertDescriptionListUseCase: ConvertDescriptionListUseCase,
-    private val convertImageListUseCase: ConvertImageListUseCase
+    private val convertImageListUseCase: ConvertImageListUseCase,
+    private val sortByStepNumRecipeListUseCase: SortByStepNumRecipeListUseCase
 ) : ViewModel() {
 
     private val _kkiLogTitle = MutableStateFlow("") // 요리이름
@@ -60,9 +58,9 @@ class DetailKkiLogViewModel @Inject constructor(
 
     private val _recipeItem = MutableStateFlow(KkiLogRecipe())
 
-    private val _isEditMode: MutableSharedFlow<Boolean> =
-        MutableSharedFlow()
-    val isEditMode = _isEditMode.asSharedFlow()
+    private val _isEditMode: MutableStateFlow<Boolean> =
+        MutableStateFlow(false)
+    val isEditMode = _isEditMode.asStateFlow()
 
     private val _setKkiLogImageEvent: MutableSharedFlow<Unit> =
         MutableSharedFlow()
@@ -75,6 +73,8 @@ class DetailKkiLogViewModel @Inject constructor(
     private val _setRecipeDescriptionText: MutableSharedFlow<String> =
         MutableSharedFlow()
     val setRecipeDescriptionText = _setRecipeDescriptionText.asSharedFlow()
+
+    var kkiLogImagePosition = ""
 
     init {
         addView()
@@ -91,7 +91,7 @@ class DetailKkiLogViewModel @Inject constructor(
     private fun addView() {
         viewModelScope.launch {
             _ingredientList.emit(listOf(KkiLogIngredient(ingredientNum, "")))
-            _recipeList.emit(listOf(KkiLogRecipe(stepNum, "", null, null, false)))
+            _recipeList.emit(listOf(KkiLogRecipe(stepNum, "", null, null, _isEditMode.value)))
         }
     }
 
@@ -110,7 +110,13 @@ class DetailKkiLogViewModel @Inject constructor(
     fun addRecipe() {
         viewModelScope.launch {
             _recipeList.emit(
-                _recipeList.value.toMutableList() + KkiLogRecipe(++stepNum, "", null)
+                _recipeList.value.toMutableList() + KkiLogRecipe(
+                    ++stepNum,
+                    "",
+                    null,
+                    null,
+                    _isEditMode.value
+                )
             )
         }
     }
@@ -123,7 +129,7 @@ class DetailKkiLogViewModel @Inject constructor(
         }
     }
 
-    fun addRecipeImage(imageUri: Uri?, recipeImageBody: MultipartBody.Part?) {
+    fun setRecipeImage(imageUri: Uri?, recipeImageBody: MultipartBody.Part?) {
         viewModelScope.launch {
             _recipeList.update {
                 _recipeList.value.map {
@@ -141,47 +147,18 @@ class DetailKkiLogViewModel @Inject constructor(
         }
     }
 
+    fun setKKiLogImagePosition(type: String) {
+        kkiLogImagePosition = type
+    }
+
     fun setRecipeItem(item: KkiLogRecipe) {
         _recipeItem.value = item
     }
 
-    fun setImage(imageUri: Uri?, body: MultipartBody.Part?, body2: MultipartBody.Part?) {
-        if (_kkiLogImage.value == null) {
-            _kkiLogImage.value = imageUri
-            _kkiLogImageBody.value = body2
-        } else {
-            addRecipeImage(imageUri, body)
-        }
+    fun setBrandImage(imageUri: Uri?, body: MultipartBody.Part?) {
+        _kkiLogImage.value = imageUri
+        _kkiLogImageBody.value = body
     }
-
-//    fun updateRecipeDescription(item: KkiLogRecipe, description: String) {
-//        viewModelScope.launch {
-//            emptyDescription.value = description
-//            _recipeList.update {
-//                _recipeList.value.map {
-//                    if (it.stepNumber == item.stepNumber) {
-//                        it.copy(description = emptyDescription.value)
-//                    } else {
-//                        it
-//                    }
-//                }
-//            }
-//        }
-//    }
-
-//    fun updateIngredient(item: KkiLogIngredient) {
-//        viewModelScope.launch {
-//            _ingredientList.update {
-//                _ingredientList.value.map {
-//                    if (it.num == item.num) {
-//                        it.copy(ingredient = emptyIngredient.value)
-//                    } else {
-//                        it
-//                    }
-//                }
-//            }
-//        }
-//    }
 
     private val updateIngredientsJob = hashMapOf<Int, Job>()
     fun updateIngredient(item: KkiLogIngredient, ingredient: String) {
@@ -207,17 +184,17 @@ class DetailKkiLogViewModel @Inject constructor(
         updateRecipeJob[item.stepNumber]?.cancel()
         viewModelScope.launch {
             delay(500)
-            emptyDescription.value = description
             _recipeList.update {
                 _recipeList.value.map {
                     if (it.stepNumber == item.stepNumber) {
-                        it.copy(description = emptyDescription.value)
+                        it.copy(description = description)
                     } else {
                         it
                     }
                 }
             }
         }.also {
+            NLog.d("kelly recipeList", _recipeList.value.toString())
             updateRecipeJob[item.stepNumber] = it
         }
     }
@@ -260,17 +237,18 @@ class DetailKkiLogViewModel @Inject constructor(
     }
 
     fun updateRecipeList(recipeList: List<KkiLogRecipe>) {
+        _recipeList.value = recipeList
         viewModelScope.launch {
-            _recipeList.value = recipeList
-        }
-        _recipeList.value.sortedBy {
-            it.stepNumber
+            delay(500)
+            orderRecipeList()
         }
     }
 
-    fun onEditClick() {
+    fun orderRecipeList() {
         viewModelScope.launch {
-            _isEditMode.emit(_recipeList.value.first().isEditable)
+            sortByStepNumRecipeListUseCase(_recipeList.value).collect {
+                _recipeList.value = it
+            }
         }
     }
 
@@ -278,8 +256,8 @@ class DetailKkiLogViewModel @Inject constructor(
         val list = _recipeList.value.toMutableList()
         if (list.size == 1) {
             deleteRecipeItem(item)
-            stepNum = 1
             addRecipe()
+            changeEditMode()
         } else {
             deleteRecipeItem(item)
         }
@@ -287,25 +265,38 @@ class DetailKkiLogViewModel @Inject constructor(
 
     fun deleteRecipeItem(item: KkiLogRecipe) {
         val list = _recipeList.value.toMutableList()
-        _recipeList.value.map {
-            if (it == item) {
-                list.remove(it)
+        val iterator = list.iterator()
+        while (iterator.hasNext()) {
+            if (iterator.next() == item) {
+                iterator.remove()
             }
         }
+        --stepNum
         _recipeList.value = list
+
+        var num = 1
+        _recipeList.update {
+            _recipeList.value.map {
+                it.copy(stepNumber = num++)
+            }
+        }
     }
 
     fun changeEditMode() {
-        _recipeList.update {
-            _recipeList.value.map {
-                it.copy(isEditable = !it.isEditable)
+        viewModelScope.launch {
+            _recipeList.update {
+                _recipeList.value.map {
+                    it.copy(isEditable = !it.isEditable)
+                }
             }
+            _isEditMode.emit(!_isEditMode.value)
         }
     }
 
     fun setKkiLogImage() {
         viewModelScope.launch {
             _setKkiLogImageEvent.emit(Unit)
+            kkiLogImagePosition = "brand"
         }
     }
 }
