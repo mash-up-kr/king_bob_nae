@@ -79,6 +79,9 @@
         <action
             android:id="@+id/action_myKkiLogFragment_to_kkilogResultFragment"
             app:destination="@id/kkilogResultFragment" />
+        <action
+            android:id="@+id/action_myKkiLogFragment_to_detailKkiLogResultFragment"
+            app:destination="@id/detailKkiLogResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailKkiLogFragment"
@@ -90,18 +93,10 @@
             app:destination="@id/detailKkiLogResultFragment" />
     </fragment>
     <fragment
-        android:id="@+id/detailKkiLogResultItemFragment"
-        android:name="com.example.king_bob_nae.features.create.detail.presentaion.item.DetailKkiLogResultItemFragment"
-        android:label="DetailKkiLogResultItemFragment"
-        tools:layout="@layout/fragment_detail_kki_log_result_item" />
-    <fragment
         android:id="@+id/detailKkiLogResultFragment"
         android:name="com.example.king_bob_nae.features.create.detail.presentaion.result.DetailKkiLogResultFragment"
         android:label="DetailKkiLogResultFragment"
         tools:layout="@layout/fragment_detail_kki_log_result">
-        <action
-            android:id="@+id/action_detailKkiLogResultFragment_to_detailKkiLogResultItemFragment"
-            app:destination="@id/detailKkiLogResultItemFragment" />
         <argument
             android:name="userId"
             app:argType="integer" />
@@ -204,6 +199,6 @@
         android:id="@+id/myDetailKkiLogFragment"
         android:name="com.example.king_bob_nae.features.mykkilog.presentation.mykkilog.MyDetailKkiLogFragment"
         android:label="MyDetailKkiLogFragment"
-        tools:layout="@layout/fragment_my_detail_kkilog"/>
+        tools:layout="@layout/fragment_my_detail_kkilog" />
 
 </navigation>
