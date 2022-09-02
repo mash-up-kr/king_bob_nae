@@ -262,17 +262,6 @@ class DetailKkiLogViewModel @Inject constructor(
 
     fun deleteRecipe(item: KkiLogRecipe) {
         val list = _recipeList.value.toMutableList()
-        if (list.size == 1) {
-            deleteRecipeItem(item)
-            addRecipe()
-            changeEditMode()
-        } else {
-            deleteRecipeItem(item)
-        }
-    }
-
-    fun deleteRecipeItem(item: KkiLogRecipe) {
-        val list = _recipeList.value.toMutableList()
         val iterator = list.iterator()
         while (iterator.hasNext()) {
             if (iterator.next() == item) {
