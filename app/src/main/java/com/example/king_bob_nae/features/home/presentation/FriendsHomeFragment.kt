@@ -105,7 +105,19 @@ class FriendsHomeFragment :
     }
 
     private fun itemClick(kkilogState: KkilogState) {
-        val action = FriendsHomeFragmentDirections.actionFriendsHomeFragmentToKkilogResultFragment(kkilogState.id)
-        findNavController().navigate(action)
+        if (kkilogState.type == "상세 끼록") {
+            val action =
+                FriendsHomeFragmentDirections.actionFriendsHomeFragmentToDetailKkiLogResultFragment(
+                    userId = kkilogState.id
+                )
+            findNavController().navigate(action)
+        } else {
+            val action =
+                FriendsHomeFragmentDirections.actionFriendsHomeFragmentToKkilogResultFragment(
+                    kkilogState.id
+                )
+            findNavController().navigate(action)
+        }
+
     }
 }
