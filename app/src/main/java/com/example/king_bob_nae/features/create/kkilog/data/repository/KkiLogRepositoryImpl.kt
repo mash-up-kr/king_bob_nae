@@ -2,10 +2,9 @@ package com.example.king_bob_nae.features.create.kkilog.data.repository
 
 import android.util.Log
 import com.example.king_bob_nae.features.create.kkilog.data.dto.UpLoadDto
-import com.example.king_bob_nae.features.create.kkilog.data.dto.stringToNonNullableRequestBody
-import com.example.king_bob_nae.features.create.kkilog.data.dto.stringToNullableRequestBody
+import com.example.king_bob_nae.features.create.kkilog.data.dto.listToMultiPartBody
+import com.example.king_bob_nae.features.create.kkilog.data.dto.stringToMultiPartBody
 import com.example.king_bob_nae.features.create.kkilog.data.service.KkiLogService
-import com.example.king_bob_nae.utils.toMultipartBody
 import javax.inject.Inject
 
 class KkiLogRepositoryImpl @Inject constructor(
@@ -13,15 +12,12 @@ class KkiLogRepositoryImpl @Inject constructor(
 ) : KkiLogRepository {
     override suspend fun postKkiLog(dto: UpLoadDto) {
         runCatching {
-            val multipartList = dto.images.map {
-                it.toMultipartBody(it)!!
-            }
-            Log.d("multipart", "postKkiLog: $multipartList")
+            val multipartList = dto.images.listToMultiPartBody()
             service.postKkiLog(
                 images = multipartList,
-                title = dto.title.stringToNonNullableRequestBody(),
-                description = dto.description?.stringToNullableRequestBody(),
-                kick = dto.kick?.stringToNullableRequestBody()
+                title = dto.title.stringToMultiPartBody("title"),
+                description = dto.description?.stringToMultiPartBody("description"),
+                kick = dto.kick?.stringToMultiPartBody("kick")
             )
         }.onFailure {
             Log.e("upload", "postKkiLog: $it")

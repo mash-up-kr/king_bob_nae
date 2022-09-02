@@ -14,8 +14,9 @@ data class UpLoadDto(
     val kick: String?
 )
 
-fun String.stringToNonNullableRequestBody(): RequestBody =
-    this.toRequestBody("text/plain".toMediaTypeOrNull())
+fun String.stringToMultiPartBody(name: String): MultipartBody.Part {
+    return MultipartBody.Part.createFormData(name, this)
+}
 
 fun String.stringToNullableRequestBody(): RequestBody? =
     this.toRequestBody("text/plain".toMediaTypeOrNull())
@@ -24,9 +25,13 @@ fun List<String>.listToMultiPartBody(): List<MultipartBody.Part> {
     val multipartList = mutableListOf<MultipartBody.Part>()
     this.map {
         val file = File(it)
-        val requestFile = file.asRequestBody("images/*".toMediaTypeOrNull())
-        val body = MultipartBody.Part.createFormData("images", "images", requestFile)
+
+        val requestFile = file.asRequestBody("image/${file.extension}".toMediaTypeOrNull())
+        val body = MultipartBody.Part.createFormData("images", file.name, requestFile)
         multipartList.add(body)
     }
     return multipartList
 }
+
+val File.extension: String
+    get() = name.substringAfterLast('.', "")
