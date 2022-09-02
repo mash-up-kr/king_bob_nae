@@ -1,4 +1,4 @@
-package com.example.king_bob_nae.features.create.result.presenter
+package com.example.king_bob_nae.features.mykkilog.presentation.result.presenter
 
 import androidx.navigation.fragment.navArgs
 import com.example.king_bob_nae.R

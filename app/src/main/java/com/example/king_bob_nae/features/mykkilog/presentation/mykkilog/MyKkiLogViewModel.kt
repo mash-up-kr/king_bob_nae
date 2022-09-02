@@ -1,4 +1,4 @@
-package com.example.king_bob_nae.features.mykkilog.presentation
+package com.example.king_bob_nae.features.mykkilog.presentation.mykkilog
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

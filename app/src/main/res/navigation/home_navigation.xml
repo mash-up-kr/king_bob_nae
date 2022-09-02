@@ -65,7 +65,7 @@
     </fragment>
     <fragment
         android:id="@+id/myKkiLogFragment"
-        android:name="com.example.king_bob_nae.features.mykkilog.presentation.MyKkiLogFragment"
+        android:name="com.example.king_bob_nae.features.mykkilog.presentation.mykkilog.MyKkiLogFragment"
         android:label="MyKkiLogFragment"
         tools:layout="@layout/fragment_my_kkilog">
         <action
@@ -154,7 +154,7 @@
 
     <fragment
         android:id="@+id/kkilogResultFragment"
-        android:name="com.example.king_bob_nae.features.create.result.presenter.KkiLogResultFragment"
+        android:name="com.example.king_bob_nae.features.mykkilog.presentation.result.presenter.KkiLogResultFragment"
         android:label="KkilogResultFragment"
         tools:layout="@layout/fragment_kki_log_result">
 
