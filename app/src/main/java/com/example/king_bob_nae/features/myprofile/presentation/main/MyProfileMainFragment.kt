@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentMyprofileMainBinding
@@ -27,7 +28,7 @@ class MyProfileMainFragment :
 
     private val myProfileViewModel: MyProfileViewModel by activityViewModels()
     private val myProfileAdapter by lazy {
-        MyProfileAdapter(::itemClick)
+        MyProfileAdapter(::bookMarkClick, ::itemClick)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -75,6 +76,9 @@ class MyProfileMainFragment :
             btnMyProfileBack.setOnClickListener {
                 requireActivity().finish()
             }
+            tvMyProfileTotalKkilog.setOnClickListener {
+                it.findNavController().navigate(R.id.action_myProfileMainFragment_to_myKkiLogFragment)
+            }
             rvMyProfileScrap.adapter = myProfileAdapter
             rvMyProfileScrap.itemAnimator = null
         }
@@ -103,7 +107,7 @@ class MyProfileMainFragment :
         }
     }
 
-    private fun itemClick(scrapedImage: UserProfileUiState.ScrapedImage) {
+    private fun bookMarkClick(scrapedImage: UserProfileUiState.ScrapedImage) {
         val clicked = !scrapedImage.clicked
         if (clicked) {
             Snackbar.make(requireView(), "스크랩에서 추가됐어요.", Snackbar.LENGTH_SHORT).show()
@@ -111,5 +115,10 @@ class MyProfileMainFragment :
             Snackbar.make(requireView(), "스크랩에서 삭제됐어요.", Snackbar.LENGTH_SHORT).show()
         }
         myProfileViewModel.updateScrapState(scrapedImage.copy(clicked = clicked))
+    }
+
+    private fun itemClick(scrapedImage: UserProfileUiState.ScrapedImage) {
+        val action = MyProfileMainFragmentDirections.actionMyProfileMainFragmentToKkilogResultFragment(scrapedImage.realId)
+        findNavController().navigate(action)
     }
 }

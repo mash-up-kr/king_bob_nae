@@ -59,12 +59,19 @@
             app:destination="@id/imagePickerFragment"
             app:popUpTo="@id/kkiLogFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_kkiLogFragment_to_kkilogResultFragment"
+            app:destination="@id/kkilogResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/myKkiLogFragment"
-        android:name="com.example.king_bob_nae.features.mykkilog.presentation.MyKkiLogFragment"
+        android:name="com.example.king_bob_nae.features.mykkilog.presentation.mykkilog.MyKkiLogFragment"
         android:label="MyKkiLogFragment"
-        tools:layout="@layout/fragment_my_kkilog" />
+        tools:layout="@layout/fragment_my_kkilog">
+        <action
+            android:id="@+id/action_myKkiLogFragment_to_kkilogResultFragment"
+            app:destination="@id/kkilogResultFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailKkiLogFragment"
         android:name="com.example.king_bob_nae.features.create.detail.presentaion.write.DetailKkiLogFragment"
@@ -104,6 +111,12 @@
         <argument
             android:name="userId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_friendsHomeFragment_to_kkilogResultFragment"
+            app:destination="@id/kkilogResultFragment" />
+        <action
+            android:id="@+id/action_friendsHomeFragment_to_followingFragment"
+            app:destination="@id/followingFragment" />
     </fragment>
     <fragment
         android:id="@+id/firstTutorialFragment"
@@ -140,5 +153,17 @@
             app:popExitAnim="@anim/fade_out"
             app:popUpTo="@id/firstTutorialFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/kkilogResultFragment"
+        android:name="com.example.king_bob_nae.features.mykkilog.presentation.result.presenter.KkiLogResultFragment"
+        android:label="KkilogResultFragment"
+        tools:layout="@layout/fragment_kki_log_result">
+
+        <argument
+            android:name="kkilogId"
+            app:argType="integer"
+            app:nullable="false" />
     </fragment>
 </navigation>

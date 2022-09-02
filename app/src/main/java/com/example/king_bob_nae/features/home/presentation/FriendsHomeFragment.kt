@@ -51,7 +51,7 @@ class FriendsHomeFragment :
             startActivity(Intent(requireActivity(), MyProfileActivity::class.java))
         }
         binding.commonHomeLayout.ivAdd.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_followingFragment)
+            it.findNavController().navigate(R.id.action_friendsHomeFragment_to_followingFragment)
         }
         binding.tvSpeechBubble.setOnClickListener {
             it.visibility = View.GONE
@@ -84,6 +84,7 @@ class FriendsHomeFragment :
                                     it
                                 )
                             findNavController().navigate(action)
+                            findNavController().popBackStack()
                         }
                     }
 

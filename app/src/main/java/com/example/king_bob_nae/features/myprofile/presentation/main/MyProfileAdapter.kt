@@ -10,10 +10,11 @@ import com.example.king_bob_nae.databinding.MyProfileRecyclerviewItemBinding
 import com.example.king_bob_nae.features.myprofile.domain.userprofile.UserProfileUiState.ScrapedImage
 import com.example.king_bob_nae.shared.setOnThrottleClickListener
 
-class MyProfileAdapter(private val itemClick: (ScrapedImage) -> Unit) :
+class MyProfileAdapter(private val bookMarkClick: (ScrapedImage) -> Unit, private val itemClick: (ScrapedImage) -> Unit) :
     ListAdapter<ScrapedImage, MyProfileAdapter.MyProfileViewHolder>(profileDiffUtil) {
     class MyProfileViewHolder(
         parent: ViewGroup,
+        private val bookMarkClick: (ScrapedImage) -> Unit,
         private val itemClick: (ScrapedImage) -> Unit,
     ) : RecyclerView.ViewHolder(
         MyProfileRecyclerviewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false).root
@@ -24,8 +25,11 @@ class MyProfileAdapter(private val itemClick: (ScrapedImage) -> Unit) :
         init {
             with(binding) {
                 ivMyProfileBookmark.setOnThrottleClickListener {
-                    itemClick(item)
+                    bookMarkClick(item)
                 }
+            }
+            itemView.setOnThrottleClickListener {
+                itemClick(item)
             }
         }
 
@@ -53,7 +57,7 @@ class MyProfileAdapter(private val itemClick: (ScrapedImage) -> Unit) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyProfileViewHolder {
-        return MyProfileViewHolder(parent, itemClick)
+        return MyProfileViewHolder(parent, bookMarkClick, itemClick)
     }
 
     override fun onBindViewHolder(holder: MyProfileViewHolder, position: Int) {

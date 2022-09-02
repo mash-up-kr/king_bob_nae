@@ -1,4 +1,4 @@
-package com.example.king_bob_nae.features.mykkilog.presentation
+package com.example.king_bob_nae.features.mykkilog.presentation.mykkilog
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
