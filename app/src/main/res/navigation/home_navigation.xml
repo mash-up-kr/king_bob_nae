@@ -114,6 +114,9 @@
         <action
             android:id="@+id/action_friendsHomeFragment_to_kkilogResultFragment"
             app:destination="@id/kkilogResultFragment" />
+        <action
+            android:id="@+id/action_friendsHomeFragment_to_followingFragment"
+            app:destination="@id/followingFragment" />
     </fragment>
     <fragment
         android:id="@+id/firstTutorialFragment"
