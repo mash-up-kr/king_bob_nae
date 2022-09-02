@@ -80,6 +80,10 @@ class DetailKkiLogViewModel @Inject constructor(
         addView()
     }
 
+    fun clearDetail() {
+        _detailKkiLogResult.value = DetailKkiLogResult()
+    }
+
     fun setEmptyDescription(text: String) {
         emptyDescription.value = text
     }

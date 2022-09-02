@@ -2,13 +2,16 @@ package com.example.king_bob_nae.features.create
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseBottomSheetDialogFragment
 import com.example.king_bob_nae.databinding.FragmentAddKkiLogBottomSheetBinding
+import com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel
 
 class AddKkiLogBottomSheetFragment :
     BaseBottomSheetDialogFragment<FragmentAddKkiLogBottomSheetBinding>(R.layout.fragment_add_kki_log_bottom_sheet) {
+    private val detailKkiLogViewModel: DetailKkiLogViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +39,7 @@ class AddKkiLogBottomSheetFragment :
             }
 
             llDetailKkiLog.setOnClickListener {
+                detailKkiLogViewModel.clearDetail()
                 navController.navigate(R.id.detailKkiLogFragment)
                 dismiss()
             }
