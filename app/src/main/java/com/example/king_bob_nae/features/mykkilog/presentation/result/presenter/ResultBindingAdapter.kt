@@ -1,5 +1,6 @@
 package com.example.king_bob_nae.features.mykkilog.presentation.result.presenter
 
+import android.annotation.SuppressLint
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -36,9 +37,12 @@ fun ImageView.bindKkilogBookMark(kkilog: KkilogResultUiState?) {
     }
 }
 
+@SuppressLint("SetTextI18n")
 @BindingAdapter("bindDate")
 fun TextView.bindDate(date: String?) {
     date?.let {
-        text = date.dropLast(15)
+        val tempDate = date.split("T")[0]
+        val dateArray = tempDate.split("-")
+        this.text = "${dateArray[0]}년 ${dateArray[1]}월 ${dateArray[2]}"
     }
 }

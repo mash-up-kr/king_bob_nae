@@ -78,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="@{viewModel.detailKkiLogResult.createdAt}"
+                    bindDate="@{viewModel.detailKkiLogResult.createdAt}"
                     android:textColor="@color/brown_gray_200"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
