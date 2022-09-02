@@ -15,7 +15,7 @@ class DetailKkiLogSharedViewModel @Inject constructor() : ViewModel() {
     private val _recipePair = MutableStateFlow(0 to listOf<Recipe>())
     val recipePair = _recipePair.asStateFlow()
 
-    var position = 0
+    val currentPosition = MutableStateFlow<Int>(0)
 
     fun setKkiLogRecipeList(pair: Pair<Int, List<Recipe>>) {
         viewModelScope.launch {

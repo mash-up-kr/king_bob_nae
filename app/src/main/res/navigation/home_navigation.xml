@@ -79,6 +79,9 @@
         <action
             android:id="@+id/action_myKkiLogFragment_to_kkilogResultFragment"
             app:destination="@id/kkilogResultFragment" />
+        <action
+            android:id="@+id/action_myKkiLogFragment_to_detailKkiLogResultFragment"
+            app:destination="@id/detailKkiLogResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailKkiLogFragment"
@@ -90,21 +93,21 @@
             app:destination="@id/detailKkiLogResultFragment" />
     </fragment>
     <fragment
-        android:id="@+id/detailKkiLogResultItemFragment"
-        android:name="com.example.king_bob_nae.features.create.detail.presentaion.item.DetailKkiLogResultItemFragment"
-        android:label="DetailKkiLogResultItemFragment"
-        tools:layout="@layout/fragment_detail_kki_log_result_item" />
-    <fragment
         android:id="@+id/detailKkiLogResultFragment"
         android:name="com.example.king_bob_nae.features.create.detail.presentaion.result.DetailKkiLogResultFragment"
         android:label="DetailKkiLogResultFragment"
         tools:layout="@layout/fragment_detail_kki_log_result">
-        <action
-            android:id="@+id/action_detailKkiLogResultFragment_to_detailKkiLogResultItemFragment"
-            app:destination="@id/detailKkiLogResultItemFragment" />
         <argument
             android:name="userId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_detailKkiLogResultFragment_to_detailResultItemFragment"
+            app:destination="@id/detailResultItemFragment" />
+        <action
+            android:id="@+id/action_detailKkiLogResultFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/followingFragment"
@@ -177,6 +180,12 @@
             app:argType="integer"
             app:nullable="false" />
     </fragment>
+    <fragment
+        android:id="@+id/detailResultItemFragment"
+        android:name="com.example.king_bob_nae.features.mykkilog.presentation.detail.DetailResultItemFragment"
+        android:label="DetailResultItemFragment"
+        tools:layout="@layout/fragment_detail_result_item" />
+
     <fragment
         android:id="@+id/mySimpleKkiLogFragment"
         android:name="com.example.king_bob_nae.features.mykkilog.presentation.mykkilog.MySimpleKkiLogFragment"
