@@ -33,10 +33,25 @@
         <action
             android:id="@+id/action_myProfileMainFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_myProfileMainFragment_to_kkilogResultFragment"
+            app:destination="@id/kkilogResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.example.king_bob_nae.features.myprofile.presentation.setting.SettingFragment"
         android:label="SettingFragment"
         tools:layout="@layout/fragment_setting" />
+
+    <fragment
+        android:id="@+id/kkilogResultFragment"
+        android:name="com.example.king_bob_nae.features.create.result.presenter.KkiLogResultFragment"
+        android:label="KkilogResultFragment"
+        tools:layout="@layout/fragment_kki_log_result">
+
+        <argument
+            android:name="kkilogId"
+            app:argType="integer"
+            app:nullable="false" />
+    </fragment>
 </navigation>
