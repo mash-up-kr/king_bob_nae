@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="step"
+            type="com.example.king_bob_nae.features.mykkilog.presentation.detail.domain.StepItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_step_image"
+            bindImage="@{step.image}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_step"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/tmp_food" />
+
+        <TextView
+            android:id="@+id/tv_step"
+            style="@style/Body3"
+            bindStep="@{step.step}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/main_orange"
+            app:layout_constraintBottom_toTopOf="@id/tv_step_description"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="STEP. 1" />
+
+        <TextView
+            android:id="@+id/tv_step_description"
+            style="@style/Body1_Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="92dp"
+            android:text="@{step.description}"
+            android:textColor="@color/brown_gray_500"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="적당히 잘라라" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

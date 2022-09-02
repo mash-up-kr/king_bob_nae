@@ -89,16 +89,12 @@ class DetailKkiLogFragment :
             rvIngredient.adapter = detailKkiLogIngredientAdapter
             rvRecipe.apply {
                 adapter = detailKkiLogRecipeAdapter
-//                itemAnimator = null
+                itemAnimator = null
             }
             itemTouchHelper.attachToRecyclerView(rvRecipe)
 
             ivClose.setOnClickListener {
                 navController.popBackStack()
-            }
-
-            tvFinish.setOnClickListener {
-                navController.navigate(R.id.action_detailKkiLogFragment_to_detailKkiLogResultFragment)
             }
 
             tvAddIngredient.setOnClickListener {
@@ -138,12 +134,11 @@ class DetailKkiLogFragment :
 
                     launch {
                         isEditMode.collect {
-                            if (!it) {
+                            if (it) {
                                 binding.tvEdit.text = "완료"
                             } else {
                                 binding.tvEdit.text = "편집"
                             }
-                            detailKkiLogViewModel.changeEditMode()
                         }
                     }
 
@@ -164,8 +159,14 @@ class DetailKkiLogFragment :
 
                     launch {
                         detailKkiLogResult.collect {
-                            if (it.id != 0)
-                                findNavController().navigate(R.id.action_detailKkiLogFragment_to_detailKkiLogResultFragment)
+                            NLog.d("kelly result", it.toString())
+                            if (it.id != 0) {
+                                val action =
+                                    DetailKkiLogFragmentDirections.actionDetailKkiLogFragmentToDetailKkiLogResultFragment(
+                                        userId = it.id
+                                    )
+                                findNavController().navigate(action)
+                            }
                         }
                     }
                 }
@@ -177,6 +178,7 @@ class DetailKkiLogFragment :
         val intent = Intent(Intent.ACTION_PICK).apply {
             type = "image/*"
         }
+        detailKkiLogViewModel.setKKiLogImagePosition("recipe")
         activityLauncher.launch(intent)
         detailKkiLogViewModel.setRecipeItem(item)
     }
@@ -188,11 +190,20 @@ class DetailKkiLogFragment :
                     val currentImageUri = it.data?.data
                     val file = File(changeToAbsolutePath(currentImageUri, requireContext()))
                     val requestFile = file.asRequestBody(("image/*".toMediaTypeOrNull()))
-                    val body =
-                        MultipartBody.Part.createFormData("recipeImages", file.name, requestFile)
-                    val body2 =
-                        MultipartBody.Part.createFormData("brandImage", file.name, requestFile)
-                    detailKkiLogViewModel.setImage(currentImageUri, body, body2)
+
+                    if (detailKkiLogViewModel.kkiLogImagePosition == "recipe") {
+                        val body =
+                            MultipartBody.Part.createFormData(
+                                "recipeImages",
+                                file.name,
+                                requestFile
+                            )
+                        detailKkiLogViewModel.setRecipeImage(currentImageUri, body)
+                    } else {
+                        val body =
+                            MultipartBody.Part.createFormData("brandImage", file.name, requestFile)
+                        detailKkiLogViewModel.setBrandImage(currentImageUri, body)
+                    }
                 } else if (it.resultCode == AppCompatActivity.RESULT_CANCELED) {
                     Toast.makeText(requireContext(), "사진 선택 취소", Toast.LENGTH_SHORT).show()
                 } else {

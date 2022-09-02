@@ -14,4 +14,8 @@ interface DetailKkiLogRepository {
         description: RequestBody,
         ingredients: RequestBody
     ): Flow<DetailKkiLogDto>
+
+    fun fetchDetailKkiLogResult(
+        userId: Int
+    ): Flow<DetailKkiLogDto>
 }

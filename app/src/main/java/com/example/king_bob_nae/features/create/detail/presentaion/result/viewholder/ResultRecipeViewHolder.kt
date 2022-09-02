@@ -3,11 +3,11 @@ package com.example.king_bob_nae.features.create.detail.presentaion.result.viewh
 import androidx.recyclerview.widget.RecyclerView
 import com.example.king_bob_nae.databinding.ItemDetailKkiLogResultRecipeBinding
 import com.example.king_bob_nae.features.create.detail.data.Recipe
-import com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel
+import com.example.king_bob_nae.features.create.detail.presentaion.result.DetailKkiLogResultViewModel
 
 class ResultRecipeViewHolder(
     private val binding: ItemDetailKkiLogResultRecipeBinding,
-    detailKkiLogViewModel: DetailKkiLogViewModel,
+    detailKkiLogViewModel: DetailKkiLogResultViewModel,
 ) : RecyclerView.ViewHolder(binding.root) {
 
     init {

@@ -26,26 +26,10 @@ class RecipeViewHolder(
         }
 
         binding.etRecipeDescription.doAfterTextChanged {
-//            detailKkiLogViewModel.setEmptyDescription(text.toString())
-            // TODO updaterecipeDescription 이거 debounce 걸어야하는데
             if (binding.etRecipeDescription.text.isNotEmpty()) {
                 detailKkiLogViewModel.updateRecipeDescription(item, it.toString())
             }
         }
-
-//        // TODO focus가 이상함 false, true 가 번갈아서 나옴
-//        binding.etRecipeDescription.setOnFocusChangeListener { _, hasFocus ->
-//            if (!hasFocus) {
-//                if (binding.etRecipeDescription.text.isNotEmpty()) {
-//                    detailKkiLogViewModel.updateRecipeDescription(item)
-//                    binding.etRecipeDescription.apply {
-//                        clearFocus()
-//                        isEnabled = false
-//                        inputType = InputType.TYPE_NULL
-//                    }
-//                }
-//            }
-//        }
 
         binding.ivReorder.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
