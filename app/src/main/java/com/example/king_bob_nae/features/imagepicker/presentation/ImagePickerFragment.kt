@@ -62,7 +62,12 @@ class ImagePickerFragment :
     private fun initRegister() {
         registerPictureLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) {
             if (it) {
-                imageListViewModel.updateImageList(ImageState(clicked = true, imageUrl = uri.toString()))
+                imageListViewModel.updateImageList(
+                    ImageState(
+                        clicked = true,
+                        imageUrl = uri.toString()
+                    )
+                )
                 sendImageUrlListAction()
             }
         }
@@ -88,6 +93,7 @@ class ImagePickerFragment :
             }
             btnImagePickerBack.setOnClickListener {
                 clearList()
+
                 findNavController().navigate(R.id.action_imagePickerFragment_to_homeFragment)
             }
         }
@@ -226,6 +232,7 @@ class ImagePickerFragment :
     private fun clearList() {
         imageListViewModel.resetAllData()
         kkiLogViewModel.clearList()
+        kkiLogViewModel.clearSaved()
     }
 
     override fun onDetach() {
