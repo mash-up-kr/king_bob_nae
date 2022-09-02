@@ -6,7 +6,11 @@
 
         <variable
             name="item"
-            type="com.example.king_bob_nae.features.create.detail.domain.model.KkiLogRecipe" />
+            type="com.example.king_bob_nae.features.create.detail.data.Recipe" />
+
+        <variable
+            name="position"
+            type="Integer" />
 
         <variable
             name="viewModel"
@@ -20,27 +24,15 @@
         android:paddingTop="18dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/iv_remove_recipe"
-            onThrottleClick="@{() -> viewModel.deleteRecipe(item)}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_red_error"
-            android:contentDescription="@null"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:visible="@{item.isEditable}" />
-
         <TextView
             android:id="@+id/tv_step"
             style="@style/Body3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="@{@string/detail_kki_log_step_num(item.stepNumber)}"
+            android:text="@{@string/detail_kki_log_step_num(position)}"
             android:textColor="@color/brown_gray_200"
-            app:layout_constraintStart_toEndOf="@id/iv_remove_recipe"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
@@ -64,37 +56,14 @@
 
         <ImageView
             android:id="@+id/iv_food_image"
-            recipeUri="@{item.imageUri}"
+            bindImage="@{item.image.original}"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_marginEnd="8dp"
             android:contentDescription="@null"
             android:scaleType="fitXY"
-            app:layout_constraintEnd_toStartOf="@id/iv_reorder"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/iv_plus"
-            setKkiLogImageVisible="@{item.imageUri}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@null"
-            android:src="@drawable/ic_plus_32"
-            app:layout_constraintBottom_toBottomOf="@id/iv_food_image"
-            app:layout_constraintEnd_toEndOf="@id/iv_food_image"
-            app:layout_constraintStart_toStartOf="@id/iv_food_image"
-            app:layout_constraintTop_toTopOf="@id/iv_food_image" />
-
-        <ImageView
-            android:id="@+id/iv_reorder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_reorder_32"
-            android:contentDescription="@null"
-            app:layout_constraintBottom_toBottomOf="@id/iv_food_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/iv_food_image"
-            app:visible="@{item.isEditable}" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/view_divide_line"
