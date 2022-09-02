@@ -94,6 +94,9 @@
         <action
             android:id="@+id/action_detailKkiLogResultFragment_to_detailKkiLogResultItemFragment"
             app:destination="@id/detailKkiLogResultItemFragment" />
+        <argument
+            android:name="userId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/followingFragment"

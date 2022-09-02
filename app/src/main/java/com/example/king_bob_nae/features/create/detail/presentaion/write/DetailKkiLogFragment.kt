@@ -97,10 +97,6 @@ class DetailKkiLogFragment :
                 navController.popBackStack()
             }
 
-            tvFinish.setOnClickListener {
-                navController.navigate(R.id.action_detailKkiLogFragment_to_detailKkiLogResultFragment)
-            }
-
             tvAddIngredient.setOnClickListener {
                 detailKkiLogViewModel.addIngredient()
             }
@@ -163,8 +159,14 @@ class DetailKkiLogFragment :
 
                     launch {
                         detailKkiLogResult.collect {
-                            if (it.id != 0)
-                                findNavController().navigate(R.id.action_detailKkiLogFragment_to_detailKkiLogResultFragment)
+
+                            if (it.id != 0) {
+                                val action =
+                                    DetailKkiLogFragmentDirections.actionDetailKkiLogFragmentToDetailKkiLogResultFragment(
+                                        userId = it.id
+                                    )
+                                findNavController().navigate(action)
+                            }
                         }
                     }
                 }

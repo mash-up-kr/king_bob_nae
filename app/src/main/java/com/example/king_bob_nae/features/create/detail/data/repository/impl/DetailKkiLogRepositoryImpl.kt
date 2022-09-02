@@ -31,4 +31,10 @@ class DetailKkiLogRepositoryImpl @Inject constructor(
             )
         )
     }
+
+    override fun fetchDetailKkiLogResult(userId: Int): Flow<DetailKkiLogDto> = flow {
+        emit(
+            service.fetchDetailKkiLogResult(userId)
+        )
+    }
 }
