@@ -69,7 +69,6 @@
 
                 <EditText
                     android:id="@+id/et_food_title"
-                    style="@style/Body1_Bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="29dp"
@@ -79,6 +78,8 @@
                     android:paddingBottom="20dp"
                     android:textColor="@color/brown_gray_500"
                     android:textColorHint="@color/brown_gray_200"
+                    android:textSize="18dp"
+                    android:theme="@style/KkiLogEditTextStyle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -86,11 +87,11 @@
                 <ImageView
                     android:id="@+id/iv_food_image"
                     kkiLogImageUri="@{viewModel.kkiLogImage}"
+                    onThrottleClick="@{()-> viewModel.setKkiLogImage()}"
                     android:layout_width="0dp"
                     android:layout_height="312dp"
-                    android:scaleType="fitXY"
-                    onThrottleClick="@{()-> viewModel.setKkiLogImage()}"
                     android:contentDescription="@null"
+                    android:scaleType="fitXY"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/et_food_title" />
@@ -133,7 +134,6 @@
 
                 <EditText
                     android:id="@+id/et_introduce"
-                    style="@style/Body1_Regular"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:autofillHints="no"
@@ -145,6 +145,8 @@
                     android:paddingBottom="20dp"
                     android:textColor="@color/brown_gray_500"
                     android:textColorHint="@color/brown_gray_200"
+                    android:textSize="16dp"
+                    android:theme="@style/KkiLogEditTextStyle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@id/tv_introduce"
@@ -214,11 +216,12 @@
                 <TextView
                     android:id="@+id/tv_edit"
                     style="@style/Body3"
+                    onThrottleClick="@{()->viewModel.changeEditMode()}"
+                    text="@{viewModel.isEditMode==true?@string/finish:@string/edit}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="편집"
-                    onThrottleClick="@{()->viewModel.changeEditMode()}"
-                    android:textColor="@color/brown_gray_200"
+                    android:textColor="@{viewModel.isEditMode==true?@color/main_orange:@color/brown_gray_200}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_recipe"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_recipe" />

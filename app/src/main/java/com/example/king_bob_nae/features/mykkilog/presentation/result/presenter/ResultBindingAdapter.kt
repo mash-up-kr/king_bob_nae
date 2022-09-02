@@ -40,9 +40,11 @@ fun ImageView.bindKkilogBookMark(kkilog: KkilogResultUiState?) {
 @SuppressLint("SetTextI18n")
 @BindingAdapter("bindDate")
 fun TextView.bindDate(date: String?) {
-    date?.let {
+    if (date?.isNotEmpty() == true) {
         val tempDate = date.split("T")[0]
         val dateArray = tempDate.split("-")
-        this.text = "${dateArray[0]}년 ${dateArray[1]}월 ${dateArray[2]}"
+        this.text = "${dateArray[0]}년 ${dateArray[1]}월 ${dateArray[2]}일"
+    } else {
+        this.text = date
     }
 }

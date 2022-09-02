@@ -19,7 +19,8 @@
 
         <EditText
             android:id="@+id/et_ingredient"
-            style="@style/Body1_Regular"
+            android:theme="@style/KkiLogEditTextStyle"
+            android:textSize="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="no"

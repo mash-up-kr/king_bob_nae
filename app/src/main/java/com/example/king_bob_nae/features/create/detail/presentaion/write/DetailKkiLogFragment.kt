@@ -31,6 +31,7 @@ import com.example.king_bob_nae.features.create.detail.domain.model.KkiLogRecipe
 import com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel
 import com.example.king_bob_nae.features.create.detail.presentaion.write.adapter.DetailKkiLogIngredientAdapter
 import com.example.king_bob_nae.features.create.detail.presentaion.write.adapter.DetailKkiLogRecipeAdapter
+import com.example.king_bob_nae.shared.isEnabled
 import com.example.king_bob_nae.utils.NLog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -114,6 +115,7 @@ class DetailKkiLogFragment :
                     detailKkiLogViewModel.setKkiLogTitle(title.toString())
                 }
             }
+            tvFinish.isEnabled(false)
         }
     }
 
@@ -129,16 +131,6 @@ class DetailKkiLogFragment :
                     launch {
                         recipeList.collect {
                             detailKkiLogRecipeAdapter.submitList(it)
-                        }
-                    }
-
-                    launch {
-                        isEditMode.collect {
-                            if (it) {
-                                binding.tvEdit.text = "완료"
-                            } else {
-                                binding.tvEdit.text = "편집"
-                            }
                         }
                     }
 
@@ -159,8 +151,8 @@ class DetailKkiLogFragment :
 
                     launch {
                         detailKkiLogResult.collect {
-                            NLog.d("kelly result", it.toString())
                             if (it.id != 0) {
+                                binding.tvFinish.isEnabled(true)
                                 val action =
                                     DetailKkiLogFragmentDirections.actionDetailKkiLogFragmentToDetailKkiLogResultFragment(
                                         userId = it.id

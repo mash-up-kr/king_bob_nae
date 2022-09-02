@@ -108,4 +108,10 @@
     <style name="AppTheme" parent="Theme.MaterialComponents">
         <item name="actionOverflowMenuStyle">@style/popupOverflowMenu</item>
     </style>
+    
+    <style name="KkiLogEditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="colorControlNormal">@color/brown_gray_200</item>
+        <item name="colorControlActivated">@color/main_orange</item>
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+    </style>
 </resources>

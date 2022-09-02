@@ -16,24 +16,10 @@ class IngredientViewHolder(
         binding.viewModel = detailKkiLogViewModel
 
         binding.etIngredient.doAfterTextChanged {
-//            detailKkiLogViewModel.setEmptyIngredient(it.toString())
             if (binding.etIngredient.text.isNotEmpty()) {
                 detailKkiLogViewModel.updateIngredient(item, it.toString())
             }
         }
-
-//        binding.etIngredient.setOnFocusChangeListener { _, hasFocus ->
-//            if (!hasFocus) {
-//                if (binding.etIngredient.text.isNotEmpty()) {
-//                    detailKkiLogViewModel.updateIngredient(item)
-//                    binding.etIngredient.apply {
-//                        clearFocus()
-//                        isEnabled = false
-//                        inputType = InputType.TYPE_NULL
-//                    }
-//                }
-//            }
-//        }
 
         binding.etIngredient.viewTreeObserver.addOnGlobalLayoutListener {
             binding.etIngredient.setSelection(binding.etIngredient.length())

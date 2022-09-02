@@ -8,6 +8,7 @@ import com.example.king_bob_nae.databinding.ItemDetailKkiLogRecipeBinding
 import com.example.king_bob_nae.features.create.detail.domain.model.KkiLogRecipe
 import com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel
 import com.example.king_bob_nae.features.create.detail.presentaion.write.RecipeItemDragListener
+import com.example.king_bob_nae.shared.setUnderLineColor
 
 @SuppressLint("ClickableViewAccessibility")
 class RecipeViewHolder(
@@ -41,6 +42,7 @@ class RecipeViewHolder(
         binding.etRecipeDescription.viewTreeObserver.addOnGlobalLayoutListener {
             binding.etRecipeDescription.setSelection(binding.etRecipeDescription.length())
         }
+        binding.viewDivideLine.setUnderLineColor()
     }
 
     fun bind(item: KkiLogRecipe) {

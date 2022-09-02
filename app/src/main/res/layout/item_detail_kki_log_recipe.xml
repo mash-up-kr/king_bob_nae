@@ -45,7 +45,7 @@
 
         <EditText
             android:id="@+id/et_recipe_description"
-            style="@style/Body1_Regular"
+            android:theme="@style/KkiLogEditTextStyle"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginEnd="28dp"
@@ -57,6 +57,7 @@
             android:maxLines="2"
             android:text="@{item.description}"
             android:textColor="@color/brown_gray_300"
+            android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="@id/iv_food_image"
             app:layout_constraintEnd_toStartOf="@+id/iv_food_image"
             app:layout_constraintStart_toStartOf="@id/tv_step"
