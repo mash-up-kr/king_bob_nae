@@ -6,11 +6,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.king_bob_nae.R
-import com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel
+import com.example.king_bob_nae.features.create.detail.presentaion.result.DetailKkiLogResultViewModel
 import com.example.king_bob_nae.features.create.detail.presentaion.result.viewholder.ResultIngredientViewHolder
 
 class ResultIngredientAdapter(
-    private val detailKkiLogViewModel: DetailKkiLogViewModel
+    private val detailKkiLogResultViewModel: DetailKkiLogResultViewModel
 ) : ListAdapter<String, ResultIngredientViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultIngredientViewHolder {
@@ -21,7 +21,7 @@ class ResultIngredientAdapter(
                 parent,
                 false
             ),
-            detailKkiLogViewModel
+            detailKkiLogResultViewModel
         )
     }
 

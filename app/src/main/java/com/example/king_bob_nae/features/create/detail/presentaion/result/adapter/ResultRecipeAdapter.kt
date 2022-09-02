@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.features.create.detail.data.Recipe
-import com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel
+import com.example.king_bob_nae.features.create.detail.presentaion.result.DetailKkiLogResultViewModel
 import com.example.king_bob_nae.features.create.detail.presentaion.result.viewholder.ResultRecipeViewHolder
 
 class ResultRecipeAdapter(
-    private val detailKkiLogViewModel: DetailKkiLogViewModel
+    private val detailKkiLogResultViewModel: DetailKkiLogResultViewModel
 ) : ListAdapter<Recipe, ResultRecipeViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultRecipeViewHolder {
@@ -22,7 +22,7 @@ class ResultRecipeAdapter(
                 parent,
                 false
             ),
-            detailKkiLogViewModel
+            detailKkiLogResultViewModel
         )
     }
 

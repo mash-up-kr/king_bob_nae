@@ -2,15 +2,15 @@ package com.example.king_bob_nae.features.create.detail.presentaion.result.viewh
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.king_bob_nae.databinding.ItemDetailKkiLogResultIngredientBinding
-import com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel
+import com.example.king_bob_nae.features.create.detail.presentaion.result.DetailKkiLogResultViewModel
 
 class ResultIngredientViewHolder(
     private val binding: ItemDetailKkiLogResultIngredientBinding,
-    detailKkiLogViewModel: DetailKkiLogViewModel
+    detailKkiLogResultViewModel: DetailKkiLogResultViewModel
 ) : RecyclerView.ViewHolder(binding.root) {
 
     init {
-        binding.viewModel = detailKkiLogViewModel
+        binding.viewModel = detailKkiLogResultViewModel
     }
 
     fun bind(item: String) {

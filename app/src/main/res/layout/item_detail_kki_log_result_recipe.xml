@@ -14,7 +14,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.king_bob_nae.features.create.detail.presentaion.DetailKkiLogViewModel" />
+            type="com.example.king_bob_nae.features.create.detail.presentaion.result.DetailKkiLogResultViewModel" />
 
     </data>
 
@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="18dp"
+        onThrottleClick="@{() -> viewModel.onRecipeClick(position)}"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -35,8 +36,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/et_recipe_description"
+        <TextView
+            android:id="@+id/tv_recipe_description"
             style="@style/Body1_Regular"
             android:layout_width="0dp"
             android:layout_height="0dp"
