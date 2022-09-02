@@ -25,16 +25,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/iv_share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_share_48"
-            android:contentDescription="@null"
-            app:layout_constraintBottom_toBottomOf="@id/iv_more"
-            app:layout_constraintEnd_toStartOf="@+id/iv_more"
-            app:layout_constraintTop_toTopOf="@id/iv_more" />
-
 
         <ImageView
             android:id="@+id/iv_more"
