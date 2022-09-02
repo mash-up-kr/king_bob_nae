@@ -60,6 +60,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+                    android:id="@+id/dots_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    app:dotsColor="@color/white"
+                    app:dotsSize="7dp"
+                    app:dotsSpacing="7dp"
+                    app:dotsStrokeColor="@color/brown_gray_100"
+                    app:layout_constraintBottom_toBottomOf="@id/vp_food_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
                 <TextView
                     android:id="@+id/tv_food_name"
                     style="@style/Headline2_Bold"
@@ -111,10 +124,10 @@
 
                 <TextView
                     android:id="@+id/tv_food_description"
+                    style="@style/Body3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    style="@style/Body3"
                     android:layout_marginBottom="36dp"
                     android:text="@{kkilog.description}"
                     app:layout_constraintBottom_toTopOf="@id/tv_my_kick"

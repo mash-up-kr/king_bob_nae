@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.king_bob_nae.R
 import com.example.king_bob_nae.base.BaseFragment
 import com.example.king_bob_nae.databinding.FragmentKkiLogResultBinding
+import com.example.king_bob_nae.features.mykkilog.presentation.result.viewpager.KkilogViewPagerAdapter
 import com.example.king_bob_nae.shared.setOnThrottleClickListener
 import kotlinx.coroutines.launch
 
@@ -21,10 +22,15 @@ class KkiLogResultFragment :
     private val navArgs by navArgs<KkiLogResultFragmentArgs>()
 
     private val resultViewModel: KkilogResultViewModel by activityViewModels()
+    private val viewPagerAdapter by lazy {
+        KkilogViewPagerAdapter()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.vpFoodImage.adapter = viewPagerAdapter
+        binding.dotsIndicator.attachTo(binding.vpFoodImage)
 
         initCollect()
         initView()
@@ -36,6 +42,7 @@ class KkiLogResultFragment :
         }
         binding.likeCardView.setOnThrottleClickListener {
             // 여기서는 navigate -> 팔로우 팔로워로 이동
+            // 요기능은 없는거루
         }
         binding.ivMore.setOnClickListener {
             createDeleteAlertDialog()
@@ -114,6 +121,7 @@ class KkiLogResultFragment :
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 resultViewModel.kkilogResultUiState.collect {
                     binding.kkilog = it
+                    viewPagerAdapter.submitList(it.foodImageList)
                 }
             }
         }
